@@ -12,7 +12,7 @@
                      data-stat="{{profession.system.definingSkill.stat}}"
                      data-level="{{profession.system.definingSkill.level}}"
                      data-name="{{profession.system.definingSkill.skillName}}"
-                     data-effet="{{profession.system.definingSkill.definition}}">
+                     data-effect="{{profession.system.definingSkill.definition}}">
                     {{#unless (eq profession.system.definingSkill.stat "none")}}
                         <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                     {{/unless}}
@@ -20,7 +20,7 @@
                            type="text" value="{{profession.system.definingSkill.skillName}}" placeholder=""/>
                     <select class="inline-edit defining-skill-select" data-field="system.definingSkill.stat">
                         {{#select profession.system.definingSkill.stat}}
-                            {{#each config.statTypes as |name type|}}
+                            {{#each config.stats as |name type|}}
                                 <option value="{{type}}">{{localize name}}</option>
                             {{/each}}
                         {{/select}}
@@ -41,7 +41,7 @@
                              data-stat="{{profession.system.skillPath1.skill1.stat}}"
                              data-level="{{profession.system.skillPath1.skill1.level}}"
                              data-name="{{profession.system.skillPath1.skill1.skillName}}"
-                             data-effet="{{profession.system.skillPath1.skill1.definition}}">
+                             data-effect="{{profession.system.skillPath1.skill1.definition}}">
                             {{#unless (eq profession.system.skillPath1.skill1.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -50,7 +50,7 @@
                                    value="{{profession.system.skillPath1.skill1.skillName}}" placeholder=""/>
                             <select class="inline-edit first-path-select" data-field="system.skillPath1.skill1.stat">
                                 {{#select profession.system.skillPath1.skill1.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -67,7 +67,7 @@
                              data-stat="{{profession.system.skillPath1.skill2.stat}}"
                              data-level="{{profession.system.skillPath1.skill2.level}}"
                              data-name="{{profession.system.skillPath1.skill2.skillName}}"
-                             data-effet="{{profession.system.skillPath1.skill2.definition}}">
+                             data-effect="{{profession.system.skillPath1.skill2.definition}}">
                             {{#unless (eq profession.system.skillPath1.skill2.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -76,7 +76,7 @@
                                    value="{{profession.system.skillPath1.skill2.skillName}}" placeholder=""/>
                             <select class="inline-edit first-path-select" data-field="system.skillPath1.skill2.stat">
                                 {{#select profession.system.skillPath1.skill2.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -93,7 +93,7 @@
                              data-stat="{{profession.system.skillPath1.skill3.stat}}"
                              data-level="{{profession.system.skillPath1.skill3.level}}"
                              data-name="{{profession.system.skillPath1.skill3.skillName}}"
-                             data-effet="{{profession.system.skillPath1.skill3.definition}}">
+                             data-effect="{{profession.system.skillPath1.skill3.definition}}">
                             {{#unless (eq profession.system.skillPath1.skill3.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -102,7 +102,7 @@
                                    value="{{profession.system.skillPath1.skill3.skillName}}" placeholder=""/>
                             <select class="inline-edit first-path-select" data-field="system.skillPath1.skill3.stat">
                                 {{#select profession.system.skillPath1.skill3.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -123,7 +123,7 @@
                              data-stat="{{profession.system.skillPath2.skill1.stat}}"
                              data-level="{{profession.system.skillPath2.skill1.level}}"
                              data-name="{{profession.system.skillPath2.skill1.skillName}}"
-                             data-effet="{{profession.system.skillPath2.skill1.definition}}">
+                             data-effect="{{profession.system.skillPath2.skill1.definition}}">
                             {{#unless (eq profession.system.skillPath2.skill1.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -132,7 +132,7 @@
                                    value="{{profession.system.skillPath2.skill1.skillName}}" placeholder=""/>
                             <select class="inline-edit second-path-select" data-field="system.skillPath2.skill1.stat">
                                 {{#select profession.system.skillPath2.skill1.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -149,7 +149,7 @@
                              data-stat="{{profession.system.skillPath2.skill2.stat}}"
                              data-level="{{profession.system.skillPath2.skill2.level}}"
                              data-name="{{profession.system.skillPath2.skill2.skillName}}"
-                             data-effet="{{profession.system.skillPath2.skill2.definition}}">
+                             data-effect="{{profession.system.skillPath2.skill2.definition}}">
                             {{#unless (eq profession.system.skillPath2.skill2.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -158,7 +158,7 @@
                                    value="{{profession.system.skillPath2.skill2.skillName}}" placeholder=""/>
                             <select class="inline-edit second-path-select" data-field="system.skillPath2.skill2.stat">
                                 {{#select profession.system.skillPath2.skill2.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -175,7 +175,7 @@
                              data-stat="{{profession.system.skillPath2.skill3.stat}}"
                              data-level="{{profession.system.skillPath2.skill3.level}}"
                              data-name="{{profession.system.skillPath2.skill3.skillName}}"
-                             data-effet="{{profession.system.skillPath2.skill3.definition}}">
+                             data-effect="{{profession.system.skillPath2.skill3.definition}}">
                             {{#unless (eq profession.system.skillPath2.skill3.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -184,7 +184,7 @@
                                    value="{{profession.system.skillPath2.skill3.skillName}}" placeholder=""/>
                             <select class="inline-edit second-path-select" data-field="system.skillPath2.skill3.stat">
                                 {{#select profession.system.skillPath2.skill3.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -205,7 +205,7 @@
                              data-stat="{{profession.system.skillPath3.skill1.stat}}"
                              data-level="{{profession.system.skillPath3.skill1.level}}"
                              data-name="{{profession.system.skillPath3.skill1.skillName}}"
-                             data-effet="{{profession.system.skillPath3.skill1.definition}}">
+                             data-effect="{{profession.system.skillPath3.skill1.definition}}">
                             {{#unless (eq profession.system.skillPath3.skill1.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -214,7 +214,7 @@
                                    value="{{profession.system.skillPath3.skill1.skillName}}" placeholder=""/>
                             <select class="inline-edit third-path-select" data-field="system.skillPath3.skill1.stat">
                                 {{#select profession.system.skillPath3.skill1.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -231,7 +231,7 @@
                              data-stat="{{profession.system.skillPath3.skill2.stat}}"
                              data-level="{{profession.system.skillPath3.skill2.level}}"
                              data-name="{{profession.system.skillPath3.skill2.skillName}}"
-                             data-effet="{{profession.system.skillPath3.skill2.definition}}">
+                             data-effect="{{profession.system.skillPath3.skill2.definition}}">
                             {{#unless (eq profession.system.skillPath3.skill2.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -240,7 +240,7 @@
                                    value="{{profession.system.skillPath3.skill2.skillName}}" placeholder=""/>
                             <select class="inline-edit third-path-select" data-field="system.skillPath3.skill2.stat">
                                 {{#select profession.system.skillPath3.skill2.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}
@@ -257,7 +257,7 @@
                              data-stat="{{profession.system.skillPath3.skill3.stat}}"
                              data-level="{{profession.system.skillPath3.skill3.level}}"
                              data-name="{{profession.system.skillPath3.skill3.skillName}}"
-                             data-effet="{{profession.system.skillPath3.skill3.definition}}">
+                             data-effect="{{profession.system.skillPath3.skill3.definition}}">
                             {{#unless (eq profession.system.skillPath3.skill3.stat "none")}}
                                 <a class="profession-roll"><i class="fas fa-dice-d6"></i></a>
                             {{/unless}}
@@ -266,7 +266,7 @@
                                    value="{{profession.system.skillPath3.skill3.skillName}}" placeholder=""/>
                             <select class="inline-edit third-path-select" data-field="system.skillPath3.skill3.stat">
                                 {{#select profession.system.skillPath3.skill3.stat}}
-                                    {{#each config.statTypes as |name type|}}
+                                    {{#each config.stats as |name type|}}
                                         <option value="{{type}}">{{localize name}}</option>
                                     {{/each}}
                                 {{/select}}

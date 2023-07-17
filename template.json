@@ -702,24 +702,37 @@
           "label": "WITCHER.Actor.Adrenaline"
         }
       },
-      "currency": {
-        "bizant": 0,
-        "ducat": 0,
-        "lintar": 0,
-        "floren": 0,
-        "crown": 0,
-        "oren": 0,
-        "falsecoin": 0
+      "currencyTmpl": {
+        "currency": {
+          "bizant": 0,
+          "ducat": 0,
+          "lintar": 0,
+          "floren": 0,
+          "crown": 0,
+          "oren": 0,
+          "falsecoin": 0
+        }
+      },
+      "capabilitiesTmpl": {
+        "capabilities": {
+          "craft": false,
+          "spells": false,
+          "invocations": false,
+          "signs": false,
+          "rituals": false,
+          "hexes": false,
+          "magicalGifts": false
+        }
       }
     },
     "character": {
       "templates": [
         "baseActor",
-        "currency"
+        "currencyTmpl",
+        "capabilitiesTmpl"
       ],
       "critWounds": [],
       "config": {
-        "CritDescription": {},
         "CritModDescription": {},
         "CritGravity": {},
         "CritGravityDefaultEffect": {},
@@ -999,11 +1012,11 @@
     "monster": {
       "templates": [
         "baseActor",
-        "currency"
+        "currencyTmpl",
+        "capabilitiesTmpl"
       ],
       "critWounds": [],
       "config": {
-        "CritDescription": {},
         "CritModDescription": {},
         "CritGravity": {},
         "CritGravityDefaultEffect": {},
@@ -1055,7 +1068,7 @@
     },
     "loot": {
       "templates": [
-        "currency"
+        "currencyTmpl"
       ],
       "description": "",
       "maxWeight": 0

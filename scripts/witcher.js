@@ -1,81 +1,63 @@
-import { witcher } from "../module/config.js";
-import WitcherItemSheet from "../module/sheets/WitcherItemSheet.js";
-import WitcherActorSheet from "../module/sheets/WitcherActorSheet.js";
-import WitcherItem from "../module/witcherItem.js";
-import WitcherActor from "../module/witcherActor.js";
-import * as Chat from "../module/chat.js";
-import { registerSettings } from "../module/settings.js";
-
-
-async function preloadHandlebarsTemplates() {
-    const templatePath = [
-        "systems/witcher/templates/sheets/actor/character-sheet.html",
-        "systems/witcher/templates/sheets/actor/monster-sheet.html",
-        "systems/witcher/templates/sheets/actor/loot-sheet.html",
-        "systems/witcher/templates/partials/character-header.html",
-        "systems/witcher/templates/partials/tab-skills.html",
-        "systems/witcher/templates/partials/tab-profession.html",
-        "systems/witcher/templates/partials/tab-background.html",
-        "systems/witcher/templates/partials/tab-inventory.html",
-        "systems/witcher/templates/partials/tab-inventory-diagrams.html",
-        "systems/witcher/templates/partials/tab-inventory-valuables.html",
-        "systems/witcher/templates/partials/tab-inventory-mounts.html",
-        "systems/witcher/templates/partials/tab-inventory-runes-glyphs.html",
-        "systems/witcher/templates/partials/tab-magic.html",
-        "systems/witcher/templates/partials/crit-wounds-table.html",
-        "systems/witcher/templates/partials/substances.html",
-        "systems/witcher/templates/partials/monster-skill-tab.html",
-        "systems/witcher/templates/partials/monster-inventory-tab.html",
-        "systems/witcher/templates/partials/monster-details-tab.html",
-        "systems/witcher/templates/partials/monster-spell-tab.html",
-        "systems/witcher/templates/partials/skill-display.html",
-        "systems/witcher/templates/partials/monster-skill-display.html",
-        "systems/witcher/templates/partials/loot-item-display.html",
-        "systems/witcher/templates/partials/item-header.html",
-        "systems/witcher/templates/partials/item-image.html",
-        "systems/witcher/templates/partials/associated-item.html",
-        "systems/witcher/templates/sheets/verbal-combat.html",
-        "systems/witcher/templates/sheets/weapon-attack.html"
-    ];
-    return loadTemplates(templatePath);
-}
+import WitcherItem from "../module/documents/item.js";
+import WitcherActor from "../module/documents/actor.js";
+import WitcherItemSheet from "../module/sheets/item-sheet.js";
+import WitcherActorSheet from "../module/sheets/actor/actor-sheet.js";
+import * as Chat from "../module/utils/chat.js";
+import {registerSettings} from "../module/settings.js";
+import {preloadHandlebarsTemplates} from "../module/helpers/utils.js";
+import {witcher} from "../module/config.js";
+import {sum} from "../module/helpers/actor.js";
 
 Hooks.once("init", function () {
+    game.witcher = {
+        WitcherActor,
+        WitcherItem
+    }
+
     console.log("witcher | init system");
 
     CONFIG.witcher = witcher
-    CONFIG.Item.documentClass = WitcherItem;
     CONFIG.Actor.documentClass = WitcherActor;
+    CONFIG.Item.documentClass = WitcherItem;
+
+/*    CONFIG.Actor.systemDataModels.character = WitcherActorData;
+    CONFIG.Actor.trackableAttributes = {
+        character: {
+            bar: ["attributes.hp"],
+            value: ["attributes.ac.value"]
+        }
+    };*/
 
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("witcher", WitcherItemSheet, { makeDefault: true });
+    Items.registerSheet("witcher", WitcherItemSheet, {makeDefault: true});
 
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("witcher", WitcherActorSheet, { makeDefault: true });
+    Actors.registerSheet("witcher", WitcherActorSheet, {makeDefault: true});
 
-    preloadHandlebarsTemplates();
-    registerSettings();
+    preloadHandlebarsTemplates().then(() => registerSettings());
 });
 
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
-
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
 
-
 Hooks.once("ready", async function () {
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-    Hooks.on("hotbarDrop", (bar, data, slot) => createBoilerplateMacro(data, slot));
+    Hooks.on("hotbarDrop", (bar, data, slot) => createWitcherMacro(data, slot));
 
     if (game.settings.get("witcher", "useWitcherFont")) {
         let els = document.getElementsByClassName("game")
         Array.prototype.forEach.call(els, function (el) {
-            if (el) { el.classList.add("witcher-style") }
+            if (el) {
+                el.classList.add("witcher-style")
+            }
         });
         let chat = document.getElementById("chat-log")
-        if (chat) { chat.classList.add("witcher-style") }
+        if (chat) {
+            chat.classList.add("witcher-style")
+        }
     }
 
     // Override custom effects with HUD effects from the compendium
@@ -85,28 +67,31 @@ Hooks.once("ready", async function () {
             CONFIG.statusEffects = result;
         }
     }
+
+    CONFIG.Combat.initiative.formula = game.settings.get("witcher", "displayRollsDetails")
+        ? "1d10 + @stats.ref.current[REF]"
+        : "1d10 + @stats.ref.current"
 });
 
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
     class FictionalGameSystemSpeedProvider extends SpeedProvider {
         get colors() {
             return [
-                { id: "walk", default: 0x00FF00, name: "my-module-id.speeds.walk" },
-                { id: "dash", default: 0xFFFF00, name: "my-module-id.speeds.dash" },
-                { id: "run", default: 0xFF8000, name: "my-module-id.speeds.run" }
+                {id: "walk", default: 0x00FF00, name: "my-module-id.speeds.walk"},
+                {id: "dash", default: 0xFFFF00, name: "my-module-id.speeds.dash"},
+                {id: "run", default: 0xFF8000, name: "my-module-id.speeds.run"}
             ]
         }
 
         getRanges(token) {
             let baseSpeed = token.actor.system.stats.spd.current
             // A character can always walk it's base speed and dash twice it's base speed
-            let moveSpeed = baseSpeed % 2 == 0 ? baseSpeed : baseSpeed + 1;
-            let runspeed = (baseSpeed * 3) % 2 == 0 ? baseSpeed * 3 : baseSpeed * 3 + 1;
-            const ranges = [
-                { range: moveSpeed, color: "walk" },
-                { range: runspeed, color: "dash" }
+            let moveSpeed = baseSpeed % 2 === 0 ? baseSpeed : baseSpeed + 1;
+            let runSpeed = (baseSpeed * 3) % 2 === 0 ? baseSpeed * 3 : baseSpeed * 3 + 1;
+            return [
+                {range: moveSpeed, color: "walk"},
+                {range: runSpeed, color: "dash"}
             ]
-            return ranges
         }
     }
 
@@ -122,6 +107,7 @@ Hooks.once("polyglot.init", (LanguageProvider) => {
                 "elder": "150% Espruar",
             };
         }
+
         get originalTongues() {
             return {
                 "_default": "common",
@@ -147,6 +133,7 @@ Hooks.once("polyglot.init", (LanguageProvider) => {
             return [known_languages, literate_languages];
         }
     }
+
     polyglot.registerSystem("witcher", FictionalGameSystemLanguageProvider)
 })
 
@@ -159,8 +146,9 @@ Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createBoilerplateMacro(data, slot) {
-    if (data.type == 'Actor') {
+async function createWitcherMacro(data, slot) {
+    //todo check
+    if (data.type === 'Actor') {
         const actor = game.actors.get(data.id);
         if (!actor) {
             return;
@@ -175,20 +163,18 @@ async function createBoilerplateMacro(data, slot) {
                 type: 'script',
                 img: actor.system.img,
                 command: command
-            }, { renderSheet: false });
+            }, {renderSheet: false});
         }
-        game.user.assignHotbarMacro(macro, slot);
+        await game.user.assignHotbarMacro(macro, slot);
         return false;
-    }
-    else if (!("item" in data)) {
+    } else if (!("item" in data)) {
         return ui.notifications.warn("You can only create macro buttons for owned Items");
-    }
-    else if (data.item.type == 'weapon') {
+    } else if (data.item.type === 'weapon') {
         const weapon = data.item;
         let foundActor = null
         game.actors.forEach(actor => {
             actor.items.forEach(item => {
-                if (weapon._id == item.id) {
+                if (weapon._id === item.id) {
                     foundActor = actor
                 }
             });
@@ -196,9 +182,7 @@ async function createBoilerplateMacro(data, slot) {
         if (!foundActor) {
             return ui.notifications.warn("You can only create macro buttons with the original character");
         }
-        const command =
-            `actor = game.actors.get('${foundActor.id}');
-actor.rollItem("${weapon._id}")`;
+        const command = `actor = game.actors.get('${foundActor.id}');actor.rollItem("${weapon._id}")`;
         let macro = game.macros.find(m => (m.name === weapon.name) && (m.command === command));
         if (!macro) {
             macro = await Macro.create({
@@ -206,18 +190,17 @@ actor.rollItem("${weapon._id}")`;
                 type: "script",
                 img: weapon.img,
                 command: command,
-                flags: { "boilerplate.itemMacro": true }
+                flags: {"witcher.itemMacro": true}
             });
         }
-        game.user.assignHotbarMacro(macro, slot);
+        await game.user.assignHotbarMacro(macro, slot);
         return false;
-    }
-    else if (data.item.type == 'spell') {
+    } else if (data.item.type === 'spell') {
         const spell = data.item;
         let foundActor = null
         game.actors.forEach(actor => {
             actor.items.forEach(item => {
-                if (spell._id == item.id) {
+                if (spell._id === item.id) {
                     foundActor = actor
                 }
             });
@@ -225,9 +208,7 @@ actor.rollItem("${weapon._id}")`;
         if (!foundActor) {
             return ui.notifications.warn("You can only create macro buttons with the original character");
         }
-        const command =
-            `actor = game.actors.get('${foundActor.id}');
-actor.rollSpell("${spell._id}")`;
+        const command = `actor = game.actors.get('${foundActor.id}');actor.rollSpell("${spell._id}")`;
         let macro = game.macros.find(m => (m.name === spell.name) && (m.command === command));
         if (!macro) {
             macro = await Macro.create({
@@ -235,10 +216,10 @@ actor.rollSpell("${spell._id}")`;
                 type: "script",
                 img: spell.img,
                 command: command,
-                flags: { "boilerplate.itemMacro": true }
+                flags: {"witcher.itemMacro": true}
             });
         }
-        game.user.assignHotbarMacro(macro, slot);
+        await game.user.assignHotbarMacro(macro, slot);
         return false;
     }
 }
@@ -248,19 +229,18 @@ Handlebars.registerHelper("getOwnedComponentCount", function (actor, componentNa
         console.warn("'actor' parameter passed into getOwnedComponentCount is undefined. That might be a problem with one of the selected actors diagrams.");
         return 0;
     }
-    let ownedComponent = actor.findNeededComponent(componentName);
-    return ownedComponent.sum("quantity");
+    return sum(actor.findNeededComponent(componentName));
 });
 
 Handlebars.registerHelper("getSetting", function (setting) {
-  return game.settings.get("witcher", setting);
+    return game.settings.get("witcher", setting);
 });
 
 Handlebars.registerHelper("window", function (...props) {
-  props.pop();
-  return props.reduce((result, prop) => result[prop], window);
+    props.pop();
+    return props.reduce((result, prop) => result[prop], window);
 });
 
 Handlebars.registerHelper("includes", function (csv, substr) {
-  return csv.split(",").map(v => v.trim()).includes(substr);
+    return csv.split(",").map(v => v.trim()).includes(substr);
 });

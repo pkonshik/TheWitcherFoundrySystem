@@ -1,9 +1,0 @@
-<form class="{{cssClass}}" autocomplete="off">
-    {{#if (eq actor.type "character")}}
-    {{> "systems/witcher/templates/sheets/actor/character-sheet.html"}}
-    {{else if (eq actor.type "monster")}}
-    {{> "systems/witcher/templates/sheets/actor/monster-sheet.html"}}
-    {{else if (eq actor.type "loot")}}
-    {{> "systems/witcher/templates/sheets/actor/loot-sheet.html"}}
-    {{/if}}
-</form>
