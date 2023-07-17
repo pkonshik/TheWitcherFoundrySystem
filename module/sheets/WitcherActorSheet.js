@@ -225,8 +225,8 @@ export default class WitcherActorSheet extends ActorSheet {
     data.rituals = data.spells.filter(s => s.system.class == "Rituals");
     data.magicalgift = data.spells.filter(s => s.system.class == "MagicalGift");
 
-    if (actor.system.pannels == undefined) {
-      actor.update({ 'system.pannels': {} });
+    if (actor.system.panels == undefined) {
+      actor.update({ 'system.panels': {} });
     }
     data.isGM = game.user.isGM
     return data;
@@ -1384,8 +1384,8 @@ export default class WitcherActorSheet extends ActorSheet {
     if (spellItem.system.preparationTime) {
       messageData.flavor += `<div><b>${game.i18n.localize("WITCHER.Spell.PrepTime")}: </b>${spellItem.system.preparationTime}</div>`
     }
-    if (spellItem.system.dificultyCheck) {
-      messageData.flavor += `<div><b>${game.i18n.localize("WITCHER.DC")}: </b>${spellItem.system.dificultyCheck}</div>`
+    if (spellItem.system.difficultyCheck) {
+      messageData.flavor += `<div><b>${game.i18n.localize("WITCHER.DC")}: </b>${spellItem.system.difficultyCheck}</div>`
     }
     if (spellItem.system.components) {
       messageData.flavor += `<div><b>${game.i18n.localize("WITCHER.Spell.Components")}: </b>${spellItem.system.components}</div>`
@@ -2451,22 +2451,22 @@ export default class WitcherActorSheet extends ActorSheet {
     let section = event.currentTarget.closest(".spell");
     switch (section.dataset.spelltype) {
       case "noviceSpell":
-        this.actor.update({ 'system.pannels.noviceSpellIsOpen': this.actor.system.pannels.noviceSpellIsOpen ? false : true });
+        this.actor.update({ 'system.panels.noviceSpellIsOpen': this.actor.system.panels.noviceSpellIsOpen ? false : true });
         break;
       case "journeymanSpell":
-        this.actor.update({ 'system.pannels.journeymanSpellIsOpen': this.actor.system.pannels.journeymanSpellIsOpen ? false : true });
+        this.actor.update({ 'system.panels.journeymanSpellIsOpen': this.actor.system.panels.journeymanSpellIsOpen ? false : true });
         break;
       case "masterSpell":
-        this.actor.update({ 'system.pannels.masterSpellIsOpen': this.actor.system.pannels.masterSpellIsOpen ? false : true });
+        this.actor.update({ 'system.panels.masterSpellIsOpen': this.actor.system.panels.masterSpellIsOpen ? false : true });
         break;
       case "ritual":
-        this.actor.update({ 'system.pannels.ritualIsOpen': this.actor.system.pannels.ritualIsOpen ? false : true });
+        this.actor.update({ 'system.panels.ritualIsOpen': this.actor.system.panels.ritualIsOpen ? false : true });
         break;
       case "hex":
-        this.actor.update({ 'system.pannels.hexIsOpen': this.actor.system.pannels.hexIsOpen ? false : true });
+        this.actor.update({ 'system.panels.hexIsOpen': this.actor.system.panels.hexIsOpen ? false : true });
         break;
       case "magicalgift":
-        this.actor.update({ 'system.pannels.magicalgiftIsOpen': this.actor.system.pannels.magicalgiftIsOpen ? false : true });
+        this.actor.update({ 'system.panels.magicalgiftIsOpen': this.actor.system.panels.magicalgiftIsOpen ? false : true });
         break;
     }
   }
@@ -2595,25 +2595,25 @@ export default class WitcherActorSheet extends ActorSheet {
     let section = event.currentTarget.closest(".skill");
     switch (section.dataset.skilltype) {
       case "int":
-        this.actor.update({ 'system.pannels.intIsOpen': this.actor.system.pannels.intIsOpen ? false : true });
+        this.actor.update({ 'system.panels.intIsOpen': this.actor.system.panels.intIsOpen ? false : true });
         break;
       case "ref":
-        this.actor.update({ 'system.pannels.refIsOpen': this.actor.system.pannels.refIsOpen ? false : true });
+        this.actor.update({ 'system.panels.refIsOpen': this.actor.system.panels.refIsOpen ? false : true });
         break;
       case "dex":
-        this.actor.update({ 'system.pannels.dexIsOpen': this.actor.system.pannels.dexIsOpen ? false : true });
+        this.actor.update({ 'system.panels.dexIsOpen': this.actor.system.panels.dexIsOpen ? false : true });
         break;
       case "body":
-        this.actor.update({ 'system.pannels.bodyIsOpen': this.actor.system.pannels.bodyIsOpen ? false : true });
+        this.actor.update({ 'system.panels.bodyIsOpen': this.actor.system.panels.bodyIsOpen ? false : true });
         break;
       case "emp":
-        this.actor.update({ 'system.pannels.empIsOpen': this.actor.system.pannels.empIsOpen ? false : true });
+        this.actor.update({ 'system.panels.empIsOpen': this.actor.system.panels.empIsOpen ? false : true });
         break;
       case "cra":
-        this.actor.update({ 'system.pannels.craIsOpen': this.actor.system.pannels.craIsOpen ? false : true });
+        this.actor.update({ 'system.panels.craIsOpen': this.actor.system.panels.craIsOpen ? false : true });
         break;
       case "will":
-        this.actor.update({ 'system.pannels.willIsOpen': this.actor.system.pannels.willIsOpen ? false : true });
+        this.actor.update({ 'system.panels.willIsOpen': this.actor.system.panels.willIsOpen ? false : true });
         break;
     }
   }
@@ -2624,31 +2624,31 @@ export default class WitcherActorSheet extends ActorSheet {
 
     switch (section.dataset.subtype) {
       case "vitriol":
-        this.actor.update({ 'system.pannels.vitriolIsOpen': this.actor.system.pannels.vitriolIsOpen ? false : true });
+        this.actor.update({ 'system.panels.vitriolIsOpen': this.actor.system.panels.vitriolIsOpen ? false : true });
         break;
       case "rebis":
-        this.actor.update({ 'system.pannels.rebisIsOpen': this.actor.system.pannels.rebisIsOpen ? false : true });
+        this.actor.update({ 'system.panels.rebisIsOpen': this.actor.system.panels.rebisIsOpen ? false : true });
         break;
       case "aether":
-        this.actor.update({ 'system.pannels.aetherIsOpen': this.actor.system.pannels.aetherIsOpen ? false : true });
+        this.actor.update({ 'system.panels.aetherIsOpen': this.actor.system.panels.aetherIsOpen ? false : true });
         break;
       case "quebrith":
-        this.actor.update({ 'system.pannels.quebrithIsOpen': this.actor.system.pannels.quebrithIsOpen ? false : true });
+        this.actor.update({ 'system.panels.quebrithIsOpen': this.actor.system.panels.quebrithIsOpen ? false : true });
         break;
       case "hydragenum":
-        this.actor.update({ 'system.pannels.hydragenumIsOpen': this.actor.system.pannels.hydragenumIsOpen ? false : true });
+        this.actor.update({ 'system.panels.hydragenumIsOpen': this.actor.system.panels.hydragenumIsOpen ? false : true });
         break;
       case "vermilion":
-        this.actor.update({ 'system.pannels.vermilionIsOpen': this.actor.system.pannels.vermilionIsOpen ? false : true });
+        this.actor.update({ 'system.panels.vermilionIsOpen': this.actor.system.panels.vermilionIsOpen ? false : true });
         break;
       case "sol":
-        this.actor.update({ 'system.pannels.solIsOpen': this.actor.system.pannels.solIsOpen ? false : true });
+        this.actor.update({ 'system.panels.solIsOpen': this.actor.system.panels.solIsOpen ? false : true });
         break;
       case "caelum":
-        this.actor.update({ 'system.pannels.caelumIsOpen': this.actor.system.pannels.caelumIsOpen ? false : true });
+        this.actor.update({ 'system.panels.caelumIsOpen': this.actor.system.panels.caelumIsOpen ? false : true });
         break;
       case "fulgur":
-        this.actor.update({ 'system.pannels.fulgurIsOpen': this.actor.system.pannels.fulgurIsOpen ? false : true });
+        this.actor.update({ 'system.panels.fulgurIsOpen': this.actor.system.panels.fulgurIsOpen ? false : true });
         break;
     }
   }

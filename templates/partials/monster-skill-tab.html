@@ -3,7 +3,7 @@
     <div class="skill-column">
         <div class="skill" data-skilltype="int">
             <div class="monster-skill">
-                {{#if system.pannels.intIsOpen}}
+                {{#if system.panels.intIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Intelligence"}}
                         <i class="expander fas fa-chevron-down"></i></a>
                 {{else}}
@@ -11,7 +11,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.intIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.intIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.int as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="int"}}
                 {{/each}}
@@ -19,7 +19,7 @@
         </div>
         <div class="skill" data-skilltype="ref">
             <div class="monster-skill">
-                {{#if system.pannels.refIsOpen}}
+                {{#if system.panels.refIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Reflex"}}
                         <i class="expander fas fa-chevron-down"></i></a>
 
@@ -28,7 +28,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.refIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.refIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.ref as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="ref"}}
                 {{/each}}
@@ -36,7 +36,7 @@
         </div>
         <div class="skill" data-skilltype="dex">
             <div class="monster-skill">
-                {{#if system.pannels.dexIsOpen}}
+                {{#if system.panels.dexIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Dexterity"}}
                         <i class="expander fas fa-chevron-down"></i></a>
                 {{else}}
@@ -44,7 +44,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.dexIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.dexIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.dex as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="dex"}}
                 {{/each}}
@@ -54,7 +54,7 @@
     <div class="skill-column">
         <div class="skill" data-skilltype="body">
             <div class="monster-skill">
-                {{#if system.pannels.bodyIsOpen}}
+                {{#if system.panels.bodyIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Body"}}
                         <i class="expander fas fa-chevron-down"></i></a>
                 {{else}}
@@ -62,7 +62,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.bodyIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.bodyIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.body as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="body"}}
                 {{/each}}
@@ -70,7 +70,7 @@
         </div>
         <div class="skill" data-skilltype="emp">
             <div class="monster-skill">
-                {{#if system.pannels.empIsOpen}}
+                {{#if system.panels.empIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Empathy"}}
                         <i class="expander fas fa-chevron-down"></i></a>
                 {{else}}
@@ -78,7 +78,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.empIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.empIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.emp as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="emp"}}
                 {{/each}}
@@ -86,7 +86,7 @@
         </div>
         <div class="skill" data-skilltype="cra">
             <div class="monster-skill">
-                {{#if system.pannels.craIsOpen}}
+                {{#if system.panels.craIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Crafting"}}
                         <i class="expander fas fa-chevron-down"></i></a>
                 {{else}}
@@ -94,7 +94,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.craIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.craIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.cra as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="cra"}}
                 {{/each}}
@@ -102,7 +102,7 @@
         </div>
         <div class="skill" data-skilltype="will">
             <div class="monster-skill">
-                {{#if system.pannels.willIsOpen}}
+                {{#if system.panels.willIsOpen}}
                     <a class="skill-display">{{localize "WITCHER.Actor.Skill.Willpower"}}
                         <i class="expander fas fa-chevron-down"></i></a>
 
@@ -111,7 +111,7 @@
                         <i class="expander fas fa-chevron-right"></i></a>
                 {{/if}}
             </div>
-            <table {{#if system.pannels.willIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
+            <table {{#if system.panels.willIsOpen}} class="skill-list" {{else}} class="skill-list invisible" {{/if}}>
                 {{#each system.skills.will as |skill name|}}
                     {{> "systems/witcher/templates/partials/monster-skill-display.html" skill=skill name=name stat="will"}}
                 {{/each}}

@@ -26,13 +26,13 @@
 </div>
 <div class="spell" data-spelltype="noviceSpell">
     <h3>{{localize "WITCHER.Spell.Spells"}} - {{localize "WITCHER.Spell.Novice"}}
-        {{#if system.pannels.noviceSpellIsOpen}}
+        {{#if system.panels.noviceSpellIsOpen}}
             <a class="spell-display"><i class="fas fa-chevron-down"></i></a>
         {{else}}
             <a class="spell-display"><i class="fas fa-chevron-right"></i></a>
         {{/if}}
     </h3>
-    <table {{#if system.pannels.noviceSpellIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
+    <table {{#if system.panels.noviceSpellIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
         <tr>
             <td></td>
             <td></td>
@@ -55,13 +55,13 @@
 </div>
 <div class="spell" data-spelltype="journeymanSpell">
     <h3>{{localize "WITCHER.Spell.Spells"}} - {{localize "WITCHER.Spell.Journeyman"}}
-        {{#if system.pannels.journeymanSpellIsOpen}}
+        {{#if system.panels.journeymanSpellIsOpen}}
             <a class="spell-display"><i class="fas fa-chevron-down"></i></a>
         {{else}}
             <a class="spell-display"><i class="fas fa-chevron-right"></i></a>
         {{/if}}
     </h3>
-    <table {{#if system.pannels.journeymanSpellIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
+    <table {{#if system.panels.journeymanSpellIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
         <tr>
             <td></td>
             <td></td>
@@ -85,13 +85,13 @@
 </div>
 <div class="spell" data-spelltype="masterSpell">
     <h3>{{localize "WITCHER.Spell.Spells"}} - {{localize "WITCHER.Spell.Master"}}
-        {{#if system.pannels.masterSpellIsOpen}}
+        {{#if system.panels.masterSpellIsOpen}}
             <a class="spell-display"><i class="fas fa-chevron-down"></i></a>
         {{else}}
             <a class="spell-display"><i class="fas fa-chevron-right"></i></a>
         {{/if}}
     </h3>
-    <table {{#if system.pannels.masterSpellIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
+    <table {{#if system.panels.masterSpellIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
         <tr>
             <td></td>
             <td></td>
@@ -115,13 +115,13 @@
 </div>
 <div class="spell" data-spelltype="ritual">
     <h3>{{localize "WITCHER.Spell.Rituals"}}
-        {{#if system.pannels.ritualIsOpen}}
+        {{#if system.panels.ritualIsOpen}}
             <a class="spell-display"><i class="fas fa-chevron-down"></i></a>
         {{else}}
             <a class="spell-display"><i class="fas fa-chevron-right"></i></a>
         {{/if}}
     </h3>
-    <table {{#if system.pannels.ritualIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
+    <table {{#if system.panels.ritualIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
         <tr>
             <td></td>
             <td></td>
@@ -145,13 +145,13 @@
 </div>
 <div class="spell" data-spelltype="hex">
     <h3>{{localize "WITCHER.Spell.Hexes"}}
-        {{#if system.pannels.hexIsOpen}}
+        {{#if system.panels.hexIsOpen}}
             <a class="spell-display"><i class="fas fa-chevron-down"></i></a>
         {{else}}
             <a class="spell-display"><i class="fas fa-chevron-right"></i></a>
         {{/if}}
     </h3>
-    <table {{#if system.pannels.hexIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
+    <table {{#if system.panels.hexIsOpen}} class="skill-list item-list" {{else}} class="skill-list invisible" {{/if}}>
         <tr>
             <td></td>
             <td></td>
@@ -175,16 +175,16 @@
 </div>
 <div class="spell" data-spelltype="magicalgift">
     <h3>{{localize "WITCHER.Spell.MagicalGift"}}
-        {{#unless system.pannels.magicalgiftIsOpen}}
+        {{#unless system.panels.magicalgiftIsOpen}}
         <a class="spell-display"><i class="fas fa-chevron-right"></i></a></h3>
         {{/unless}}
-        {{#if system.pannels.magicalgiftIsOpen}}
+        {{#if system.panels.magicalgiftIsOpen}}
         <a class="spell-display"><i class="fas fa-chevron-down"></i></a></h3>
         {{/if}}
-    {{#unless system.pannels.magicalgiftIsOpen}}
+    {{#unless system.panels.magicalgiftIsOpen}}
     <table class="skill-list invisible">
     {{/unless}}
-    {{#if system.pannels.magicalgiftIsOpen}}
+    {{#if system.panels.magicalgiftIsOpen}}
     <table class="skill-list item-list">
     {{/if}}
         <tr> 
