@@ -270,7 +270,7 @@ function getArmorEcumbrance(actor) {
 	let encumbranceModifier = 0
 	let armors = actor.items.filter(function (item) { return item.type == "armor" });
 	armors.forEach(item => {
-		if (item.system.equiped || item.system.equiped == "checked") {
+		if (item.system.equipped || item.system.equipped === "checked") {
 			encumbranceModifier += item.system.encumb
 		}
 	});
