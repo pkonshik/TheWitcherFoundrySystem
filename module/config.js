@@ -1268,6 +1268,12 @@ witcher.locations = {
         locationFormula: `*0.5`,
         modifier: `-2`
     },
+        entireBody: {
+            name: "Entire Body",
+            alias: "WITCHER.Dialog.entireBody",
+            isArmorLocation: false,
+            isAttackLocation: true,
+        },
     tailWing: {
         name: "Tail/Wing",
         alias: "WITCHER.Dialog.attackTail",
