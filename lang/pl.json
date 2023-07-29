@@ -186,7 +186,7 @@
   "WITCHER.Actor.CoreStat.Leap": "SKOK",
   "WITCHER.Actor.CoreStat.Enc": "OBC.",
   "WITCHER.Actor.CoreStat.Rec": "Zdr.",
-  "WITCHER.Actor.CoreStat.woundThreshold": "Próg C.R.",
+  "WITCHER.Actor.CoreStat.woundTreshold": "Próg C.R.",
   "WITCHER.Actor.DerStat.Vigor": "Wigor",
   "WITCHER.Actor.DerStat.HP": "Max PZ",
   "WITCHER.Actor.DerStat.Sta": "PW",

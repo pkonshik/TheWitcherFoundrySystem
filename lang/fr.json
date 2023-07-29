@@ -160,7 +160,7 @@
   "WITCHER.Actor.CoreStat.Leap": "Saut",
   "WITCHER.Actor.CoreStat.Enc": "ENC",
   "WITCHER.Actor.CoreStat.Rec": "RÉC",
-  "WITCHER.Actor.CoreStat.woundThreshold": "SB",
+  "WITCHER.Actor.CoreStat.woundTreshold": "SB",
   "WITCHER.Actor.DerStat.Vigor": "Vigueur",
   "WITCHER.Actor.DerStat.HP": "PS Max",
   "WITCHER.Actor.DerStat.Sta": "END",

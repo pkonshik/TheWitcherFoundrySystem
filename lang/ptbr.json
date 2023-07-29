@@ -162,7 +162,7 @@
   "WITCHER.Actor.CoreStat.Leap": "Salto",
   "WITCHER.Actor.CoreStat.Enc": "FAR",
   "WITCHER.Actor.CoreStat.Rec": "REC",
-  "WITCHER.Actor.CoreStat.woundThreshold": "LF",
+  "WITCHER.Actor.CoreStat.woundTreshold": "LF",
   "WITCHER.Actor.DerStat.Vigor": "VIGOR",
   "WITCHER.Actor.DerStat.HP": "PV Máx",
   "WITCHER.Actor.DerStat.Sta": "STA",

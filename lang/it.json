@@ -157,7 +157,7 @@
   "WITCHER.Actor.CoreStat.Leap": "Balzo",
   "WITCHER.Actor.CoreStat.Enc": "ING",
   "WITCHER.Actor.CoreStat.Rec": "REC",
-  "WITCHER.Actor.CoreStat.woundThreshold": "SF",
+  "WITCHER.Actor.CoreStat.woundTreshold": "SF",
   "WITCHER.Actor.DerStat.Vigor": "Vigore",
   "WITCHER.Actor.DerStat.HP": "PS Max",
   "WITCHER.Actor.DerStat.Sta": "RES",
