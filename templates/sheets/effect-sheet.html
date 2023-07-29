@@ -17,8 +17,8 @@
     <textarea rows=5 name="system.description">{{item.system.description}}</textarea>
     <div class="flex">
         <div class="effect-column">
-            <b>{{localize "WITCHER.Actor.StatTitle.LableLeft"}} </b><a class="add-modifier-stat"><i
-                class="fas fa-plus"></i></a>
+            <b>{{localize "WITCHER.Actor.StatTitle.LableLeft"}} </b>
+            <a class="add-modifier"><i class="fas fa-plus"></i></a>
             {{#each item.system.stats as |stat index|}}
                 <div class="flex list-item" data-id="{{stat.id}}" data-type="stat">
                     <a class="remove-modifier-stat"><i class="fas fa-minus"></i></a>
@@ -41,12 +41,12 @@
             {{/each}}
         </div>
         <div class="effect-column">
-            <b>{{localize "WITCHER.Actor.StatTitle.Derived"}} </b><a class="add-modifier-derived"><i
-                class="fas fa-plus"></i></a>
+            <b>{{localize "WITCHER.Actor.StatTitle.Derived"}} </b>
+            <a class="add-modifier"><i class="fas fa-plus"></i></a>
             {{#each item.system.derived as |derived index|}}
                 <div class="flex list-item" data-id="{{derived.id}}" data-type="derived">
                     <a class="remove-modifier-derived"><i class="fas fa-minus"></i></a>
-                    <select class="modifiers-edit-derived" data-field="derivedStat">
+                    <select class="edit-modifier" data-field="derivedStat">
                         {{#select derived.derivedStat}}
                             <option value="none"></option>
                             <option value="WITCHER.Actor.CoreStat.Stun">{{localize
@@ -65,13 +65,14 @@
                             <option value="WITCHER.Actor.DerStat.Sta">{{localize "WITCHER.Actor.DerStat.Sta"}}</option>
                         {{/select}}
                     </select>
-                    <input class="modifiers-edit-derived" data-field="modifier" type="text"
+                    <input class="edit-modifier" data-field="modifier" type="text"
                            value="{{derived.modifier}}"/>
                 </div>
             {{/each}}
         </div>
         <div class="effect-column">
-            <b>{{localize "WITCHER.Monster.SkillTab"}} </b><a class="add-modifier-skill"><i class="fas fa-plus"></i></a>
+            <b>{{localize "WITCHER.Monster.SkillTab"}} </b>
+            <a class="add-skill-modifier"><i class="fas fa-plus"></i></a>
             {{#each item.system.skills as |skill index|}}
                 <div class="flex list-item" data-id="{{skill.id}}">
                     <a class="remove-modifier-skill"><i class="fas fa-minus"></i></a>

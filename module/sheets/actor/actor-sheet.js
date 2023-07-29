@@ -3,8 +3,8 @@ import {witcher} from "../../config.js";
 import {RollConfig} from "../../rollConfig.js";
 
 import {ExecuteDefence} from "../../utils/actions.js";
-import {cost, currencyWeight, sanitizeDescription, sum, weight} from "../../helpers/actor.js";
-import {addModifiersToFormula, genId} from "../../helpers/utils.js";
+import {cost, currencyWeight, getValueByStringPath, sanitizeDescription, sum, weight} from "../../helpers/actor.js";
+import {addModifiersToFormula, genId, prepareSystemRef} from "../../helpers/utils.js";
 
 export default class WitcherActorSheet extends ActorSheet {
     /** @override */
@@ -243,12 +243,14 @@ export default class WitcherActorSheet extends ActorSheet {
         html.find(".item-spell-display").on("click", this._onItemDisplayInfo.bind(this));
         html.find(".spell-display").on("click", this._onSpellDisplay.bind(this));
         html.find(".life-event-display").on("click", this._onLifeEventDisplay.bind(this));
-        html.find(".stat-modifier-display").on("click", this._onStatModifierDisplay.bind(this));
         html.find(".skill-modifier-display").on("click", this._onSkillModifierDisplay.bind(this));
         html.find(".derived-modifier-display").on("click", this._onDerivedModifierDisplay.bind(this));
 
-        html.find(".export-loot").on("click", this.exportLoot(actor, false));
-        html.find(".export-loot-ext").on("click", this.exportLoot(actor, true));
+        // Modifier listeners
+        html.find(".add-modifier").on("click", this._onAddModifier.bind(this));
+        html.find(".edit-modifier").on("blur", this._onEditModifier.bind(this));
+        html.find(".delete-modifier").on("click", this._onRemoveModifier.bind(this));
+        html.find(".display-modifier").on("click", this._onDisplayModifier.bind(this));
 
         html.find(".init-roll").on("click", this._onInitRoll.bind(this));
         html.find(".crit-roll").on("click", this._onCritRoll.bind(this));
@@ -269,14 +271,9 @@ export default class WitcherActorSheet extends ActorSheet {
         html.find(".delete-crit").on("click", this._onCritRemove.bind(this));
 
         html.find(".add-skill-modifier").on("click", this._onAddSkillModifier.bind(this));
-        html.find(".add-modifier").on("click", this._onAddStatModifier.bind(this));
-        html.find(".delete-stat").on("click", this._onStatModifierRemove.bind(this));
         html.find(".delete-skill-modifier").on("click", this._onSkillModifierRemove.bind(this));
 
-        html.find(".list-mod-edit").on("blur", this._onStatModifierEdit.bind(this));
         html.find(".skill-mod-edit").on("blur", this._onSkillModifierEdit.bind(this));
-
-        html.find(".change-skill-list").on("click", this.onChangeSkillList(actor));
 
         html.find(".enhancement-weapon-slot").on("click", this._chooseEnhancement.bind(this));
         html.find(".enhancement-armor-slot").on("click", this._chooseEnhancement.bind(this));
@@ -612,6 +609,8 @@ export default class WitcherActorSheet extends ActorSheet {
         await actor.removeItem(itemId, quantityToRemove)
     }
 
+    /** Item handlers */
+
     /**
      * @param {WitcherActor} actor
      * @param {WitcherItem} addItem
@@ -765,105 +764,85 @@ export default class WitcherActorSheet extends ActorSheet {
         })
     }
 
-    async _onAddStatModifier(event) {
+    /** Modifiers handlers */
+    async _onAddModifier(event) {
         event.preventDefault();
         let stat = event.currentTarget.closest(".stat-display").dataset.stat;
         let type = event.currentTarget.closest(".stat-display").dataset.type;
 
-        //todo check
-        if (!witcher.statTypes[type].list[stat]) {
+        // todo return proper error
+        if (!type || !stat || !witcher.statTypes[type].list[stat]) {
             return
         }
 
+        let modifierRef = prepareSystemRef(witcher.statTypes[type].list[stat].ref, "modifiers")
+        let modifiers = getValueByStringPath(this.actor, modifierRef)
 
-        let newModifierList = []
-        newModifierList = this.actor.system[type][stat].modifiers
-        /*        if (type === "coreStat") {
-                    if (this.actor.system.coreStats[stat].modifiers) {
-                        newModifierList = this.actor.system.coreStats[stat].modifiers
-                    }
-                } else if (type === "derivedStat") {
-                    newModifierList = this.actor.system.derivedStats[stat].modifiers
-                } else if (type === "reputation") {
-                    newModifierList = this.actor.system.reputation.modifiers
-                } else {
-                    if (this.actor.system.stats[stat].modifiers) {
-                        newModifierList = this.actor.system.stats[stat].modifiers
-                    }
-                }*/
+        modifiers.push({id: genId(), name: "Modifier", value: 0})
+        this.actor.update({[modifierRef]: modifiers});
+    }
 
-        newModifierList.push({id: genId(), name: "Modifier", value: 0})
+    async _onEditModifier(event) {
+        event.preventDefault();
+        let stat = event.currentTarget.closest(".stat-display").dataset.stat;
+        let type = event.currentTarget.closest(".stat-display").dataset.type;
 
-        //todo check
-        witcher.statTypes[type].list.forEach(s => {
-            if (s.name === name) {
-                let modifierRef = "system." + s.modifierRef
-                this.actor.update({[modifierRef]: newModifierList});
-            }
-        })
-        // todo refactor
-        /*        switch (stat) {
-                    case "int":
-                        this.actor.update({'system.stats.int.modifiers': newModifierList});
-                        break;
-                    case "ref":
-                        this.actor.update({'system.stats.ref.modifiers': newModifierList});
-                        break;
-                    case "dex":
-                        this.actor.update({'system.stats.dex.modifiers': newModifierList});
-                        break;
-                    case "body":
-                        this.actor.update({'system.stats.body.modifiers': newModifierList});
-                        break;
-                    case "spd":
-                        this.actor.update({'system.stats.spd.modifiers': newModifierList});
-                        break;
-                    case "emp":
-                        this.actor.update({'system.stats.emp.modifiers': newModifierList});
-                        break;
-                    case "cra":
-                        this.actor.update({'system.stats.cra.modifiers': newModifierList});
-                        break;
-                    case "will":
-                        this.actor.update({'system.stats.will.modifiers': newModifierList});
-                        break;
-                    case "luck":
-                        this.actor.update({'system.stats.luck.modifiers': newModifierList});
-                        break;
-                    case "stun":
-                        this.actor.update({'system.coreStats.stun.modifiers': newModifierList});
-                        break;
-                    case "run":
-                        this.actor.update({'system.coreStats.run.modifiers': newModifierList});
-                        break;
-                    case "leap":
-                        this.actor.update({'system.coreStats.leap.modifiers': newModifierList});
-                        break;
-                    case "enc":
-                        this.actor.update({'system.coreStats.enc.modifiers': newModifierList});
-                        break;
-                    case "rec":
-                        this.actor.update({'system.coreStats.rec.modifiers': newModifierList});
-                        break;
-                    case "woundThreshold":
-                        this.actor.update({'system.coreStats.woundThreshold.modifiers': newModifierList});
-                        break;
-                    case "hp":
-                        this.actor.update({'system.derivedStats.hp.modifiers': newModifierList});
-                        break;
-                    case "sta":
-                        this.actor.update({'system.derivedStats.sta.modifiers': newModifierList});
-                        break;
-                    case "resolve":
-                        this.actor.update({'system.derivedStats.resolve.modifiers': newModifierList});
-                        break;
-                    case "focus":
-                        this.actor.update({'system.derivedStats.focus.modifiers': newModifierList});
-                        break;
-                    case "reputation":
-                        this.actor.update({'system.reputation.modifiers': newModifierList});
-                        break;
-                }*/
+        // todo return proper error
+        if (!type || !stat || !witcher.statTypes[type].list[stat]) {
+            return
+        }
+
+        let modifierRef = prepareSystemRef(witcher.statTypes[type].list[stat].ref, "modifiers")
+        let modifiers = getValueByStringPath(this.actor, modifierRef)
+
+        let element = event.currentTarget;
+        let itemId = element.closest(".list-modifiers").dataset.id;
+
+        let field = element.dataset.field;
+        let value = element.value
+
+        let objIndex = modifiers.findIndex((obj => obj.id === itemId));
+        modifiers[objIndex][field] = value
+
+        this.actor.update({[modifierRef]: modifiers});
+        this.actor.prepareDerivedData();
+    }
+
+    async _onRemoveModifier(event) {
+        event.preventDefault();
+        let stat = event.currentTarget.closest(".stat-display").dataset.stat;
+        let type = event.currentTarget.closest(".stat-display").dataset.type;
+
+        // todo return proper error
+        if (!type || !stat || !witcher.statTypes[type].list[stat]) {
+            return
+        }
+
+        let modifierRef = prepareSystemRef(witcher.statTypes[type].list[stat].ref, "modifiers")
+        let modifiers = getValueByStringPath(this.actor, modifierRef)
+
+        const newModList = Object.values(modifiers).map((details) => details);
+        const idxToRm = newModList.findIndex((v) => v.id === event.target.dataset.id);
+        newModList.splice(idxToRm, 1);
+
+        this.actor.update({[modifierRef]: newModList});
+        this.actor.prepareDerivedData();
+    }
+
+    _onDisplayModifier(event) {
+        event.preventDefault();
+        let stat = event.currentTarget.closest(".stat-display").dataset.stat;
+        let type = event.currentTarget.closest(".stat-display").dataset.type;
+
+        // todo return proper error
+        if (!type || !stat || !witcher.statTypes[type].list[stat]) {
+            return
+        }
+
+        let isOpenedRef = prepareSystemRef(witcher.statTypes[type].list[stat].ref, "isOpened")
+        let val = getValueByStringPath(this.actor, isOpenedRef)
+
+        this.actor.update({[isOpenedRef]: !val});
     }
 
     async _onCritAdd(event) {
@@ -912,105 +891,6 @@ export default class WitcherActorSheet extends ActorSheet {
         })
     }
 
-    async _onStatModifierEdit(event) {
-        event.preventDefault();
-        let stat = event.currentTarget.closest(".stat-display").dataset.stat;
-        let type = event.currentTarget.closest(".stat-display").dataset.type;
-
-        let element = event.currentTarget;
-        let itemId = element.closest(".list-modifiers").dataset.id;
-
-        let field = element.dataset.field;
-        let value = element.value
-
-        let modifiers = this.actor.system[type][stat].modifiers
-
-        /*        if (type === "coreStat") {
-                    modifiers = this.actor.system.coreStats[stat].modifiers;
-                } else if (type === "derivedStat") {
-                    modifiers = this.actor.system.derivedStats[stat].modifiers;
-                } else if (type === "reputation") {
-                    modifiers = this.actor.system.reputation.modifiers;
-                } else {
-                    modifiers = this.actor.system.stats[stat].modifiers;
-                }*/
-
-        let objIndex = modifiers.findIndex((obj => obj.id === itemId));
-        modifiers[objIndex][field] = value
-
-        //todo check
-        witcher.statTypes[type].list.forEach(s => {
-            if (s.name === name) {
-                let modifierRef = "system." + s.modifierRef
-                this.actor.update({[modifierRef]: newModifierList});
-            }
-        })
-
-        // todo refactor
-        /*        switch (stat) {
-                    case "int":
-                        this.actor.update({'system.stats.int.modifiers': modifiers});
-                        break;
-                    case "ref":
-                        this.actor.update({'system.stats.ref.modifiers': modifiers});
-                        break;
-                    case "dex":
-                        this.actor.update({'system.stats.dex.modifiers': modifiers});
-                        break;
-                    case "body":
-                        this.actor.update({'system.stats.body.modifiers': modifiers});
-                        break;
-                    case "spd":
-                        this.actor.update({'system.stats.spd.modifiers': modifiers});
-                        break;
-                    case "emp":
-                        this.actor.update({'system.stats.emp.modifiers': modifiers});
-                        break;
-                    case "cra":
-                        this.actor.update({'system.stats.cra.modifiers': modifiers});
-                        break;
-                    case "will":
-                        this.actor.update({'system.stats.will.modifiers': modifiers});
-                        break;
-                    case "luck":
-                        this.actor.update({'system.stats.luck.modifiers': modifiers});
-                        break;
-                    case "stun":
-                        this.actor.update({'system.coreStats.stun.modifiers': modifiers});
-                        break;
-                    case "run":
-                        this.actor.update({'system.coreStats.run.modifiers': modifiers});
-                        break;
-                    case "leap":
-                        this.actor.update({'system.coreStats.leap.modifiers': modifiers});
-                        break;
-                    case "enc":
-                        this.actor.update({'system.coreStats.enc.modifiers': modifiers});
-                        break;
-                    case "rec":
-                        this.actor.update({'system.coreStats.rec.modifiers': modifiers});
-                        break;
-                    case "woundThreshold":
-                        this.actor.update({'system.coreStats.woundThreshold.modifiers': modifiers});
-                        break;
-                    case "hp":
-                        this.actor.update({'system.derivedStats.hp.modifiers': modifiers});
-                        break;
-                    case "sta":
-                        this.actor.update({'system.derivedStats.sta.modifiers': modifiers});
-                        break;
-                    case "resolve":
-                        this.actor.update({'system.derivedStats.resolve.modifiers': modifiers});
-                        break;
-                    case "focus":
-                        this.actor.update({'system.derivedStats.focus.modifiers': modifiers});
-                        break;
-                    case "reputation":
-                        this.actor.update({'system.reputation.modifiers': modifiers});
-                        break;
-                }*/
-        this.actor.prepareDerivedData();
-    }
 
     async _onSkillModifierRemove(event) {
         let stat = event.currentTarget.closest(".skill").dataset.stat;
@@ -1028,101 +908,6 @@ export default class WitcherActorSheet extends ActorSheet {
                 this.actor.update({[modifierRef]: newModList});
             }
         })
-    }
-
-    async _onStatModifierRemove(event) {
-        event.preventDefault();
-        let stat = event.currentTarget.closest(".stat-display").dataset.stat;
-        let type = event.currentTarget.closest(".stat-display").dataset.type;
-
-        let prevModList = this.actor.system[type][stat].modifiers
-
-        /*        if (type === "coreStat") {
-                    prevModList = this.actor.system.coreStats[stat].modifiers;
-                } else if (type === "derivedStat") {
-                    prevModList = this.actor.system.derivedStats[stat].modifiers;
-                } else if (type === "reputation") {
-                    prevModList = this.actor.system.reputation.modifiers;
-                } else {
-                    prevModList = this.actor.system.stats[stat].modifiers;
-                }*/
-
-        const newModList = Object.values(prevModList).map((details) => details);
-        const idxToRm = newModList.findIndex((v) => v.id === event.target.dataset.id);
-        newModList.splice(idxToRm, 1);
-
-        //todo check
-        witcher.statTypes[type].list.forEach(s => {
-            if (s.name === name) {
-                let modifierRef = "system." + s.modifierRef
-                this.actor.update({[modifierRef]: newModList});
-            }
-        })
-
-        //todo refactor
-        /*      switch (stat) {
-                  case "int":
-                      this.actor.update({'system.stats.int.modifiers': newModList});
-                      break;
-                  case "ref":
-                      this.actor.update({'system.stats.ref.modifiers': newModList});
-                      break;
-                  case "dex":
-                      this.actor.update({'system.stats.dex.modifiers': newModList});
-                      break;
-                  case "body":
-                      this.actor.update({'system.stats.body.modifiers': newModList});
-                      break;
-                  case "spd":
-                      this.actor.update({'system.stats.spd.modifiers': newModList});
-                      break;
-                  case "emp":
-                      this.actor.update({'system.stats.emp.modifiers': newModList});
-                      break;
-                  case "cra":
-                      this.actor.update({'system.stats.cra.modifiers': newModList});
-                      break;
-                  case "will":
-                      this.actor.update({'system.stats.will.modifiers': newModList});
-                      break;
-                  case "luck":
-                      this.actor.update({'system.stats.luck.modifiers': newModList});
-                      break;
-                  case "stun":
-                      this.actor.update({'system.coreStats.stun.modifiers': newModList});
-                      break;
-                  case "run":
-                      this.actor.update({'system.coreStats.run.modifiers': newModList});
-                      break;
-                  case "leap":
-                      this.actor.update({'system.coreStats.leap.modifiers': newModList});
-                      break;
-                  case "enc":
-                      this.actor.update({'system.coreStats.enc.modifiers': newModList});
-                      break;
-                  case "rec":
-                      this.actor.update({'system.coreStats.rec.modifiers': newModList});
-                      break;
-                  case "woundThreshold":
-                      this.actor.update({'system.coreStats.woundThreshold.modifiers': newModList});
-                      break;
-                  case "hp":
-                      this.actor.update({'system.derivedStats.hp.modifiers': newModList});
-                      break;
-                  case "sta":
-                      this.actor.update({'system.derivedStats.sta.modifiers': newModList});
-                      break;
-                  case "resolve":
-                      this.actor.update({'system.derivedStats.resolve.modifiers': newModList});
-                      break;
-                  case "focus":
-                      this.actor.update({'system.derivedStats.focus.modifiers': newModList});
-                      break;
-                  case "reputation":
-                      this.actor.update({'system.reputation.modifiers': newModList});
-                      break;
-              }*/
-        this.actor.prepareDerivedData();
     }
 
     async _onItemAdd(event) {
@@ -1521,9 +1306,10 @@ export default class WitcherActorSheet extends ActorSheet {
 
         // Adjust display info for the roll
         if (isExtraAttack) {
-            staCostdisplay += !displayRollDetails
-                ? witcher.modifiers.extraAttack.staCostDisplay
-                : witcher.modifiers.extraAttack.staCostDisplayExtra;
+            staCostdisplay += witcher.modifiers.extraAttack.staCostDisplay
+            if (displayRollDetails) {
+                staCostdisplay += `[${game.i18n.localize(witcher.modifiers.extraAttack.staCostDisplayExtraRef)}]`
+            }
         }
 
         staCostdisplay += ` - ${Number(focusValue) + Number(secondFocusValue)}[${game.i18n.localize("WITCHER.Actor.DerStat.Focus")}]`
@@ -1544,9 +1330,10 @@ export default class WitcherActorSheet extends ActorSheet {
                 : `+${customModifier}[${game.i18n.localize("WITCHER.Settings.Custom")}]`
         }
         if (isExtraAttack) {
-            rollFormula += !displayRollDetails
-                ? witcher.modifiers.extraAttack.formula
-                : witcher.modifiers.extraAttack.formulaExtra
+            rollFormula += witcher.modifiers.extraAttack.formula
+            if (displayRollDetails) {
+                rollFormula += `[${game.i18n.localize(witcher.modifiers.extraAttack.formulaExtraRef)}]`
+            }
         }
 
         // todo refactor
@@ -2160,10 +1947,10 @@ export default class WitcherActorSheet extends ActorSheet {
         let statName = ""
 
         if (stat === witcher.reputation.reputation.name) {
-            statValue = witcher.reputation.reputation.statRef
+            statValue = witcher.reputation.reputation.ref + "current"
             statName = witcher.reputation.reputation.alias
         } else if (witcher.stats[stat]) {
-            statValue = witcher.stats[stat].statRef
+            statValue = witcher.stats[stat].ref + "current"
             statName = witcher.stats[stat].alias
         }
 
@@ -2878,62 +2665,6 @@ export default class WitcherActorSheet extends ActorSheet {
                 break;
             case "200":
                 this.actor.update({'system.general.lifeEvents.200.isOpened': this.actor.system.general.lifeEvents[section.dataset.event].isOpened ? false : true});
-                break;
-        }
-    }
-
-    _onStatModifierDisplay(event) {
-        event.preventDefault();
-        let stat = event.currentTarget.closest(".stat-display").dataset.stat;
-        //todo refactor
-        switch (stat) {
-            case "int":
-                this.actor.update({'system.stats.int.isOpened': this.actor.system.stats.int.isOpened ? false : true});
-                break;
-            case "ref":
-                this.actor.update({'system.stats.ref.isOpened': this.actor.system.stats.ref.isOpened ? false : true});
-                break;
-            case "dex":
-                this.actor.update({'system.stats.dex.isOpened': this.actor.system.stats.dex.isOpened ? false : true});
-                break;
-            case "body":
-                this.actor.update({'system.stats.body.isOpened': this.actor.system.stats.body.isOpened ? false : true});
-                break;
-            case "spd":
-                this.actor.update({'system.stats.spd.isOpened': this.actor.system.stats.spd.isOpened ? false : true});
-                break;
-            case "emp":
-                this.actor.update({'system.stats.emp.isOpened': this.actor.system.stats.emp.isOpened ? false : true});
-                break;
-            case "cra":
-                this.actor.update({'system.stats.cra.isOpened': this.actor.system.stats.cra.isOpened ? false : true});
-                break;
-            case "will":
-                this.actor.update({'system.stats.will.isOpened': this.actor.system.stats.will.isOpened ? false : true});
-                break;
-            case "luck":
-                this.actor.update({'system.stats.luck.isOpened': this.actor.system.stats.luck.isOpened ? false : true});
-                break;
-            case "stun":
-                this.actor.update({'system.coreStats.stun.isOpened': this.actor.system.coreStats.stun.isOpened ? false : true});
-                break;
-            case "run":
-                this.actor.update({'system.coreStats.run.isOpened': this.actor.system.coreStats.run.isOpened ? false : true});
-                break;
-            case "leap":
-                this.actor.update({'system.coreStats.leap.isOpened': this.actor.system.coreStats.leap.isOpened ? false : true});
-                break;
-            case "enc":
-                this.actor.update({'system.coreStats.enc.isOpened': this.actor.system.coreStats.enc.isOpened ? false : true});
-                break;
-            case "rec":
-                this.actor.update({'system.coreStats.rec.isOpened': this.actor.system.coreStats.rec.isOpened ? false : true});
-                break;
-            case "woundThreshold":
-                this.actor.update({'system.coreStats.woundThreshold.isOpened': this.actor.system.coreStats.woundThreshold.isOpened ? false : true});
-                break;
-            case "reputation":
-                this.actor.update({'system.reputation.isOpened': this.actor.system.reputation.isOpened ? false : true});
                 break;
         }
     }

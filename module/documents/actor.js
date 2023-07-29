@@ -441,7 +441,7 @@ export default class WitcherActor extends Actor {
 
     /**
      * Get list of substances by substanceType name
-     * @param {witcher.substanceTypes|SubstanceType|alchemyComponent} substance
+     * @param {witcher.substanceTypes|SubstanceType|AlchemyComponentHolder} substance
      * @return {WitcherItem[]}
      */
     getSubstance(substance) {
@@ -629,7 +629,7 @@ export default class WitcherActor extends Actor {
      * @param {INT_SKILLS|REF_SKILLS|DEX_SKILLS|BODY_SKILLS|EMP_SKILLS|CRA_SKILLS|WILL_SKILLS} skillType
      */
     rollSkillCheck(statType, skillType) {
-        let stat = this.system[statType.statRef];
+        let stat = this.system[statType.ref].current;
         let parentStat = game.i18n.localize(stat.alias);
 
         let skill = this.system.skills[skillType.valueRef];

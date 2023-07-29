@@ -12,6 +12,19 @@ export class WitcherMonsterSheet extends WitcherActorSheet {
         super._prepareItems(context);
     }
 
+    activateListeners(html) {
+        super.activateListeners(html);
+        /**
+         * @type {WitcherActor}
+         */
+        let actor = this.actor
+
+        html.find(".export-loot").on("click", this.exportLoot(actor, false));
+        html.find(".export-loot-ext").on("click", this.exportLoot(actor, true));
+        html.find(".change-skill-list").on("click", () => {this.onChangeSkillList(actor)});
+    }
+
+
     /**
      * Prepare monsters skill list
      * @param {WitcherActor} actor

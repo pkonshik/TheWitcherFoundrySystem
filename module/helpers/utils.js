@@ -66,3 +66,14 @@ export function addModifiersToFormula(modifiers, formula) {
     return formula;
 }
 
+/**
+ * Prepare systemRef in format system.<value>.<postfix>
+ * @param {string} value
+ * @param {string=} postfix
+ * @return {string}
+ */
+export function prepareSystemRef(value, postfix) {
+    return postfix
+        ? "system." + value + "." + postfix
+        : "system." + value
+}

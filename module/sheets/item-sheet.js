@@ -55,9 +55,9 @@ export default class WitcherItemSheet extends ItemSheet {
         super.activateListeners(html);
 
         html.find(".add-effect").on("click", this._onAddEffect.bind(this));
-        html.find(".add-modifier-stat").on("click", this._onAddModifierStat.bind(this));
-        html.find(".add-modifier-skill").on("click", this._onAddModifierSkill.bind(this));
-        html.find(".add-modifier-derived").on("click", this._onAddModifierDerived.bind(this));
+        html.find(".add-modifier").on("click", this._onAddModifierStat.bind(this));
+        html.find(".add-skill-modifier").on("click", this._onAddModifierSkill.bind(this));
+        html.find(".add-modifier").on("click", this._onAddModifierDerived.bind(this));
 
         html.find(".add-component").on("click", this._onAddComponent.bind(this));
         html.find(".add-associated-item").on("click", this._onAddAssociatedItem.bind(this))
@@ -72,7 +72,7 @@ export default class WitcherItemSheet extends ItemSheet {
         html.find(".list-edit").on("blur", this._onListEdit.bind(this));
         html.find(".modifiers-edit").on("change", this._onModifierEdit.bind(this));
         html.find(".modifiers-edit-skills").on("change", this._onModifierSkillsEdit.bind(this));
-        html.find(".modifiers-edit-derived").on("change", this._onModifierDerivedEdit.bind(this));
+        html.find(".edit-modifier").on("change", this._onModifierDerivedEdit.bind(this));
         html.find("input").focusin(ev => this._onFocusIn(ev));
         html.find(".damage-type").on("change", this._onDamageTypeEdit.bind(this));
 

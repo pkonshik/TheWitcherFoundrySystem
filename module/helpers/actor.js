@@ -86,3 +86,23 @@ export function cost(items) {
     }
     return Math.ceil(total)
 }
+
+/**
+ * This functions allows to search object properties by string path
+ *
+ * Without the function: this.actor.system.reputation.current
+ *
+ * Without the function: this.actor[system][reputation][current]
+ *
+ * With the function: getValueByStringPath(this.actor, "system.reputation.current")
+ * @param {Actor} actor
+ * @param {string} selector
+ * @return {*}
+ */
+export function getValueByStringPath(actor, selector) {
+    return selector.replace(/\[([^\[\]]*)\]/g, '.$1.')
+        .split('.')
+        .filter(t => t !== '')
+        .reduce((prev, cur) => prev && prev[cur], actor)
+}
+

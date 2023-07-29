@@ -11,10 +11,10 @@ witcher.rollFormulas = {
 /**
  * @typedef {object} Modifier
  * @property {string} formula
- * @property {string} formulaExtra
+ * @property {string} formulaExtraRef
  * @property {string} staCost
  * @property {string} staCostDisplay
- * @property {string} staCostDisplayExtra
+ * @property {string} staCostDisplayExtraRef
  */
 
 /**
@@ -22,11 +22,11 @@ witcher.rollFormulas = {
  */
 witcher.modifiers = {
     extraAttack: {
-        formula: `-3`,
-        formulaExtra: `-3[${game.i18n.localize("WITCHER.Dialog.attackExtra")}]`,
+        formula: " -3",
+        formulaExtraRef: "WITCHER.Dialog.attackExtra",
         staCost: 3,
-        staCostDisplay: ` +3`,
-        staCostDisplayExtra: ` + 3[${game.i18n.localize("WITCHER.Dialog.attackExtra")}]`
+        staCostDisplay: " +3",
+        staCostDisplayExtraRef: "WITCHER.Dialog.attackExtra"
     },
 }
 
@@ -555,8 +555,7 @@ witcher.skills = {
  * @property {string} name
  * @property {string} alias
  * @property {string} aliasShort
- * @property {string} statRef
- * @property {string} maxStatRef
+ * @property {string} ref
  * @property {keyof INT_SKILLS|REF_SKILLS|DEX_SKILLS|BODY_SKILLS|EMP_SKILLS|CRA_SKILLS|WILL_SKILLS} skills
  */
 
@@ -568,71 +567,62 @@ const STATS = {
         name: "int",
         alias: "WITCHER.StInt",
         aliasShort: "WITCHER.Actor.Stat.Int",
-        statRef: "stats.int.current",
-        maxStatRef: "stats.int.max",
+        ref: "stats.int",
         skills: {...INT_SKILLS}
     },
     ref: {
         name: "ref",
         alias: "WITCHER.Actor.Stat.Ref",
         aliasShort: "WITCHER.Actor.Stat.Ref",
-        statRef: "stats.ref.current",
-        maxStatRef: "stats.ref.max",
+        ref: "stats.ref",
         skills: {...REF_SKILLS}
     },
     dex: {
         name: "dex",
         alias: "WITCHER.Actor.Stat.Dex",
         aliasShort: "WITCHER.Actor.Stat.Dex",
-        statRef: "stats.dex.current",
-        maxStatRef: "stats.dex.max",
+        ref: "stats.dex",
         skills: {...DEX_SKILLS}
     },
     body: {
         name: "body",
         alias: "WITCHER.Actor.Stat.Body",
         aliasShort: "WITCHER.Actor.Stat.Body",
-        statRef: "stats.body.current",
-        maxStatRef: "stats.body.max",
+        ref: "stats.body",
         skills: {...BODY_SKILLS}
     },
     spd: {
         name: "spd",
         alias: "WITCHER.Actor.Stat.Spd",
         aliasShort: "WITCHER.Actor.Stat.Spd",
-        statRef: "stats.spd.current",
-        maxStatRef: "stats.spd.max"
+        ref: "stats.spd",
     },
     emp: {
         name: "emp",
         alias: "WITCHER.Actor.Stat.Emp",
         aliasShort: "WITCHER.Actor.Stat.Emp",
-        statRef: "stats.emp.current",
-        maxStatRef: "stats.emp.max",
+        ref: "stats.emp",
         skills: {...EMP_SKILLS}
     },
     cra: {
         name: "cra",
         alias: "WITCHER.Actor.Stat.Cra",
         aliasShort: "WITCHER.Actor.Stat.Cra",
-        statRef: "stats.cra.current",
-        maxStatRef: "stats.cra.max",
+        ref: "stats.cra",
         skills: {...CRA_SKILLS}
     },
     will: {
         name: "will",
         alias: "WITCHER.Actor.Stat.Will",
         aliasShort: "WITCHER.Actor.Stat.Will",
-        statRef: "stats.will.current",
-        maxStatRef: "stats.will.max",
+        ref: "stats.will",
         skills: {...WILL_SKILLS}
     },
     luck: {
         name: "luck",
         alias: "WITCHER.Actor.Stat.Luck",
         aliasShort: "WITCHER.Actor.Stat.Luck",
-        statRef: "stats.luck.current",
-        maxStatRef: "stats.luck.max"
+        ref: "stats.luck",
     }
 }
 
@@ -645,38 +635,32 @@ const CORE_STATS = {
     stun: {
         name: "stun",
         aliasShort: "WITCHER.Actor.CoreStat.Stun",
-        statRef: "coreStats.stun.current",
-        maxStatRef: "coreStats.stun.max",
+        ref: "coreStats.stun",
     },
     run: {
         name: "run",
         aliasShort: "WITCHER.Actor.CoreStat.Run",
-        statRef: "coreStats.run.current",
-        maxStatRef: "coreStats.run.max",
+        ref: "coreStats.run",
     },
     leap: {
         name: "leap",
         aliasShort: "WITCHER.Actor.CoreStat.Leap",
-        statRef: "coreStats.leap.current",
-        maxStatRef: "coreStats.leap.max",
+        ref: "coreStats.leap",
     },
     enc: {
         name: "enc",
         aliasShort: "WITCHER.Actor.CoreStat.Enc",
-        statRef: "coreStats.enc.current",
-        maxStatRef: "coreStats.enc.max",
+        ref: "coreStats.enc",
     },
     rec: {
         name: "rec",
         aliasShort: "WITCHER.Actor.CoreStat.Rec",
-        statRef: "coreStats.rec.current",
-        maxStatRef: "coreStats.rec.max",
+        ref: "coreStats.rec",
     },
     woundThreshold: {
         name: "woundThreshold",
         aliasShort: "WITCHER.Actor.CoreStat.woundThreshold",
-        statRef: "coreStats.woundThreshold.current",
-        maxStatRef: "coreStats.woundThreshold.max",
+        ref: "coreStats.woundThreshold",
     }
 }
 
@@ -688,23 +672,19 @@ witcher.coreStats = CORE_STATS
 const DERIVED_STATS = {
     hp: {
         name: "hp",
-        statRef: "derivedStats.hp.current",
-        maxStatRef: "derivedStats.hp.max",
+        ref: "derivedStats.hp",
     },
     sta: {
         name: "sta",
-        statRef: "derivedStats.sta.current",
-        maxStatRef: "derivedStats.sta.max",
+        ref: "derivedStats.sta",
     },
     resolve: {
         name: "resolve",
-        statRef: "derivedStats.resolve.current",
-        maxStatRef: "derivedStats.resolve.max",
+        ref: "derivedStats.resolve",
     },
     focus: {
         name: "focus",
-        statRef: "derivedStats.focus.current",
-        maxStatRef: "derivedStats.focus.max",
+        ref: "derivedStats.focus",
     }
     //todo add other der stats PUNCH KICK if needed
 }
@@ -718,8 +698,7 @@ const REPUTATION_STATS = {
     reputation: {
         name: "reputation",
         alias: "WITCHER.StReputation",
-        statRef: "reputation.current",
-        maxStatRef: "reputation.max",
+        ref: "reputation",
     }
 }
 
