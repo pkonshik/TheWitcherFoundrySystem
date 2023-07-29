@@ -11,7 +11,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="vitriol"
+                    type="image" data-subType="vitriol"
                     src="systems/witcher/assets/images/vitriol.png"
                     title="{{localize "WITCHER.Inventory.Vitriol"}}"/>
             </th>
@@ -22,7 +22,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="rebis"
+                    type="image" data-subType="rebis"
                     src="systems/witcher/assets/images/rebis.png"
                     title="{{localize "WITCHER.Inventory.Rebis"}}"/>
             </th>
@@ -33,7 +33,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="aether"
+                    type="image" data-subType="aether"
                     src="systems/witcher/assets/images/aether.png"
                     title="{{localize "WITCHER.Inventory.Aether"}}"/>
             </th>
@@ -44,7 +44,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="quebrith"
+                    type="image" data-subType="quebrith"
                     src="systems/witcher/assets/images/quebrith.png"
                     title="{{localize "WITCHER.Inventory.Quebrith"}}"/>
             </th>
@@ -55,7 +55,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="hydragenum"
+                    type="image" data-subType="hydragenum"
                     src="systems/witcher/assets/images/hydragenum.png"
                     title="{{localize "WITCHER.Inventory.Hydragenum"}}"/>
             </th>
@@ -66,7 +66,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="vermilion"
+                    type="image" data-subType="vermilion"
                     src="systems/witcher/assets/images/vermilion.png"
                     title="{{localize "WITCHER.Inventory.Vermilion"}}"/>
             </th>
@@ -77,7 +77,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="sol"
+                    type="image" data-subType="sol"
                     src="systems/witcher/assets/images/sol.png"
                     title="{{localize "WITCHER.Inventory.Sol"}}"/>
             </th>
@@ -88,7 +88,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="caelum"
+                    type="image" data-subType="caelum"
                     src="systems/witcher/assets/images/caelum.png"
                     title="{{localize "WITCHER.Inventory.Caelum"}}"/>
             </th>
@@ -99,7 +99,7 @@
                     {{else}}
                     class="substance-img item-substance-display substance"
                     {{/if}}
-                    type="image" data-subtype="fulgur"
+                    type="image" data-subType="fulgur"
                     src="systems/witcher/assets/images/fulgur.png"
                     title="{{localize "WITCHER.Inventory.Fulgur"}}"/>
             </th>
@@ -120,7 +120,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Vitriol"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="vitriol"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="vitriol"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesVitriol as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -141,7 +141,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Rebis"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="rebis"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="rebis"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesRebis as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -162,7 +162,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Aether"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="aether"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="aether"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesAether as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -183,7 +183,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Quebrith"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="quebrith"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="quebrith"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesQuebrith as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -204,7 +204,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Hydragenum"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="hydragenum"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="hydragenum"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesHydragenum as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -225,7 +225,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Vermilion"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="vermilion"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="vermilion"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesVermilion as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -246,7 +246,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Sol"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="sol"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="sol"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesSol as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -267,7 +267,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Caelum"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="caelum"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="caelum"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesCaelum as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">
@@ -288,7 +288,7 @@
         <table class="item-list">
             <tr class="substance-type-subheader">
                 <label>{{localize "WITCHER.Inventory.Fulgur"}}</label>
-                <a class="add-item" data-itemType="component" data-subtype="fulgur"><i class="fas fa-plus"></i></a>
+                <a class="add-item" data-itemType="component" data-subType="fulgur"><i class="fas fa-plus"></i></a>
             </tr>
             {{#each substancesFulgur as |substance id|}}
                 <tr class="item" data-item-id="{{substance._id}}">

@@ -45,11 +45,11 @@
                 </div>
                 <div class="critwounds-right">
                     <div class="crit-wound-description" name="system.critWounds.{{i}}.description"
-                         data-id="CritDescription.{{critWound.effect}}">{{localize
+                         data-id="CritModDescription.{{critWound.effect}}">{{localize
                             (lookup ../config.CritDescription critWound.effect)}}</div>
                     <br/>
                     <div class="crit-wound-mod-description" name="system.critWounds.{{i}}.modDescription"
-                         data-id="CritModDescription.{{critWound.effect}}.{{critWound.mod}}">{{localize
+                         data-id="CritModDescription.{{critWound.effect}}.mod.{{critWound.mod}}">{{localize
                             (lookup (lookup ../config.CritModDescription critWound.effect) critWound.mod)}}</div>
                 </div>
             </td>

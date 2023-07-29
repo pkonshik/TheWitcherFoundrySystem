@@ -2,7 +2,7 @@
     <header class="sheet-header">
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+            <h1 class="char-name"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
         </div>
     </header>
     <div class="profession-layout">
@@ -12,7 +12,7 @@
                        value="{{item.system.definingSkill.skillName}}" placeholder=""/>
                 <select class="defining-skill-select" name="system.definingSkill.stat">
                     {{#select item.system.definingSkill.stat}}
-                        {{#each config.statTypes as |name type|}}
+                        {{#each config.stats as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}}
@@ -34,7 +34,7 @@
                                value="{{item.system.skillPath1.skill1.skillName}}" placeholder=""/>
                         <select class="first-path-select" name="system.skillPath1.skill1.stat">
                             {{#select item.system.skillPath1.skill1.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -52,7 +52,7 @@
                                value="{{item.system.skillPath1.skill2.skillName}}" placeholder=""/>
                         <select class="first-path-select" name="system.skillPath1.skill2.stat">
                             {{#select item.system.skillPath1.skill2.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -70,7 +70,7 @@
                                value="{{item.system.skillPath1.skill3.skillName}}" placeholder=""/>
                         <select class="first-path-select" name="system.skillPath1.skill3.stat">
                             {{#select item.system.skillPath1.skill3.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -92,7 +92,7 @@
                                value="{{item.system.skillPath2.skill1.skillName}}" placeholder=""/>
                         <select class="second-path-select" name="system.skillPath2.skill1.stat">
                             {{#select item.system.skillPath2.skill1.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -110,7 +110,7 @@
                                value="{{item.system.skillPath2.skill2.skillName}}" placeholder=""/>
                         <select class="second-path-select" name="system.skillPath2.skill2.stat">
                             {{#select item.system.skillPath2.skill2.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -128,7 +128,7 @@
                                value="{{item.system.skillPath2.skill3.skillName}}" placeholder=""/>
                         <select class="second-path-select" name="system.skillPath2.skill3.stat">
                             {{#select item.system.skillPath2.skill3.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -150,7 +150,7 @@
                                value="{{item.system.skillPath3.skill1.skillName}}" placeholder=""/>
                         <select class="third-path-select" name="system.skillPath3.skill1.stat">
                             {{#select item.system.skillPath3.skill1.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -168,7 +168,7 @@
                                value="{{item.system.skillPath3.skill2.skillName}}" placeholder=""/>
                         <select class="third-path-select" name="system.skillPath3.skill2.stat">
                             {{#select item.system.skillPath3.skill2.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}
@@ -186,7 +186,7 @@
                                value="{{item.system.skillPath3.skill3.skillName}}" placeholder=""/>
                         <select class="third-path-select" name="system.skillPath3.skill3.stat">
                             {{#select item.system.skillPath3.skill3.stat}}
-                                {{#each config.statTypes as |name type|}}
+                                {{#each config.stats as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
                             {{/select}}

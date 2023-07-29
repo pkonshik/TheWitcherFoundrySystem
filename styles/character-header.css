@@ -93,7 +93,7 @@ input.total-stats-show {
     font-weight: bold;
 }
 
-.charname {
+.char-name {
     font-weight: bold;
     font-size: 20px !important;
 }
@@ -187,7 +187,7 @@ input.right-value {
     justify-content: end;
 }
 
-.char-button-collum {
+.char-button-column {
     width: 115px;
     margin-left: 2.5px;
 }
