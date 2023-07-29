@@ -1,0 +1,63 @@
+<div class="item-header-second-collum item-header-spell">
+    <label>{{localize "WITCHER.Spell.type"}}</label>
+    <select name="system.class" id="profession-select">
+        {{#select item.system.class}}
+            <option value="Spells">{{localize "WITCHER.Spell.Spells"}}</option>
+            <option value="Invocations">{{localize "WITCHER.Spell.Invocations"}}</option>
+            <option value="Witcher">{{localize "WITCHER.Spell.Witcher"}}</option>
+            <option value="Rituals">{{localize "WITCHER.Spell.Rituals"}}</option>
+            <option value="Hexes">{{localize "WITCHER.Spell.Hexes"}}</option>
+            <option value="MagicalGift">{{localize "WITCHER.Spell.MagicalGift"}}</option>
+        {{/select}}
+    </select>
+</div>
+
+<div class="item-header-second-collum item-header-spell">
+    {{#unless (eq item.system.class "Hexes")}}
+        {{#unless (eq item.system.class "MagicalGift")}}
+            <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
+            <select name="system.level" id="level-select">
+                {{#select item.system.level}}
+                    <option value="novice">{{localize "WITCHER.Spell.Novice"}}</option>
+                    <option value="journeyman">{{localize "WITCHER.Spell.Journeyman"}}</option>
+                    <option value="master">{{localize "WITCHER.Spell.Master"}}</option>
+                {{/select}}
+            </select>
+        {{/unless}}
+        {{#if (eq item.system.class "MagicalGift")}}
+            <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
+            <select name="system.level" id="level-select">
+                {{#select item.system.level}}
+                    <option value="minor gift">{{localize "WITCHER.Spell.MinorGift"}}</option>
+                    <option value="major gift">{{localize "WITCHER.Spell.MajorGift"}}</option>
+                {{/select}}
+            </select>
+        {{/if}}
+    {{/unless}}
+</div>
+
+<div class="item-header-second-collum item-header-spell">
+    {{#if (or (eq item.system.class "Spells")
+                  (eq item.system.class "Witcher"))}}
+        <label>{{localize "WITCHER.Spell.Element"}}</label>
+        <select name="system.source">
+            {{#select item.system.source}}
+                <option value="mixedElements">{{localize "WITCHER.Spell.Mixed"}}</option>
+                <option value="earth">{{localize "WITCHER.Spell.Earth"}}</option>
+                <option value="air">{{localize "WITCHER.Spell.Air"}}</option>
+                <option value="fire">{{localize "WITCHER.Spell.Fire"}}</option>
+                <option value="Water">{{localize "WITCHER.Spell.Water"}}</option>
+            {{/select}}
+        </select>
+    {{/if}}
+    {{#if (eq item.system.class "Invocations")}}
+        <label>{{localize "WITCHER.Spell.Type"}}</label>
+        <select name="system.source">
+            {{#select item.system.source}}
+                <option value="druid">{{localize "WITCHER.Spell.Druid"}}</option>
+                <option value="preacher">{{localize "WITCHER.Spell.Preacher"}}</option>
+                <option value="arch priest">{{localize "WITCHER.Spell.Archpriest"}}</option>
+            {{/select}}
+        </select>
+    {{/if}}
+</div>

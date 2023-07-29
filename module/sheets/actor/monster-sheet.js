@@ -22,6 +22,8 @@ export class WitcherMonsterSheet extends WitcherActorSheet {
         html.find(".export-loot").on("click", this.exportLoot(actor, false));
         html.find(".export-loot-ext").on("click", this.exportLoot(actor, true));
         html.find(".change-skill-list").on("click", () => {this.onChangeSkillList(actor)});
+
+        html.find(".skill-display").on("click", this._onSkillDisplay.bind(this));
     }
 
 
@@ -127,6 +129,35 @@ export class WitcherMonsterSheet extends WitcherActorSheet {
                 }
             }
         }, {width: width}).render(true)
+    }
+
+    _onSkillDisplay(event) {
+        event.preventDefault();
+        let section = event.currentTarget.closest(".skill");
+        //todo refactor
+        switch (section.dataset.skilltype) {
+            case "int":
+                this.actor.update({'system.panels.intIsOpen': this.actor.system.panels.intIsOpen ? false : true});
+                break;
+            case "ref":
+                this.actor.update({'system.panels.refIsOpen': this.actor.system.panels.refIsOpen ? false : true});
+                break;
+            case "dex":
+                this.actor.update({'system.panels.dexIsOpen': this.actor.system.panels.dexIsOpen ? false : true});
+                break;
+            case "body":
+                this.actor.update({'system.panels.bodyIsOpen': this.actor.system.panels.bodyIsOpen ? false : true});
+                break;
+            case "emp":
+                this.actor.update({'system.panels.empIsOpen': this.actor.system.panels.empIsOpen ? false : true});
+                break;
+            case "cra":
+                this.actor.update({'system.panels.craIsOpen': this.actor.system.panels.craIsOpen ? false : true});
+                break;
+            case "will":
+                this.actor.update({'system.panels.willIsOpen': this.actor.system.panels.willIsOpen ? false : true});
+                break;
+        }
     }
 
     async getOrCreateFolder(extended) {

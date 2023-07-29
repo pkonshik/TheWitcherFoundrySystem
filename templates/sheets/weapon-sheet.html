@@ -1,5 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
-    {{>"systems/witcher/templates/partials/item-header.html"}}
+    {{>"systems/witcher/templates/partials/item/item-header.html"}}
     <div class="item-options">
         <div class="item-collum">
             <div class="item-option-tickbox">
@@ -25,6 +25,7 @@
             {{#unless item.system.isAmmo}}
                 <label>{{localize "WITCHER.Weapon.AttackSkill"}}:</label>
                 <select name="system.attackSkill" id="hands-select">
+                    <!--TODO refactor-->
                     {{#select item.system.attackSkill}}
                         <option value="Brawling"> {{localize "WITCHER.SkRefBrawling"}} </option>
                         <option value="Melee"> {{localize "WITCHER.SkRefMelee"}} </option>
@@ -85,12 +86,8 @@
                 </td>
             {{/unless}}
             <td>
-                <select name="system.avail" id="avail-select">
-                    {{#select item.system.avail}}
-                        {{#each config.Availability as |name value|}}
-                            <option value="{{value}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                <select name="system.avail">
+                    {{selectOptions config.Availability selected=system.avail localize=true}}
                 </select>
             </td>
             <td><input type="number" name="system.reliable" value="{{item.system.reliable}}" data-dtype="Number"/></td>
@@ -108,11 +105,7 @@
             {{/unless}}
             <td>
                 <select name="system.conceal" id="avail-select">
-                    {{#select item.system.conceal}}
-                        {{#each config.Concealment as |name value|}}
-                            <option value="{{value}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.Concealment selected=system.conceal localize=true}}
                 </select>
             </td>
             {{#unless item.system.isAmmo}}

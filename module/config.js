@@ -165,8 +165,7 @@ witcher.magicTypes = {
  * @typedef {object} SkillType
  * @property {string} name
  * @property {string} alias
- * @property {string} valueRef
- * @property {string} modifierRef
+ * @property {string} ref
  */
 
 /**
@@ -176,80 +175,67 @@ const INT_SKILLS = {
     awareness: {
         name: "awareness",
         alias: "WITCHER.SkIntAwareness",
-        valueRef: "int.awareness.value",
-        modifierRef: "int.awareness.modifiers"
+        ref: "skills.int.awareness",
     },
     business: {
         name: "business",
         alias: "WITCHER.SkIntBusiness",
-        valueRef: "int.business.value",
-        modifierRef: "int.business.modifiers"
+        ref: "skills.int.business",
     },
     deduction: {
         name: "deduction",
         alias: "WITCHER.SkIntDeduction",
-        valueRef: "int.deduction.value",
-        modifierRef: "int.deduction.modifiers"
+        ref: "skills.int.deduction",
     },
     education: {
         name: "education",
         alias: "WITCHER.SkIntEducation",
-        valueRef: "int.education.value",
-        modifierRef: "int.education.modifiers"
+        ref: "skills.int.education",
     },
     commonSpeech: {
         name: "commonsp",
         alias: "WITCHER.SkIntCommon",
-        valueRef: "int.commonsp.value",
-        modifierRef: "int.commonsp.modifiers"
+        ref: "skills.int.commonsp",
     },
     elderSpeech: {
         name: "eldersp",
         alias: "WITCHER.SkIntElder",
-        valueRef: "int.eldersp.value",
-        modifierRef: "int.eldersp.modifiers"
+        ref: "skills.int.eldersp",
     },
     dwarvenSpeech: {
         name: "dwarven",
         alias: "WITCHER.SkIntDwarven",
-        valueRef: "int.dwarven.value",
-        modifierRef: "int.dwarven.modifiers"
+        ref: "skills.int.dwarven",
     },
     monster: {
         name: "monster",
         alias: "WITCHER.SkIntMonster",
-        valueRef: "int.monster.value",
-        modifierRef: "int.monster.modifiers"
+        ref: "skills.int.monster",
     },
     socialEtq: {
         name: "socialetq",
         alias: "WITCHER.SkIntSocialEt",
-        valuerRef: "int.socialetq.value",
-        modifierRef: "int.socialetq.modifiers"
+        ref: "skills.int.socialetq",
     },
     streetwise: {
         name: "streetwise",
         alias: "WITCHER.SkIntStreet",
-        valueRef: "int.streetwise.value",
-        modifierRef: "int.streetwise.modifiers"
+        ref: "skills.int.streetwise",
     },
     tactics: {
         name: "tactics",
         alias: "WITCHER.SkIntTactics",
-        valueRef: "int.tactics.value",
-        modifierRef: "int.tactics.modifiers"
+        ref: "skills.int.tactics",
     },
     teaching: {
         name: "teaching",
         alias: "WITCHER.SkIntTeaching",
-        valueRef: "int.teaching.value",
-        modifierRef: "int.teaching.modifiers"
+        ref: "skills.int.teaching",
     },
     wilderness: {
         name: "wilderness",
         alias: "WITCHER.SkIntWilderness",
-        valueRef: "int.wilderness.value",
-        modifierRef: "int.wilderness.modifiers"
+        ref: "skills.int.wilderness",
     }
 }
 
@@ -262,50 +248,42 @@ const REF_SKILLS = {
     brawling: {
         name: "brawling",
         alias: "WITCHER.SkRefBrawling",
-        valueRef: "ref.brawling.value",
-        modifierRef: "ref.brawling.modifiers"
+        ref: "skills.ref.brawling",
     },
     dodge: {
         name: "dodge",
         alias: "WITCHER.SkRefDodge",
-        valueRef: "ref.dodge.value",
-        modifierRef: "ref.dodge.modifiers"
+        ref: "skills.ref.dodge",
     },
     melee: {
         name: "melee",
         alias: "WITCHER.SkRefMelee",
-        valueRef: "ref.melee.value",
-        modifierRef: "ref.melee.modifiers"
+        ref: "skills.ref.melee",
     },
     riding: {
         name: "riding",
         alias: "WITCHER.SkRefRiding",
-        valueRef: "ref.riding.value",
-        modifierRef: "ref.riding.modifiers"
+        ref: "skills.ref.riding",
     },
     sailing: {
         name: "sailing",
         alias: "WITCHER.SkRefSailing",
-        valueRef: "ref.sailing.value",
-        modifierRef: "ref.sailing.modifiers"
+        ref: "skills.ref.sailing",
     },
     smallBlades: {
         name: "smallblades",
         alias: "WITCHER.SkRefSmall",
-        valueRef: "ref.smallblades.value",
-        modifierRef: "ref.smallblades.modifiers"
+        ref: "skills.ref.smallblades",
     },
     staffSpear: {
         name: "staffspear",
         alias: "WITCHER.SkRefStaff",
-        valueRef: "ref.staffspear.value",
-        modifierRef: "ref.staffspear.modifiers"
+        ref: "skills.ref.staffspear",
     },
     swordsmanship: {
         name: "swordsmanship",
         alias: "WITCHER.SkRefSwordsmanship",
-        valueRef: "ref.swordsmanship.value",
-        modifierRef: "ref.swordsmanship.modifiers"
+        ref: "skills.ref.swordsmanship",
     }
 }
 
@@ -318,32 +296,27 @@ const DEX_SKILLS = {
     archery: {
         name: "archery",
         alias: "WITCHER.SkDexArchery",
-        valueRef: "dex.archery.value",
-        modifierRef: "dex.archery.modifiers"
+        ref: "skills.dex.archery",
     },
     athletics: {
         name: "athletics",
         alias: "WITCHER.SkDexAthletics",
-        valueRef: "dex.athletics.value",
-        modifierRef: "dex.athletics.modifiers"
+        ref: "skills.dex.athletics",
     },
     crossbow: {
         name: "crossbow",
         alias: "WITCHER.SkDexCrossbow",
-        valueRef: "dex.crossbow.value",
-        modifierRef: "dex.crossbow.modifiers"
+        ref: "skills.dex.crossbow",
     },
     sleight: {
         name: "sleight",
         alias: "WITCHER.SkDexSleight",
-        valueRef: "dex.sleight.value",
-        modifierRef: "dex.sleight.modifiers"
+        ref: "skills.dex.sleight",
     },
     stealth: {
         name: "stealth",
         alias: "WITCHER.SkDexStealth",
-        valueRef: "dex.stealth.value",
-        modifierRef: "dex.stealth.modifiers"
+        ref: "skills.dex.stealth",
     }
 }
 
@@ -356,14 +329,12 @@ const BODY_SKILLS = {
     physique: {
         name: "physique",
         alias: "WITCHER.SkBodyPhys",
-        valueRef: "body.physique.value",
-        modifierRef: "body.physique.modifiers"
+        ref: "skills.body.physique",
     },
     endurance: {
         name: "endurance",
         alias: "WITCHER.SkBodyEnd",
-        valueRef: "body.endurance.value",
-        modifierRef: "body.endurance.modifiers"
+        ref: "skills.body.endurance",
     }
 }
 
@@ -376,62 +347,52 @@ const EMP_SKILLS = {
     charisma: {
         name: "charisma",
         alias: "WITCHER.SkEmpCharisma",
-        valueRef: "emp.charisma.value",
-        modifierRef: "emp.charisma.modifiers"
+        ref: "skills.emp.charisma",
     },
     deceit: {
         name: "deceit",
         alias: "WITCHER.SkEmpDeceit",
-        valueRef: "emp.deceit.value",
-        modifierRef: "emp.deceit.modifiers"
+        ref: "skills.emp.deceit",
     },
     fineArts: {
         name: "finearts",
         alias: "WITCHER.SkEmpArts",
-        valueRef: "emp.finearts.value",
-        modifierRef: "emp.finearts.modifiers"
+        ref: "skills.emp.finearts",
     },
     gambling: {
         name: "gampling",
         alias: "WITCHER.SkEmpGambling",
-        valueRef: "emp.gambling.value",
-        modifierRef: "emp.gambling.modifiers"
+        ref: "skills.emp.gambling",
     },
     grooming: {
         name: "grooming",
         alias: "WITCHER.SkEmpGrooming",
-        valueRef: "emp.grooming.value",
-        modifierRef: "emp.grooming.modifiers"
+        ref: "skills.emp.grooming",
     },
     perception: {
         name: "perception",
         alias: "WITCHER.SkEmpHumanPerc",
-        valueRef: "emp.perception.value",
-        modifierRef: "emp.perception.modifiers"
+        ref: "skills.emp.perception",
     },
     leadership: {
         name: "leadership",
         alias: "WITCHER.SkEmpLeadership",
-        valueRef: "emp.leadership.value",
-        modifierRef: "emp.leadership.modifiers"
+        ref: "skills.emp.leadership",
     },
     persuasion: {
         name: "persuasion",
         alias: "WITCHER.SkEmpPersuasion",
-        valueRef: "emp.persuasion.value",
-        modifierRef: "emp.persuasion.modifiers"
+        ref: "skills.emp.persuasion",
     },
     performance: {
         name: "performance",
         alias: "WITCHER.SkEmpPerformance",
-        valueRef: "emp.performance.value",
-        modifierRef: "emp.performance.modifiers"
+        ref: "skills.emp.performance",
     },
     seduction: {
         name: "seduction",
         alias: "WITCHER.SkEmpSeduction",
-        valueRef: "emp.seduction.value",
-        modifierRef: "emp.seduction.modifiers"
+        ref: "skills.emp.seduction",
     }
 }
 
@@ -444,44 +405,37 @@ const CRA_SKILLS = {
     alchemy: {
         name: "alchemy",
         alias: "WITCHER.SkCraAlchemy",
-        valueRef: "cra.alchemy.value",
-        modifierRef: "cra.alchemy.modifiers"
+        ref: "skills.cra.alchemy",
     },
     crafting: {
         name: "crafting",
         alias: "WITCHER.SkCraCrafting",
-        valueRef: "cra.crafting.value",
-        modifierRef: "cra.crafting.modifiers"
+        ref: "skills.cra.crafting",
     },
     disguise: {
         name: "diquise",
         alias: "WITCHER.SkCraDisguise",
-        valueRef: "cra.disguise.value",
-        modifierRef: "cra.disguise.modifiers"
+        ref: "skills.cra.disguise",
     },
     firstAid: {
         name: "firstaid",
         alias: "WITCHER.SkCraAid",
-        valueRef: "cra.firstaid.value",
-        modifierRef: "cra.firstaid.modifiers"
+        ref: "skills.cra.firstaid",
     },
     forgery: {
         name: "forgery",
         alias: "WITCHER.SkCraForge",
-        valueRef: "cra.forgery.value",
-        modifierRef: "cra.forgery.modifiers"
+        ref: "skills.cra.forgery",
     },
     pickLock: {
         name: "picklock",
         alias: "WITCHER.SkCraPick",
-        valueRef: "cra.picklock.value",
-        modifierRef: "cra.picklock.modifiers"
+        ref: "skills.cra.picklock",
     },
     trapCraft: {
         name: "trapcraft",
         alias: "WITCHER.SkCraTrapCraft",
-        valueRef: "cra.trapcraft.value",
-        modifierRef: "cra.trapcraft.modifiers"
+        ref: "skills.cra.trapcraft",
     }
 }
 
@@ -494,44 +448,37 @@ const WILL_SKILLS = {
     courage: {
         name: "courage",
         alias: "WITCHER.SkWillCourage",
-        valueRef: "will.courage.value",
-        modifierRef: "will.courage.modifiers"
+        ref: "skills.will.courage",
     },
     hexWeave: {
         name: "hexweave",
         alias: "WITCHER.SkWillHex",
-        valueRef: "will.hexweave.value",
-        modifierRef: "will.hexweave.modifiers"
+        ref: "skills.will.hexweave",
     },
     intimidation: {
         name: "intimidation",
         alias: "WITCHER.SkWillIntim",
-        valueRef: "will.intimidation.value",
-        modifierRef: "will.intimidation.modifiers"
+        ref: "skills.will.intimidation",
     },
     spellCast: {
         name: "spellcast",
         alias: "WITCHER.SkWillSpellcast",
-        valueRef: "will.spellcast.value",
-        modifierRef: "will.spellcast.modifiers"
+        ref: "skills.will.spellcast",
     },
     resistMagic: {
         name: "resistmagic",
         alias: "WITCHER.SkWillResistMag",
-        valueRef: "will.resistmagic.value",
-        modifierRef: "will.resistmagic.modifiers"
+        ref: "skills.will.resistmagic",
     },
     resistCoerc: {
         name: "resistcoerc",
         alias: "WITCHER.SkWillResistCoer",
-        valueRef: "will.resistcoerc.value",
-        modifierRef: "will.resistcoerc.modifiers"
+        ref: "skills.will.resistcoerc",
     },
     ritCraft: {
         name: "ritcraft",
         alias: "WITCHER.SkWillRitCraft",
-        valueRef: "will.ritcraft.value",
-        modifierRef: "will.ritcraft.modifiers"
+        ref: "skills.will.ritcraft",
     }
 }
 
@@ -572,55 +519,55 @@ const STATS = {
     },
     ref: {
         name: "ref",
-        alias: "WITCHER.Actor.Stat.Ref",
+        alias: "WITCHER.StRef",
         aliasShort: "WITCHER.Actor.Stat.Ref",
         ref: "stats.ref",
         skills: {...REF_SKILLS}
     },
     dex: {
         name: "dex",
-        alias: "WITCHER.Actor.Stat.Dex",
+        alias: "WITCHER.StDex",
         aliasShort: "WITCHER.Actor.Stat.Dex",
         ref: "stats.dex",
         skills: {...DEX_SKILLS}
     },
     body: {
         name: "body",
-        alias: "WITCHER.Actor.Stat.Body",
+        alias: "WITCHER.StBody",
         aliasShort: "WITCHER.Actor.Stat.Body",
         ref: "stats.body",
         skills: {...BODY_SKILLS}
     },
     spd: {
         name: "spd",
-        alias: "WITCHER.Actor.Stat.Spd",
+        alias: "WITCHER.StSpd",
         aliasShort: "WITCHER.Actor.Stat.Spd",
         ref: "stats.spd",
     },
     emp: {
         name: "emp",
-        alias: "WITCHER.Actor.Stat.Emp",
+        alias: "WITCHER.StEmp",
         aliasShort: "WITCHER.Actor.Stat.Emp",
         ref: "stats.emp",
         skills: {...EMP_SKILLS}
     },
     cra: {
         name: "cra",
-        alias: "WITCHER.Actor.Stat.Cra",
+        alias: "WITCHER.StCra",
         aliasShort: "WITCHER.Actor.Stat.Cra",
         ref: "stats.cra",
         skills: {...CRA_SKILLS}
     },
     will: {
         name: "will",
-        alias: "WITCHER.Actor.Stat.Will",
+        alias: "WITCHER.StWill",
         aliasShort: "WITCHER.Actor.Stat.Will",
         ref: "stats.will",
         skills: {...WILL_SKILLS}
     },
     luck: {
         name: "luck",
-        alias: "WITCHER.Actor.Stat.Luck",
+        alias: "WITCHER.StLuck",
         aliasShort: "WITCHER.Actor.Stat.Luck",
         ref: "stats.luck",
     }
@@ -833,39 +780,6 @@ const CRIT_TYPE = {
 witcher.CritType = CRIT_TYPE
 
 /**
- * @typedef CritGravityConfiguration
- * @property {string} name
- * @property {keyof CRIT_TYPE} type
- * @property {string} alias
- */
-
-/**
- * @enum {CritGravityConfiguration}
- */
-witcher.CritGravity = {
-    Simple: {
-        name: "SimpleCrackedJaw",
-        type: CRIT_TYPE.simple,
-        alias: "WITCHER.CritWound.SimpleCrackedJaw"
-    },
-    Complex: {
-        name: "ComplexMinorHeadWound",
-        type: CRIT_TYPE.complex,
-        alias: "WITCHER.CritWound.ComplexMinorHeadWound"
-    },
-    Difficult: {
-        name: "DifficultSkullFracture",
-        type: CRIT_TYPE.difficult,
-        alias: "WITCHER.CritWound.DifficultSkullFracture"
-    },
-    Deadly: {
-        name: "DeadlyDecapitated",
-        type: CRIT_TYPE.deadly,
-        alias: "WITCHER.CritWound.DeadlyDecapitated"
-    },
-}
-
-/**
  * @typedef CritModType
  * @property {string} None
  * @property {string} Stabilized
@@ -885,6 +799,7 @@ witcher.CritMod = {
  * @typedef {object} CritModDescription
  * @property {CritType} type
  * @property {CritModType} mod
+ * @property {string} alias
  * @property {string} description
  */
 
@@ -893,270 +808,270 @@ witcher.CritMod = {
  */
 witcher.CritModDescription = {
     SimpleCrackedJaw: {
+        name: "SimpleCrackedJaw",
         type: CRIT_TYPE.simple,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.SimpleCrackedJaw.None",
             Stabilized: "WITCHER.CritWound.Mod.SimpleCrackedJaw.Stabilized",
             Treated: "WITCHER.CritWound.Mod.SimpleCrackedJaw.Treated"
         },
+        alias: "WITCHER.CritWound.Name.SimpleCrackedJaw",
         description: "WITCHER.CritWound.SimpleCrackedJaw"
     },
     SimpleDisfiguringScar: {
+        name: "SimpleDisfiguringScar",
         type: CRIT_TYPE.simple,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.SimpleDisfiguringScar.None",
             Stabilized: "WITCHER.CritWound.Mod.SimpleDisfiguringScar.Stabilized",
             Treated: "WITCHER.CritWound.Mod.SimpleDisfiguringScar.Treated"
         },
+        alias: "WITCHER.CritWound.Name.SimpleDisfiguringScar",
         description: "WITCHER.CritWound.SimpleDisfiguringScar"
     },
     SimpleCrackedRibs: {
+        name: "SimpleCrackedRibs",
         type: CRIT_TYPE.simple,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.SimpleCrackedRibs.None",
             Stabilized: "WITCHER.CritWound.Mod.SimpleCrackedRibs.Stabilized",
             Treated: "WITCHER.CritWound.Mod.SimpleCrackedRibs.Treated"
         },
+        alias: "WITCHER.CritWound.Name.SimpleCrackedRibs",
         description: "WITCHER.CritWound.SimpleCrackedRibs",
     },
     SimpleForeignObject: {
+        name: "SimpleForeignObject",
         type: CRIT_TYPE.simple,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.SimpleForeignObject.None",
             Stabilized: "WITCHER.CritWound.Mod.SimpleForeignObject.Stabilized",
             Treated: "WITCHER.CritWound.Mod.SimpleForeignObject.Treated"
         },
+        alias: "WITCHER.CritWound.Name.SimpleForeignObject",
         description: "WITCHER.CritWound.SimpleForeignObject",
     },
     SimpleSprainedArm: {
+        name: "SimpleSprainedArm",
         type: CRIT_TYPE.simple,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.SimpleSprainedArm.None",
             Stabilized: "WITCHER.CritWound.Mod.SimpleSprainedArm.Stabilized",
             Treated: "WITCHER.CritWound.Mod.SimpleSprainedArm.Treated"
         },
+        alias: "WITCHER.CritWound.Name.SimpleSprainedArm",
         description: "WITCHER.CritWound.SimpleSprainedArm",
     },
     SimpleSprainedLeg: {
+        name: "SimpleSprainedLeg",
         type: CRIT_TYPE.simple,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.SimpleSprainedLeg.None",
             Stabilized: "WITCHER.CritWound.Mod.SimpleSprainedLeg.Stabilized",
             Treated: "WITCHER.CritWound.Mod.SimpleSprainedLeg.Treated"
         },
+        alias: "WITCHER.CritWound.Name.SimpleSprainedLeg",
         description: "WITCHER.CritWound.SimpleSprainedLeg",
     },
     ComplexMinorHeadWound: {
+        name: "ComplexMinorHeadWound",
         type: CRIT_TYPE.complex,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.ComplexMinorHeadWound.None",
             Stabilized: "WITCHER.CritWound.Mod.ComplexMinorHeadWound.Stabilized",
             Treated: "WITCHER.CritWound.Mod.ComplexMinorHeadWound.Treated"
         },
+        alias: "WITCHER.CritWound.Name.ComplexMinorHeadWound",
         description: "WITCHER.CritWound.ComplexMinorHeadWound",
     },
     ComplexLostTeeth: {
+        name: "ComplexLostTeeth",
         type: CRIT_TYPE.complex,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.ComplexLostTeeth.None",
             Stabilized: "WITCHER.CritWound.Mod.ComplexLostTeeth.Stabilized",
             Treated: "WITCHER.CritWound.Mod.ComplexLostTeeth.Treated"
         },
+        alias: "WITCHER.CritWound.Name.ComplexLostTeeth",
         description: "WITCHER.CritWound.ComplexLostTeeth",
     },
     ComplexRupturedSpleen: {
+        name: "ComplexRupturedSpleen",
         type: CRIT_TYPE.complex,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.ComplexRupturedSpleen.None",
             Stabilized: "WITCHER.CritWound.Mod.ComplexRupturedSpleen.Stabilized",
             Treated: "WITCHER.CritWound.Mod.ComplexRupturedSpleen.Treated"
         },
+        alias: "WITCHER.CritWound.Name.ComplexRupturedSpleen",
         description: "WITCHER.CritWound.ComplexRupturedSpleen",
     },
     ComplexBrokenRibs: {
+        name: "ComplexBrokenRibs",
         type: CRIT_TYPE.complex,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.ComplexBrokenRibs.None",
             Stabilized: "WITCHER.CritWound.Mod.ComplexBrokenRibs.Stabilized",
             Treated: "WITCHER.CritWound.Mod.ComplexBrokenRibs.Treated"
         },
+        alias: "WITCHER.CritWound.Name.ComplexBrokenRibs",
         description: "WITCHER.CritWound.ComplexBrokenRibs",
     },
     ComplexFracturedArm: {
+        name: "ComplexFracturedArm",
         type: CRIT_TYPE.complex,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.ComplexFracturedArm.None",
             Stabilized: "WITCHER.CritWound.Mod.ComplexFracturedArm.Stabilized",
             Treated: "WITCHER.CritWound.Mod.ComplexFracturedArm.Treated"
         },
+        alias: "WITCHER.CritWound.Name.ComplexFracturedArm",
         description: "WITCHER.CritWound.ComplexFracturedArm",
     },
     ComplexFracturedLeg: {
+        name: "ComplexFracturedLeg",
         type: CRIT_TYPE.complex,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.ComplexFracturedLeg.None",
             Stabilized: "WITCHER.CritWound.Mod.ComplexFracturedLeg.Stabilized",
             Treated: "WITCHER.CritWound.Mod.ComplexFracturedLeg.Treated"
         },
+        alias: "WITCHER.CritWound.Name.ComplexFracturedLeg",
         description: "WITCHER.CritWound.ComplexFracturedLeg",
     },
     DifficultSkullFracture: {
+        name: "DifficultSkullFracture",
         type: CRIT_TYPE.difficult,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DifficultSkullFracture.None",
             Stabilized: "WITCHER.CritWound.Mod.DifficultSkullFracture.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DifficultSkullFracture.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DifficultSkullFracture",
         description: "WITCHER.CritWound.DifficultSkullFracture",
     },
     DifficultConcussion: {
+        name: "DifficultConcussion",
         type: CRIT_TYPE.difficult,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DifficultConcussion.None",
             Stabilized: "WITCHER.CritWound.Mod.DifficultConcussion.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DifficultConcussion.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DifficultConcussion",
         description: "WITCHER.CritWound.DifficultConcussion",
     },
     DifficultTornStomach: {
+        name: "DifficultTornStomach",
         type: CRIT_TYPE.difficult,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DifficultTornStomach.None",
             Stabilized: "WITCHER.CritWound.Mod.DifficultTornStomach.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DifficultTornStomach.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DifficultTornStomach",
         description: "WITCHER.CritWound.DifficultTornStomach",
     },
     DifficultSuckingChestWound: {
+        name: "DifficultSuckingChestWound",
         type: CRIT_TYPE.difficult,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DifficultSuckingChestWound.None",
             Stabilized: "WITCHER.CritWound.Mod.DifficultSuckingChestWound.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DifficultSuckingChestWound.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DifficultSuckingChestWound",
         description: "WITCHER.CritWound.DifficultSuckingChestWound",
     },
     DifficultCompoundArmFracture: {
+        name: "DifficultCompoundArmFracture",
         type: CRIT_TYPE.difficult,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DifficultCompoundArmFracture.None",
             Stabilized: "WITCHER.CritWound.Mod.DifficultCompoundArmFracture.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DifficultCompoundArmFracture.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DifficultCompoundArmFracture",
         description: "WITCHER.CritWound.DifficultCompoundArmFracture",
     },
     DifficultCompoundLegFracture: {
+        name: "DifficultCompoundLegFracture",
         type: CRIT_TYPE.difficult,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DifficultCompoundLegFracture.None",
             Stabilized: "WITCHER.CritWound.Mod.DifficultCompoundLegFracture.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DifficultCompoundLegFracture.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DifficultCompoundLegFracture",
         description: "WITCHER.CritWound.DifficultCompoundLegFracture",
     },
     DeadlyDecapitated: {
+        name: "DeadlyDecapitated",
         type: CRIT_TYPE.deadly,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DeadlyDecapitated.None",
             Stabilized: "WITCHER.CritWound.Mod.DeadlyDecapitated.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DeadlyDecapitated.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DeadlyDecapitated",
         description: "WITCHER.CritWound.DeadlyDecapitated",
     },
     DeadlyDamagedEye: {
+        name: "DeadlyDamagedEye",
         type: CRIT_TYPE.deadly,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DeadlyDamagedEye.None",
             Stabilized: "WITCHER.CritWound.Mod.DeadlyDamagedEye.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DeadlyDamagedEye.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DeadlyDamagedEye",
         description: "WITCHER.CritWound.DeadlyDamagedEye",
     },
     DeadlyHearthDamage: {
+        name: "DeadlyHearthDamage",
         type: CRIT_TYPE.deadly,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DeadlyHearthDamage.None",
             Stabilized: "WITCHER.CritWound.Mod.DeadlyHearthDamage.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DeadlyHearthDamage.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DeadlyHearthDamage",
         description: "WITCHER.CritWound.DeadlyHearthDamage",
     },
     DeadlySepticShock: {
+        name: "DeadlySepticShock",
         type: CRIT_TYPE.deadly,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DeadlySepticShock.None",
             Stabilized: "WITCHER.CritWound.Mod.DeadlySepticShock.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DeadlySepticShock.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DeadlySepticShock",
         description: "WITCHER.CritWound.DeadlySepticShock",
     },
     DeadlyDismemberedArm: {
+        name: "DeadlyDismemberedArm",
         type: CRIT_TYPE.deadly,
-        mod: witcher.CritMod = {
+        mod: {
             None: "WITCHER.CritWound.Mod.DeadlyDismemberedArm.None",
             Stabilized: "WITCHER.CritWound.Mod.DeadlyDismemberedArm.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DeadlyDismemberedArm.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DeadlyDismemberedArm",
         description: "WITCHER.CritWound.DeadlyDismemberedArm",
     },
     DeadlyDismemberedLeg: {
+        name: "DeadlyDismemberedLeg",
         type: CRIT_TYPE.deadly,
         mod: {
             None: "WITCHER.CritWound.Mod.DeadlyDismemberedLeg.None",
             Stabilized: "WITCHER.CritWound.Mod.DeadlyDismemberedLeg.Stabilized",
             Treated: "WITCHER.CritWound.Mod.DeadlyDismemberedLeg.Treated"
         },
+        alias: "WITCHER.CritWound.Name.DeadlyDismemberedLeg",
         description: "WITCHER.CritWound.DeadlyDismemberedLeg",
     },
 }
-
-/**
- * @enum {string}
- */
-witcher.CritSimple = {
-    SimpleCrackedJaw: "WITCHER.CritWound.Name.SimpleCrackedJaw",
-    SimpleDisfiguringScar: "WITCHER.CritWound.Name.SimpleDisfiguringScar",
-    SimpleCrackedRibs: "WITCHER.CritWound.Name.SimpleCrackedRibs",
-    SimpleForeignObject: "WITCHER.CritWound.Name.SimpleForeignObject",
-    SimpleSprainedArm: "WITCHER.CritWound.Name.SimpleSprainedArm",
-    SimpleSprainedLeg: "WITCHER.CritWound.Name.SimpleSprainedLeg",
-};
-
-/**
- * @enum {string}
- */
-witcher.CritComplex = {
-    ComplexMinorHeadWound: "WITCHER.CritWound.Name.ComplexMinorHeadWound",
-    ComplexLostTeeth: "WITCHER.CritWound.Name.ComplexLostTeeth",
-    ComplexRupturedSpleen: "WITCHER.CritWound.Name.ComplexRupturedSpleen",
-    ComplexBrokenRibs: "WITCHER.CritWound.Name.ComplexBrokenRibs",
-    ComplexFracturedArm: "WITCHER.CritWound.Name.ComplexFracturedArm",
-    ComplexFracturedLeg: "WITCHER.CritWound.Name.ComplexFracturedLeg",
-};
-
-/**
- * @enum {string}
- */
-witcher.CritDifficult = {
-    DifficultSkullFracture: "WITCHER.CritWound.Name.DifficultSkullFracture",
-    DifficultConcussion: "WITCHER.CritWound.Name.DifficultConcussion",
-    DifficultTornStomach: "WITCHER.CritWound.Name.DifficultTornStomach",
-    DifficultSuckingChestWound: "WITCHER.CritWound.Name.DifficultSuckingChestWound",
-    DifficultCompoundArmFracture: "WITCHER.CritWound.Name.DifficultCompoundArmFracture",
-    DifficultCompoundLegFracture: "WITCHER.CritWound.Name.DifficultCompoundLegFracture",
-};
-
-/**
- * @enum {string}
- */
-witcher.CritDeadly = {
-    DeadlyDecapitated: "WITCHER.CritWound.Name.DeadlyDecapitated",
-    DeadlyDamagedEye: "WITCHER.CritWound.Name.DeadlyDamagedEye",
-    DeadlyHearthDamage: "WITCHER.CritWound.Name.DeadlyHearthDamage",
-    DeadlySepticShock: "WITCHER.CritWound.Name.DeadlySepticShock",
-    DeadlyDismemberedArm: "WITCHER.CritWound.Name.DeadlyDismemberedArm",
-    DeadlyDismemberedLeg: "WITCHER.CritWound.Name.DeadlyDismemberedLeg",
-};
 
 /**
  * @typedef {object} LocationType

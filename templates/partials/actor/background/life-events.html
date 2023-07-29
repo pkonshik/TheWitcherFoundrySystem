@@ -1,0 +1,38 @@
+<div class="lifeEvents scrollable" id="lifeEvents">
+    <table class="lifevents">
+        <tr class="headerrow lifeEvents">
+            <th class="header lifeEvents" colspan="3">
+                {{localize "WITCHER.LifeEvents"}}
+            </th>
+        </tr>
+        <tr class="titlerow lifeEvents">
+            <th>{{localize "WITCHER.Decade"}}</th>
+            <th>{{localize "WITCHER.Event"}}</th>
+            <th></th>
+        </tr>
+        {{#each system.general.lifeEvents as |events ev|}}
+            <tr class="tablerow lifeEvents {{ev}}" data-event="{{ev}}">
+                <td class="{{ev}} events">{{ev}}</td>
+                <td>
+                    <input class="input lifeEvents" name="system.general.lifeEvents.{{ev}}.value" type="text"
+                           value="{{events.value}}"/>
+                </td>
+                <td>
+                    {{#unless events.isOpened}}
+                        <a class="life-event-display"><i class="fas fa-chevron-right"></i></a>
+                    {{/unless}}
+                    {{#if events.isOpened}}
+                        <a class="life-event-display"><i class="fas fa-chevron-down"></i></a>
+                    {{/if}}
+                </td>
+            </tr>
+            {{#if events.isOpened}}
+                <tr>
+                    <td colspan="3">
+                        <textarea name="system.general.lifeEvents.{{ev}}.details">{{events.details}}</textarea>
+                    </td>
+                </tr>
+            {{/if}}
+        {{/each}}
+    </table>
+</div>

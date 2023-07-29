@@ -32,6 +32,7 @@ export default class WitcherItemSheet extends ItemSheet {
 
         context.system = itemData.system;
         context.flags = itemData.flags;
+        context.config = CONFIG.witcher
 
         this.options.classes.push(`item-${this.item.type}`)
 
@@ -76,7 +77,7 @@ export default class WitcherItemSheet extends ItemSheet {
         html.find("input").focusin(ev => this._onFocusIn(ev));
         html.find(".damage-type").on("change", this._onDamageTypeEdit.bind(this));
 
-        html.find(".dragable").on("dragstart", (ev) => {
+        html.find(".draggable").on("dragstart", (ev) => {
             let itemId = ev.target.dataset.id
             let item = this.actor.items.get(itemId);
             ev.originalEvent.dataTransfer.setData(
@@ -90,7 +91,7 @@ export default class WitcherItemSheet extends ItemSheet {
         });
 
         const newDragDrop = new DragDrop({
-            dragSelector: `.dragable`,
+            dragSelector: `.draggable`,
             dropSelector: `.window-content`,
             permissions: {dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this)},
             callbacks: {dragstart: this._onDragStart.bind(this), drop: this._onDrop.bind(this)}

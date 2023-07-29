@@ -7,8 +7,8 @@
 {{else}}
     <tr class="item" data-item-id="{{item._id}}">
 {{/if}}
-    <td><a class="item-edit"><i class="fas fa-edit"></i></a></td>
-    <td><img src="{{item.img}}" class="item-img dragable" draggable="true" data-id="{{item._id}}"/></td>
+    <td><a class="edit-item"><i class="fas fa-edit"></i></a></td>
+    <td><img src="{{item.img}}" class="item-img draggable" draggable="true" data-id="{{item._id}}" alt="{{item.name}}"/></td>
     <td><input class="inline-edit item-quantity" data-field="system.quantity" type="text"
                value="{{item.system.quantity}}" data-dtype="Number"/></td>
     <td><input class="inline-edit" data-field="name" type="text" value="{{item.name}}" placeholder="name"/></td>
@@ -16,10 +16,10 @@
                placeholder=""/></td>
     <td><input class="inline-edit cost-info" data-field="system.cost" type="text" value="{{item.system.cost}}"
                data-dtype="Number"/></td>
-    <td><a class="item-buy"><i class="fas fa-coins"></i></a>
-        <a class="item-delete"><i class="fas fa-trash-alt"></i></a>
+    <td><a class="buy-item"><i class="fas fa-coins"></i></a>
+        <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
         {{#if isGM}}
-            <a class="item-hide"><i class="fas fa-eye"></i></a>
+            <a class="hide-item"><i class="fas fa-eye"></i></a>
         {{/if}}
     </td>
 </tr>

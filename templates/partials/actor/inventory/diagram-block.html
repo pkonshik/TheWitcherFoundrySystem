@@ -12,17 +12,17 @@
         <tr>
             <td>
                 <div class="flex">
-                    <a class="item-armor-display"><i class="fas fa-info"></i></a>
+                    <a class="display-armor"><i class="fas fa-info"></i></a>
                 </div>
             </td>
-            <td><img src="{{diagram.img}}" class="item-img dragable" draggable="true"
-                      data-id="{{diagram._id}}"/></td>
+            <td><img src="{{diagram.img}}" class="item-img draggable" draggable="true"
+                     data-id="{{diagram._id}}" alt="{{diagram.name}}"/></td>
             <td><input class="inline-edit item-quantity" data-field="system.quantity" type="text"
-                        value="{{diagram.system.quantity}}" data-dtype="Number"/></td>
+                       value="{{diagram.system.quantity}}" data-dtype="Number"/></td>
             <td><input class="inline-edit" data-field="name" type="text" value="{{diagram.name}}"
-                        placeholder="name"/></td>
+                       placeholder="name"/></td>
             <td><input class="inline-edit" data-field="system.learned" type="checkbox"
-                        value="{{diagram.system.learned}}" {{checked diagram.system.learned}}/>
+                       value="{{diagram.system.learned}}" {{checked diagram.system.learned}}/>
         </tr>
         <tr class="item-info invisible">
             {{#unless diagram.system.isFormulae}}
@@ -41,19 +41,19 @@
                             <b>{{localize "WITCHER.Diagram.Level"}}: </b>
                         </label>
                         {{#if (eq diagram.system.level "novice")}}
-                        {{localize "WITCHER.Diagram.Novice"}}
+                            {{localize "WITCHER.Diagram.Novice"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "journeyman")}}
-                        {{localize "WITCHER.Diagram.Journeyman"}}
+                            {{localize "WITCHER.Diagram.Journeyman"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "master")}}
-                        {{localize "WITCHER.Diagram.Master"}}
+                            {{localize "WITCHER.Diagram.Master"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "grand-master")}}
-                        {{localize "WITCHER.Diagram.GrandMaster"}}
+                            {{localize "WITCHER.Diagram.GrandMaster"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "witcher")}}
-                        {{localize "WITCHER.Diagram.Witcher"}}
+                            {{localize "WITCHER.Diagram.Witcher"}}
                         {{/if}}
                     </div>
                     <div>
@@ -73,8 +73,8 @@
                 <td>
                     <div class="learned-data">
                         <a class="crafting-craft"><i class="fas fa-hammer"></i></a>
-                        <a class="item-edit"><i class="fas fa-edit"></i></a>
-                        <a class="item-delete"><i class="fas fa-trash-alt"></i></a>
+                        <a class="edit-item"><i class="fas fa-edit"></i></a>
+                        <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
             {{/unless}}
@@ -91,25 +91,25 @@
                             <b>{{localize "WITCHER.Diagram.Level"}}: </b>
                         </label>
                         {{#if (eq diagram.system.level "novice")}}
-                        {{localize "WITCHER.Diagram.Novice"}}
+                            {{localize "WITCHER.Diagram.Novice"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "journeyman")}}
-                        {{localize "WITCHER.Diagram.Journeyman"}}
+                            {{localize "WITCHER.Diagram.Journeyman"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "master")}}
-                        {{localize "WITCHER.Diagram.Master"}}
+                            {{localize "WITCHER.Diagram.Master"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "grand-master")}}
-                        {{localize "WITCHER.Diagram.GrandMaster"}}
+                            {{localize "WITCHER.Diagram.GrandMaster"}}
                         {{/if}}
                         {{#if (eq diagram.system.level "witcher")}}
-                        {{localize "WITCHER.Diagram.Witcher"}}
+                            {{localize "WITCHER.Diagram.Witcher"}}
                         {{/if}}
 
                         <div class="flex components-display">
                             {{#if (gt diagram.system.alchemyComponents.vitriol 0)}}
                                 <img src="systems/witcher/assets/images/vitriol.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../vitriolCount diagram.system.alchemyComponents.vitriol)}}
                                     <span>{{diagram.system.alchemyComponents.vitriol}}</span>
                                 {{else}}
@@ -118,7 +118,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.rebis 0)}}
                                 <img src="systems/witcher/assets/images/rebis.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../rebisCount diagram.system.alchemyComponents.rebis)}}
                                     <span>{{diagram.system.alchemyComponents.rebis}}</span>
                                 {{else}}
@@ -127,7 +127,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.aether 0)}}
                                 <img src="systems/witcher/assets/images/aether.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../aetherCount diagram.system.alchemyComponents.aether)}}
                                     <span>{{diagram.system.alchemyComponents.aether}}</span>
                                 {{else}}
@@ -136,7 +136,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.quebrith 0)}}
                                 <img src="systems/witcher/assets/images/quebrith.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../quebrithCount diagram.system.alchemyComponents.quebrith)}}
                                     <span>{{diagram.system.alchemyComponents.quebrith}}</span>
                                 {{else}}
@@ -145,7 +145,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.hydragenum 0)}}
                                 <img src="systems/witcher/assets/images/hydragenum.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../hydragenumCount diagram.system.alchemyComponents.hydragenum)}}
                                     <span>{{diagram.system.alchemyComponents.hydragenum}}</span>
                                 {{else}}
@@ -154,7 +154,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.vermilion 0)}}
                                 <img src="systems/witcher/assets/images/vermilion.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../vermilionCount diagram.system.alchemyComponents.vermilion)}}
                                     <span>{{diagram.system.alchemyComponents.vermilion}}</span>
                                 {{else}}
@@ -171,7 +171,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.caelum 0)}}
                                 <img src="systems/witcher/assets/images/caelum.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../caelumCount diagram.system.alchemyComponents.caelum)}}
                                     <span>{{diagram.system.alchemyComponents.caelum}}</span>
                                 {{else}}
@@ -180,7 +180,7 @@
                             {{/if}}
                             {{#if (gt diagram.system.alchemyComponents.fulgur 0)}}
                                 <img src="systems/witcher/assets/images/fulgur.png"
-                                      class="substance-img"/>
+                                     class="substance-img"/>
                                 {{#if (gte ../fulgurCount diagram.system.alchemyComponents.fulgur)}}
                                     <span>{{diagram.system.alchemyComponents.fulgur}}</span>
                                 {{else}}
@@ -189,19 +189,19 @@
                             {{/if}}
                         </div>
                         {{#if diagram.system.description}}
-                        <div class="flex">
-                            <label class="label-info">
-                                <div>{{{diagram.system.description}}}</div>
-                            </label>
-                        </div>
+                            <div class="flex">
+                                <label class="label-info">
+                                    <div>{{{diagram.system.description}}}</div>
+                                </label>
+                            </div>
                         {{/if}}
                     </div>
                 </td>
                 <td style="vertical-align: top;">
                     <div class="flex" style="align-items: center;">
                         <a class="alchemy-potion"><i class="fas fa-vial"></i></a>
-                        <a class="item-edit"><i class="fas fa-edit"></i></a>
-                        <a class="item-delete"><i class="fas fa-trash-alt"></i></a>
+                        <a class="edit-item"><i class="fas fa-edit"></i></a>
+                        <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
             {{/if}}

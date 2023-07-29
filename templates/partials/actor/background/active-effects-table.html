@@ -1,0 +1,34 @@
+{{#each activeEffects as |effect ev|}}
+    <div class="item flex" data-item-id="{{effect._id}}">
+        <a class="edit-item"><i class="fas fa-edit"></i></a>
+        <img src="{{effect.img}}" class="item-img" alt="{{effect.name}}"/>
+        <div class="modifier-display">
+            <label><b>{{effect.name}}</b></label>
+            <div class="flex">
+                <label>{{localize "WITCHER.effect.isActive"}}</label>
+                <input class="inline-edit" data-field="system.isActive" type="checkbox"
+                       value={{checked system.isActive}} {{checked system.isActive}}/>
+                <label>{{localize "WITCHER.effect.isHUD"}}</label>
+                <input class="inline-edit" data-field="system.isHUD" type="checkbox"
+                       value={{checked system.isHUD}} {{checked system.isHUD}}/>
+            </div>
+        </div>
+        <div class="modifier-display">
+            {{#each effect.system.stats as |stat index|}}
+                <div>{{localize stat.stat}}: {{stat.modifier}}</div>
+            {{/each}}
+        </div>
+        <div class="modifier-display">
+            {{#each effect.system.derived as |derived index|}}
+                <div>{{localize derived.derivedStat}}: {{derived.modifier}}</div>
+            {{/each}}
+        </div>
+        <div class="modifier-display">
+            {{#each effect.system.skills as |skill index|}}
+                <div>{{localize skill.skill}}: {{skill.modifier}}</div>
+            {{/each}}
+        </div>
+        <textarea rows=3>{{effect.system.description}}</textarea>
+        <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
+    </div>
+{{/each}}

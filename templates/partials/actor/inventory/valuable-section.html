@@ -1,0 +1,107 @@
+<div class="valuable-section">
+    <h2>{{localize  "WITCHER.Inventory.Valuables"}}
+        <a class="add-item" data-item-type="valuable">
+            <i class="fas fa-plus"></i>
+        </a>
+    </h2>
+
+    {{#if questItems}}
+        <h3>{{localize "WITCHER.Valuable.QuestItem"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/valuable-block.html" valuables=questItems}}
+    {{/if}}
+
+    {{#if general}}
+        <h3>{{localize "WITCHER.Valuable.General"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/valuable-block.html" valuables=general}}
+    {{/if}}
+
+    {{#if foodAndDrinks}}
+        <h3>{{localize "WITCHER.Valuable.Food&Drinks"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/valuable-block.html" valuables=foodAndDrinks}}
+    {{/if}}
+
+    {{#if toolkits}}
+        <h3>{{localize "WITCHER.Valuable.Toolkit"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/valuable-block.html" valuables=toolkits}}
+    {{/if}}
+
+    {{#if clothingAndContainers}}
+        <h3>{{localize "WITCHER.Valuable.Clothings"}} &amp; {{localize "WITCHER.Valuable.Containers"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/valuable-block.html" valuables=clothingAndContainers}}
+    {{/if}}
+
+    {{#if mounts}}
+        <h3>{{localize "WITCHER.Inventory.Mounts"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/mount-block.html" mounts=mounts}}
+    {{/if}}
+
+    {{#if mountAccessories}}
+        <h3>{{localize "WITCHER.Valuable.MountAccessories"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/valuable-block.html" valuables=mountAccessories}}
+    {{/if}}
+
+    <h2>{{localize  "WITCHER.Inventory.Diagrams"}}
+        <a class="add-item" data-item-type="diagrams">
+            <i class="fas fa-plus"></i>
+        </a>
+    </h2>
+    {{#if alchemicalItemDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.AlchemicalItemDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=alchemicalItemDiagrams}}
+    {{/if}}
+
+    {{#if oilDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.OilDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=oilDiagrams}}
+    {{/if}}
+
+    {{#if potionDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.PotionDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=potionDiagrams}}
+    {{/if}}
+
+    {{#if decoctionDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.DecoctionDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=decoctionDiagrams}}
+    {{/if}}
+
+    {{#if ingredientDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.IngredientDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=ingredientDiagrams}}
+    {{/if}}
+
+    {{#if ammunitionDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.AmmunitionDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=ammunitionDiagrams}}
+    {{/if}}
+
+    {{#if weaponDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.WeaponDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=weaponDiagrams}}
+    {{/if}}
+
+    {{#if armorDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.ArmorDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=armorDiagrams}}
+    {{/if}}
+
+    {{#if elderfolkWeaponDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.ElderfolkWeaponDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=elderfolkWeaponDiagrams}}
+    {{/if}}
+
+    {{#if elderfolkArmorDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.ElderfolkArmorDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=elderfolkArmorDiagrams}}
+    {{/if}}
+
+    {{#if bombDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.BombDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=bombDiagrams}}
+    {{/if}}
+
+    {{#if trapDiagrams}}
+        <h3>{{localize "WITCHER.Inventory.TrapDiagrams"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/diagram-block.html" diagrams=trapDiagrams}}
+    {{/if}}
+</div>

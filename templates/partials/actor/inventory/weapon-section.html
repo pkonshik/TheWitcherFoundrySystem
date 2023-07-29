@@ -1,0 +1,142 @@
+<div class="weapon-section">
+    <h2>{{localize "WITCHER.Inventory.Weapons"}}
+        <a class="add-item" data-item-type="weapon">
+            <i class="fas fa-plus"></i>
+        </a>
+    </h2>
+    <table class="item-table item-list">
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>{{localize "WITCHER.table.Quantity"}}</b></td>
+            <td><b>{{localize "WITCHER.table.Name"}}</b></td>
+            <td><b>{{localize "WITCHER.table.Range"}}</b></td>
+            <td><b>{{localize "WITCHER.table.Damage"}}</b></td>
+            <td><b>{{localize "WITCHER.table.Reliability"}}</b></td>
+            <td><b>{{localize "WITCHER.table.Equipped"}}</b></td>
+        </tr>
+        {{#each weapons as |weapon id|}}
+            <tbody class="item" data-item-id="{{weapon._id}}" data-type="weapon">
+            <tr>
+                <td>
+                    <a class="display-weapon"><i class="fas fa-info"></i></a>
+                </td>
+                <td style="text-align:left;">
+                    {{> "systems/witcher/templates/partials/item/item-image.html" item=weapon}}
+                </td>
+                <td><input class="inline-edit item-quantity" data-field="system.quantity" type="text"
+                           value="{{weapon.system.quantity}}" data-dtype="Number"/></td>
+                <td><a class="item-roll">{{weapon.name}}</a></td>
+                <td><input class="inline-edit range-info" data-field="system.range" type="text"
+                           value="{{weapon.system.range}}" placeholder=""/></td>
+                <td><input class="inline-edit damage-info" data-field="system.damage" type="text"
+                           value="{{weapon.system.damage}}" placeholder=""/></td>
+                <td>
+                    <div class="flex">
+                        <input class="inline-edit reliable-info" data-field="system.reliable"
+                               type="text" value="{{weapon.system.reliable}}"
+                               data-dtype="Number"/>
+                        /
+                        <input class="header-stat" type="number" value="{{weapon.system.maxReliability}}"
+                               placeholder="0"
+                               data-dtype="Number" disabled readonly/>
+                    </div>
+                </td>
+                <td><input class="inline-edit" data-field="system.equipped" type="checkbox" value={{checked
+                        weapon.system.equipped}} {{checked weapon.system.equipped}}/></td>
+            </tr>
+            <tr class="item-info invisible">
+                <td colspan="7">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="flex">
+                                    <label class="label-info">
+                                        <b>{{localize "WITCHER.Weapon.Type"}}: </b>
+                                    </label>{{weapon.system.type.text}}
+                                </div>
+                            </td>
+                            {{#unless weapon.system.isAmmo}}
+                                <td>
+                                    <div class="flex">
+                                        <label class="label-info">
+                                            <b>{{localize "WITCHER.Weapon.Hands"}}: </b>
+                                        </label>{{weapon.system.hands}}
+                                    </div>
+                                </td>
+                            {{/unless}}
+                            {{#if weapon.system.hands}}
+                                <td></td>
+                                <td></td>
+                            {{/if}}
+                            <td>
+                                <div class="flex">
+                                    <label class="label-info">
+                                        <b>{{localize "WITCHER.Weapon.Short.Concealement"}}: </b>
+                                    </label>{{weapon.system.conceal}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="flex">
+                                    <label class="label-info">
+                                        <b>{{localize "WITCHER.Item.Weight"}}: </b>
+                                    </label>{{weapon.system.weight}}
+                                </div>
+                            </td>
+                            <td><a class="edit-item"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {{#unless weapon.system.isAmmo}}
+                            <tr>
+                                <td colspan="8">
+                                    <div class="flex">
+                                        {{localize "WITCHER.Weapon.Short.Enhancements"}}:
+                                        {{#each weapon.system.enhancementItems as |enhancement id|}}
+                                            {{#if enhancement.img}}
+                                                <div class="item item-enhancement"
+                                                     data-item-id="{{enhancement._id}}">
+                                                    <img class="edit-item no-margin" src="{{enhancement.img}}"
+                                                         alt="{{enhancement.name}}"/>
+                                                </div>
+                                            {{/if}}
+                                            {{#unless enhancement.img}}
+                                                <div class="item-enhancement">
+                                                    <a>
+                                                        <div class="enhancement-slot enhancement-weapon-slot"></div>
+                                                    </a>
+                                                </div>
+                                            {{/unless}}
+                                        {{/each}}
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/unless}}
+                        <tr>
+                            {{#unless weapon.system.isAmmo}}
+                            <td colspan="7">
+                            {{/unless}}
+                            {{#if weapon.system.isAmmo}}
+                            <td colspan="6">
+                            {{/if}}
+                            <div class="flex">
+                                <b>{{localize "WITCHER.Item.Effect"}}: </b>
+                                {{#each weapon.system.effects as |effect id|}}
+                                    <div class="flex">
+                                        {{effect.name}}
+                                        {{#if effect.percentage}}
+                                            ({{effect.percentage}})%
+                                        {{/if}}
+                                        ,
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </td>
+                            <td><a class="delete-item"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        {{/each}}
+    </table>
+</div>

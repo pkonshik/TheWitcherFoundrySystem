@@ -36,10 +36,11 @@ export function sum(items, prop) {
 
     let total = 0, i = 0, _len = items.length;
     for (; i < _len; i++) {
-        if (this[i]["system"][prop]) {
-            total += Number(this[i]["system"][prop])
-        } else if (this[i]["system"]["system"][prop]) {
-            total += Number(this[i]["system"]["system"][prop])
+        let item = items[i]
+        if (item["system"][prop]) {
+            total += Number(item["system"][prop])
+        } else if (items[i]["system"]["system"][prop]) {
+            total += Number(item["system"]["system"][prop])
         }
     }
     return total

@@ -11,11 +11,8 @@
                 <input class="profession-skill-input" name="system.definingSkill.skillName" type="text"
                        value="{{item.system.definingSkill.skillName}}" placeholder=""/>
                 <select class="defining-skill-select" name="system.definingSkill.stat">
-                    {{#select item.system.definingSkill.stat}}
-                        {{#each config.stats as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.stats selected=item.system.definingSkill.stat nameAttr="name"
+                                    labelAttr = "alias" localize=true}}
                 </select>
                 <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                 <input class="profession-level" name="system.definingSkill.level" type="number"
@@ -33,11 +30,8 @@
                         <input class="profession-skill-input" name="system.skillPath1.skill1.skillName" type="text"
                                value="{{item.system.skillPath1.skill1.skillName}}" placeholder=""/>
                         <select class="first-path-select" name="system.skillPath1.skill1.stat">
-                            {{#select item.system.skillPath1.skill1.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath1.skill1.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath1.skill1.level" type="number"
@@ -51,11 +45,8 @@
                         <input class="profession-skill-input" name="system.skillPath1.skill2.skillName" type="text"
                                value="{{item.system.skillPath1.skill2.skillName}}" placeholder=""/>
                         <select class="first-path-select" name="system.skillPath1.skill2.stat">
-                            {{#select item.system.skillPath1.skill2.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath1.skill2.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath1.skill2.level" type="number"
@@ -69,11 +60,8 @@
                         <input class="profession-skill-input" name="system.skillPath1.skill3.skillName" type="text"
                                value="{{item.system.skillPath1.skill3.skillName}}" placeholder=""/>
                         <select class="first-path-select" name="system.skillPath1.skill3.stat">
-                            {{#select item.system.skillPath1.skill3.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath1.skill3.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath1.skill3.level" type="number"
@@ -91,11 +79,8 @@
                         <input class="profession-skill-input" name="system.skillPath2.skill1.skillName" type="text"
                                value="{{item.system.skillPath2.skill1.skillName}}" placeholder=""/>
                         <select class="second-path-select" name="system.skillPath2.skill1.stat">
-                            {{#select item.system.skillPath2.skill1.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath2.skill1.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath2.skill1.level" type="number"
@@ -109,11 +94,8 @@
                         <input class="profession-skill-input" name="system.skillPath2.skill2.skillName" type="text"
                                value="{{item.system.skillPath2.skill2.skillName}}" placeholder=""/>
                         <select class="second-path-select" name="system.skillPath2.skill2.stat">
-                            {{#select item.system.skillPath2.skill2.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath2.skill2.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath2.skill2.level" type="number"
@@ -127,11 +109,8 @@
                         <input class="profession-skill-input" name="system.skillPath2.skill3.skillName" type="text"
                                value="{{item.system.skillPath2.skill3.skillName}}" placeholder=""/>
                         <select class="second-path-select" name="system.skillPath2.skill3.stat">
-                            {{#select item.system.skillPath2.skill3.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath2.skill3.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath2.skill3.level" type="number"
@@ -149,11 +128,8 @@
                         <input class="profession-skill-input" name="system.skillPath3.skill1.skillName" type="text"
                                value="{{item.system.skillPath3.skill1.skillName}}" placeholder=""/>
                         <select class="third-path-select" name="system.skillPath3.skill1.stat">
-                            {{#select item.system.skillPath3.skill1.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath3.skill1.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath3.skill1.level" type="number"
@@ -167,11 +143,8 @@
                         <input class="profession-skill-input" name="system.skillPath3.skill2.skillName" type="text"
                                value="{{item.system.skillPath3.skill2.skillName}}" placeholder=""/>
                         <select class="third-path-select" name="system.skillPath3.skill2.stat">
-                            {{#select item.system.skillPath3.skill2.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath3.skill2.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath3.skill2.level" type="number"
@@ -185,11 +158,8 @@
                         <input class="profession-skill-input" name="system.skillPath3.skill3.skillName" type="text"
                                value="{{item.system.skillPath3.skill3.skillName}}" placeholder=""/>
                         <select class="third-path-select" name="system.skillPath3.skill3.stat">
-                            {{#select item.system.skillPath3.skill3.stat}}
-                                {{#each config.stats as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions config.stats selected=item.system.skillPath3.skill3.stat nameAttr="name"
+                                            labelAttr = "alias" localize=true}}
                         </select>
                         <label>{{localize "WITCHER.Actor.Profession.Level"}}</label>
                         <input class="profession-level" name="system.skillPath3.skill3.level" type="number"

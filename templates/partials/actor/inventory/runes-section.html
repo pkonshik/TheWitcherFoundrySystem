@@ -1,0 +1,12 @@
+<div class="runes-section">
+    <h2>{{localize "WITCHER.Inventory.RunesAndGlyphs"}}</h2>
+
+    {{#if runeItems}}
+        <h3>{{localize  "WITCHER.Inventory.Runes"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/rune-glyph-block.html" enhancements=runeItems}}
+    {{/if}}
+    {{#if glyphItems}}
+        <h3>{{localize  "WITCHER.Inventory.Glyphs"}}</h3>
+        {{> "systems/witcher/templates/partials/actor/inventory/rune-glyph-block.html" enhancements=glyphItems}}
+    {{/if}}
+</div>
