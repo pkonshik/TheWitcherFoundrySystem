@@ -738,6 +738,8 @@
   "WITCHER.Currency.crown": "Crown",
   "WITCHER.Currency.oren": "Oren",
   "WITCHER.Currency.falsecoin": "FalseCoin",
+  "WITCHER.Currency.Error.InvalidCurrency": "invalid currency",
+  "WITCHER.Currency.Error.NotEnoughCoins": "Not Enough Coins",
   "WITCHER.background.other": "Other",
   "WITCHER.background.activeEffect": "Active Effects",
   "WITCHER.Spell.CreateTemplate": "Create a Template",

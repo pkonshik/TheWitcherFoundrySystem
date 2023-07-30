@@ -1,0 +1,161 @@
+<div class="non-breakable">
+    <div class="monster-right-top">
+        <div class="monster-right-buttons">
+            <div class="monster-button-collum">
+                <a class="button-roll init-roll">{{localize "WITCHER.Actor.Initiative"}}</a>
+                <a class="button-roll death-roll">{{localize "WITCHER.Actor.SavingThrow"}}</a>
+            </div>
+            <div class="monster-button-collum">
+                <a class="button-roll crit-roll">{{localize "WITCHER.Actor.Crit/Fumble"}}</a>
+                <a class="button-roll defence-roll">{{localize "WITCHER.Actor.Defense"}}</a>
+                {{#if useVerbalCombat}}
+                    <a class="button-roll verbal-button">{{localize "WITCHER.verbalCombat.Title"}}</a>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="monster-right-attributes">
+            <div class="monster-right-row">
+                <div class="right-element" title="{{localize "WITCHER.Actor.Hp"}}">
+                    {{#if system.deathStateApplied}}
+                        <img class="right-image" src="systems/witcher/assets/images/health-dead.png"/>
+                    {{/if}}
+                    {{#if system.woundThresholdApplied}}
+                        {{#unless system.deathStateApplied}}
+                            <img class="right-image"
+                                 src="systems/witcher/assets/images/health-down.png"/>
+                        {{/unless}}
+                    {{else}}
+                        {{#unless system.deathStateApplied}}
+                            <img class="right-image" src="systems/witcher/assets/images/health.png"/>
+                        {{/unless}}
+                    {{/if}}
+                    <input class="right-value hp-value"
+                           type="number"
+                           value="{{system.derivedStats.hp.value}}"
+                           max="99" placeholder="0" data-dtype="Number" disabled readonly/>
+                </div>
+                <div class="right-element" title="{{localize "WITCHER.Actor.Stamina"}}">
+                    <img class="right-image" src="systems/witcher/assets/images/stamina.png"/>
+                    <input class="right-value"
+                           type="number"
+                           value="{{system.derivedStats.sta.value}}"
+                           max="99" placeholder="0" data-dtype="Number" disabled readonly/>
+                </div>
+                {{#if useVerbalCombat}}
+                    <div class="right-element" title="{{localize "WITCHER.Actor.DerStat.Resolve"}}">
+                        <img class="right-image" src="systems/witcher/assets/images/resolve.png"/>
+                        <input class="right-value"
+                               type="number"
+                               value="{{system.derivedStats.resolve.value}}" max="99" placeholder="0"
+                               data-dtype="Number" disabled readonly/>
+                    </div>
+                {{/if}}
+                <div class="right-element" title="{{localize "WITCHER.Actor.DerStat.Vigor"}}">
+                    <img class="right-image" src="systems/witcher/assets/images/focus.png"/>
+                    <input class="right-value"
+                           type="number"
+                           value="{{system.derivedStats.vigor.value}}" max="99" placeholder="0"
+                           data-dtype="Number" disabled readonly/>
+                </div>
+            </div>
+            <div class="death-section">
+                <a class="death-minus"><i class="fas fa-minus"></i></a>
+                {{#if (gt system.deathSaves 0)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 1)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 2)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 3)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 4)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 5)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 6)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 7)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                {{#if (gt system.deathSaves 8)}}
+                    <i class="death fas fa-skull-crossbones"></i>.
+                {{else}}
+                    <i class="fas fa-skull"></i>.
+                {{/if}}
+                <a class="death-plus"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="skills"> {{localize "WITCHER.Monster.SkillTab"}}</a>
+        <a class="item" data-tab="inventory">{{localize "WITCHER.Monster.InventoryTab"}} </a>
+        <a class="item" data-tab="details"> {{localize "WITCHER.Monster.DetailsTab"}}</a>
+        <a class="item" data-tab="spells"> {{localize "WITCHER.Monster.SpellsTab"}}</a>
+    </nav>
+
+    {{! Sheet Body }}
+    <section class="sheet-body">
+        <div class="tab" data-group="primary" data-tab="skills">
+            {{> "systems/witcher/templates/partials/monster-skill-tab.html"}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="inventory">
+            {{>"systems/witcher/templates/partials/monster-inventory-tab.html"}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="details">
+            {{>"systems/witcher/templates/partials/monster-details-tab.html"}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="spells">
+            {{> "systems/witcher/templates/partials/monster-spell-tab.html"}}
+        </div>
+    </section>
+</div>
+
+<div class="break-flex"></div>
+
+<div class="monster-flex">
+    <div class="break-flex"></div>
+    <div class="monster-knowledge">
+        <label>{{localize "WITCHER.Monster.CommonerSupperstition"}}
+            <input class="skill-value"
+                   name="system.commonSkillValue"
+                   type="number"
+                   value="{{system.commonSkillValue}}"
+                   data-dtype="Number"/>
+        </label>
+        {{editor system.common target="system.common" button=true editable=editable}}
+        <label>{{localize "WITCHER.Monster.WitcherKnowledge"}}
+            <input class="skill-value"
+                   name="system.monsterLoreSkillValue"
+                   type="number"
+                   value="{{system.monsterLoreSkillValue}}"
+                   data-dtype="Number"/>
+        </label>
+        {{editor system.monsterLore target="system.monsterLore" button=true editable=editable}}
+    </div>
+</div>
+

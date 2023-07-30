@@ -7,6 +7,9 @@
 export async function preloadHandlebarsTemplates() {
     const templatePaths = [
         "systems/witcher/templates/partials/actor/character-header.html",
+        "systems/witcher/templates/partials/actor/monster-left-sidebar.html",
+        "systems/witcher/templates/partials/actor/monster-center-sidebar.html",
+        "systems/witcher/templates/partials/actor/monster-right-sidebar.html",
 
         "systems/witcher/templates/sheets/actor/character-sheet.html",
         "systems/witcher/templates/sheets/actor/monster-sheet.html",

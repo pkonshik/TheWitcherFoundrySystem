@@ -1,17 +1,42 @@
 import WitcherActorSheet from "./actor-sheet.js";
 import {buttonDialog} from "../../utils/chat.js";
+import {witcher} from "../../config.js";
 
-export class WitcherMonsterSheet extends WitcherActorSheet {
+export default class WitcherMonsterSheet extends WitcherActorSheet {
+    /** @override */
+    static get defaultOptions() {
+        return mergeObject(super.defaultOptions, {
+            classes: ["witcher", "sheet", "actor", "monster"],
+            width: 1120,
+            height: 600,
+            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
+        });
+    }
 
     /**
      * Organize and classify Items for Monster sheet.
-     * @param {Object} context The monster to prepare.
+     * @param {Object} context The loot to prepare.
      * @return {undefined}
      */
     _prepareItems(context) {
-        super._prepareItems(context);
+        /**
+         * @type {WitcherItem[]}
+         */
+        let items = context.actor.items;
+
+        context.loots = items.filter(i => i.isOfType(witcher.itemTypes.component) ||
+            i.isOfType(witcher.itemTypes.craftingMaterial) ||
+            i.isOfType(witcher.itemTypes.enhancement) ||
+            i.isOfType(witcher.itemTypes.valuable) ||
+            i.isOfType(witcher.itemTypes.animalParts) ||
+            i.isOfType(witcher.itemTypes.diagrams) ||
+            i.isOfType(witcher.itemTypes.armor) ||
+            i.isOfType(witcher.itemTypes.alchemical) ||
+            i.isOfType(witcher.itemTypes.enhancement) ||
+            i.isOfType(witcher.itemTypes.mutagen));
     }
 
+    /** @override */
     activateListeners(html) {
         super.activateListeners(html);
         /**
@@ -19,13 +44,12 @@ export class WitcherMonsterSheet extends WitcherActorSheet {
          */
         let actor = this.actor
 
-        html.find(".export-loot").on("click", this.exportLoot(actor, false));
-        html.find(".export-loot-ext").on("click", this.exportLoot(actor, true));
-        html.find(".change-skill-list").on("click", () => {this.onChangeSkillList(actor)});
+        html.find(".export-loot").on("click", this.exportLoot.bind(this, actor, false));
+        html.find(".export-loot-ext").on("click", this.exportLoot.bind(this, actor, true));
+        html.find(".change-skill-list").on("click", this.onChangeSkillList.bind(this, actor));
 
         html.find(".skill-display").on("click", this._onSkillDisplay.bind(this));
     }
-
 
     /**
      * Prepare monsters skill list

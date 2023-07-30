@@ -1,12 +1,14 @@
 import WitcherItem from "../module/documents/item.js";
 import WitcherActor from "../module/documents/actor.js";
 import WitcherItemSheet from "../module/sheets/item-sheet.js";
-import WitcherActorSheet from "../module/sheets/actor/actor-sheet.js";
 import * as Chat from "../module/utils/chat.js";
 import {registerSettings} from "../module/settings.js";
 import {preloadHandlebarsTemplates} from "../module/helpers/utils.js";
 import {witcher} from "../module/config.js";
 import {sum} from "../module/helpers/actor.js";
+import WitcherMonsterSheet from "../module/sheets/actor/monster-sheet.js";
+import WitcherLootSheet from "../module/sheets/actor/loot-sheet.js";
+import WitcherCharacterSheet from "../module/sheets/actor/character-sheet.js";
 
 Hooks.once("init", function () {
     game.witcher = {
@@ -20,19 +22,30 @@ Hooks.once("init", function () {
     CONFIG.Actor.documentClass = WitcherActor;
     CONFIG.Item.documentClass = WitcherItem;
 
-/*    CONFIG.Actor.systemDataModels.character = WitcherActorData;
-    CONFIG.Actor.trackableAttributes = {
-        character: {
-            bar: ["attributes.hp"],
-            value: ["attributes.ac.value"]
-        }
-    };*/
+    /*    CONFIG.Actor.systemDataModels.character = WitcherActorData;
+        CONFIG.Actor.trackableAttributes = {
+            character: {
+                bar: ["attributes.hp"],
+                value: ["attributes.ac.value"]
+            }
+        };*/
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("witcher", WitcherItemSheet, {makeDefault: true});
 
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("witcher", WitcherActorSheet, {makeDefault: true});
+    Actors.registerSheet("witcher", WitcherMonsterSheet, {
+        types: ["monster"],
+        makeDefault: true
+    });
+    Actors.registerSheet("witcher", WitcherCharacterSheet, {
+        types: ["character"],
+        makeDefault: true
+    });
+    Actors.registerSheet("witcher", WitcherLootSheet, {
+        types: ["loot"],
+        makeDefault: true
+    });
 
     preloadHandlebarsTemplates().then(() => registerSettings());
 });

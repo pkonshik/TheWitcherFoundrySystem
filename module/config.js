@@ -1,6 +1,55 @@
 export const witcher = {}
 
 /**
+ * @typedef {object} CurrencyType
+ * @property {string} name
+ * @property {string} alias
+ * @property {string} ref
+ */
+
+/**
+ * @enum CurrencyType
+ */
+witcher.currency = {
+    bizant: {
+        name: "bizant",
+        alias: "WITCHER.Currency.bizant",
+        ref: "currency.bizant",
+    },
+    ducat: {
+        name: "ducat",
+        alias: "WITCHER.Currency.ducat",
+        ref: "currency.ducat",
+    },
+    lintar: {
+        name: "lintar",
+        alias: "WITCHER.Currency.lintar",
+        ref: "currency.lintar",
+
+    },
+    floren: {
+        name: "floren",
+        alias: "WITCHER.Currency.floren",
+        ref: "currency.floren",
+    },
+    crown: {
+        name: "crown",
+        alias: "WITCHER.Currency.crown",
+        ref: "currency.crown",
+    },
+    oren: {
+        name: "oren",
+        alias: "WITCHER.Currency.oren",
+        ref: "currency.oren",
+    },
+    falsecoin: {
+        name: "falsecoin",
+        alias: "WITCHER.Currency.falsecoin",
+        ref: "currency.falsecoin",
+    },
+}
+
+/**
  * @enum {string}
  */
 witcher.rollFormulas = {
@@ -104,6 +153,22 @@ witcher.craftLevels = {
     novice: {
         name: "novice",
         alias: "WITCHER.Diagram.Novice"
+    },
+    journeyman: {
+        name: "journeyman",
+        alias: "WITCHER.Diagram.Journeyman"
+    },
+    master: {
+        name: "master",
+        alias: "WITCHER.Diagram.Master",
+    },
+    grandMaster: {
+        name: "grandMaster",
+        alias: "WITCHER.Diagram.GrandMaster"
+    },
+    witcher: {
+        name: "witcher",
+        alias: "WITCHER.Diagram.Witcher"
     }
 }
 

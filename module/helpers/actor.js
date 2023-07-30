@@ -52,12 +52,12 @@ export function sum(items, prop) {
  * @return {number}
  */
 export function weight(items) {
-    let total = 0, i = 0, _len = items.length;
-    for (; i < _len; i++) {
-        if (this[i]["system"]["weight"] && this[i]["system"]["quantity"]) {
-            total += Number(this[i]["system"]["quantity"]) * Number(this[i]["system"]["weight"])
+    let total = 0
+    items.forEach(i => {
+        if (i["system"]["weight"] && i["system"]["quantity"]) {
+            total += Number(i["system"]["quantity"]) * Number(i["system"]["weight"])
         }
-    }
+    })
     return Math.ceil(total)
 }
 
@@ -79,12 +79,12 @@ export function currencyWeight(currency) {
  * @return {number}
  */
 export function cost(items) {
-    let total = 0, i = 0, _len = items.length;
-    for (; i < _len; i++) {
-        if (this[i]["system"]["cost"] && this[i]["system"]["quantity"]) {
-            total += Number(this[i]["system"]["quantity"]) * Number(this[i]["system"]["cost"])
+    let total = 0
+    items.forEach(i => {
+        if (i["system"]["cost"] && i["system"]["quantity"]) {
+            total += Number(i["system"]["quantity"]) * Number(i["system"]["cost"])
         }
-    }
+    })
     return Math.ceil(total)
 }
 

@@ -1059,7 +1059,7 @@
         "currencyTmpl"
       ],
       "description": "",
-      "maxWeight": 0
+      "maxWeight": 100
     }
   },
   "Item": {

@@ -292,6 +292,7 @@ input.stopping-info {
     width: 50%;
     flex-direction: column;
 }
+
 .weapon-section, .armor-section, .alchemy-section, .valuable-section, .substances-section, .crafting-section, .runes-section {
     padding-right: 10px;
 }

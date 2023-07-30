@@ -5,6 +5,7 @@
         <td></td>
         <td><b>{{localize "WITCHER.table.Name"}}</b></td>
         <td><b>{{localize "WITCHER.Weapon.Short.Damage"}}</b></td>
+        <td><b>{{localize "WITCHER.table.Quantity"}}</b></td>
         <td><b>{{localize "WITCHER.Weapon.Short.Reliability"}}</b></td>
         <td><b>{{localize "WITCHER.Item.ROF"}}</b></td>
     </tr>
@@ -20,6 +21,8 @@
             <td><a class="item-roll">{{weapon.name}}</a></td>
             <td><input class="inline-edit" data-field="system.damage" type="text" value="{{weapon.system.damage}}"
                        placeholder=""/></td>
+            <td><input class="inline-edit small" data-field="system.quantity" type="text"
+                       value="{{system.quantity}}" placeholder=""/></td>
             <td><input class="inline-edit small" data-field="system.reliable" type="text"
                        value="{{weapon.system.reliable}}" placeholder=""/></td>
             <td><input class="inline-edit small" data-field="system.rateOfFire" type="text"
@@ -57,7 +60,8 @@
 <table class="item-list">
     {{#each loots as |valuable id|}}
         <tr class="item" data-item-id="{{valuable._id}}">
-            <td><img src="{{valuable.img}}" class="item-img draggable" draggable="true" data-id="{{valuable._id}}"/></td>
+            <td><img src="{{valuable.img}}" class="item-img draggable" draggable="true" data-id="{{valuable._id}}"/>
+            </td>
             <td><input class="small-medium inline-edit" data-field="system.quantity" type="text"
                        value="{{system.quantity}}" placeholder="1d6"/></td>
             <td><input class="inline-edit" data-field="name" type="text" value="{{valuable.name}}" placeholder="name"/>

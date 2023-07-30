@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="main.js" type="NodeJSConfigurationType" singleton="false" application-parameters="--dataPath=d:\workspace\Foundry" path-to-node="C:/Program Files/nodejs/node" nameIsGenerated="true" path-to-js-file="main.js" working-dir="C:/Program Files/Foundry Virtual Tabletop/resources/app">
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeStartBrowserRunConfigurationExtension">
+      <browser with-js-debugger="true" />
+    </EXTENSION>
+    <method v="2" />
+  </configuration>
+</component>

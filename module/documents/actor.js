@@ -455,7 +455,17 @@ export default class WitcherActor extends Actor {
      * @return {WitcherItem}
      */
     getItemByName(name) {
-        return this.items.filter(i => i.name = name)[0]
+        return this.items.filter(i => i.name === name)[0]
+    }
+
+    /**
+     * Find item by name & type
+     * @param {string} name
+     * @param {string} typeName
+     * @return {WitcherItem}
+     */
+    getItemByNameAndType(name, typeName) {
+        return this.items.filter(i=>i.name===name && i.type === typeName)[0]
     }
 
     /**
