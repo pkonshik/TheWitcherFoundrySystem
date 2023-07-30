@@ -19,20 +19,20 @@
                                    value="{{details.max}}" placeholder="0" data-dtype="Number"/>
 
                             {{#if details.isOpened}}
-                                <a class="stat-modifier-display"><i class="fas fa-chevron-down"></i></a>
+                                <a class="display-modifier"><i class="fas fa-chevron-down"></i></a>
                             {{else}}
-                                <a class="stat-modifier-display"><i class="fas fa-chevron-right"></i></a>
+                                <a class="display-modifier"><i class="fas fa-chevron-right"></i></a>
                             {{/if}}
                         </div>
                         {{#if details.isOpened}}
                             <a class="add-modifier"><i class="fas fa-plus"></i></a>
                             {{#each details.modifiers as |modifier value|}}
                                 <div class="list-modifiers" data-id="{{modifier.id}}">
-                                    <input class="medium list-mod-edit" data-field="name" type="text"
+                                    <input class="medium edit-modifier" data-field="name" type="text"
                                            value="{{modifier.name}}"/>
-                                    <input class="small list-mod-edit" data-field="value" type="number"
+                                    <input class="small edit-modifier" data-field="value" type="number"
                                            value="{{modifier.value}}"/>
-                                    <a class="delete-stat">
+                                    <a class="delete-modifier">
                                         <i class="fas fa-trash-alt" data-id="{{modifier.id}}"></i>
                                     </a>
                                 </div>

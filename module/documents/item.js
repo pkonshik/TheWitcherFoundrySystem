@@ -255,37 +255,23 @@ export default class WitcherItem extends Item {
 
     /**
      * Populate list of alchemy craft components
-     * @return {alchemyComponent[]}
+     * @return {AlchemyComponentHolder[]}
      */
     populateAlchemyCraftComponentsList() {
-        export class alchemyComponent {
-            name = "";
-            alias = "";
-            content = "";
-            quantity = 0;
-
-            constructor(name, alias, content, quantity) {
-                this.name = name;
-                this.alias = alias;
-                this.content = content;
-                this.quantity = quantity;
-            }
-        }
-
         /**
-         * @type {alchemyComponent[]}
+         * @type {AlchemyComponentHolder[]}
          */
         let alchemyCraftComponents = [];
-        witcher.substanceTypes.forEach(s => {
+        for ( const [key, value] of Object.entries(witcher.substanceTypes) ) {
             alchemyCraftComponents.push(
-                new alchemyComponent(
-                    s.name,
-                    game.i18n.localize(s.label),
-                    `<img src="systems/witcher/assets/images/${s.name}.png" class="substance-img" /> <b>${this.system.alchemyComponents[s.name]}</b>`,
-                    this.system.alchemyComponents[s.name] > 0 ? this.system.alchemyComponents[s.name] : 0
+                new AlchemyComponentHolder(
+                    value.name,
+                    game.i18n.localize(value.label),
+                    `<img src="systems/witcher/assets/images/${value.name}.png" class="substance-img" /> <b>${this.system.alchemyComponents[value.name]}</b>`,
+                    this.system.alchemyComponents[value.name] > 0 ? this.system.alchemyComponents[value.name] : 0
                 )
             )
-        })
+        }
 
         this.system.alchemyCraftComponents = alchemyCraftComponents;
         return alchemyCraftComponents;
@@ -304,9 +290,12 @@ export default class WitcherItem extends Item {
         let roll = await extendedRoll(rollFormula, messageData, config)
 
         //Check whether formula/diagram owner is a Craftsman
-        let crafter = WitcherActor.constructor(this.actor)
-        if (!crafter.system.capabilieies.craft) {
-            return ui.notifications.error(`${crafter.name} ${game.i18n.localize("WITCHER.Actor.Capabilities.Spells.Error")}`);
+        /**
+         * @type {WitcherActor}
+         */
+        let crafter = this.actor
+        if (!crafter.system.capabilities.craft) {
+            return ui.notifications.error(`${crafter.name} ${game.i18n.localize("WITCHER.Actor.Capabilities.CraftError")}`);
         } else {
             ui.notifications.info(`${crafter.name} ${game.i18n.localize("WITCHER.Actor.Capabilities.Craft")}`);
         }
@@ -470,5 +459,26 @@ export default class WitcherItem extends Item {
         } else {
             return ui.notifications.error(`${game.i18n.localize("WITCHER.Monster.exportLootExtToManyRollTablesError")}`)
         }
+    }
+}
+
+/**
+ * @class {AlchemyComponentHolder} is needed for storing info about components available for craft
+ * @property {string} name
+ * @property {string} alias localized component label
+ * @property {string} content html representation of the component (image)
+ * @property {number} quantity
+ */
+export class AlchemyComponentHolder {
+    name = "";
+    alias = "";
+    content = "";
+    quantity = 0;
+
+    constructor(name, alias, content, quantity) {
+        this.name = name;
+        this.alias = alias;
+        this.content = content;
+        this.quantity = quantity;
     }
 }

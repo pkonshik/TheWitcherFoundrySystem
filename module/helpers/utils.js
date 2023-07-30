@@ -6,31 +6,64 @@
  */
 export async function preloadHandlebarsTemplates() {
     const templatePaths = [
+        "systems/witcher/templates/partials/actor/character-header.html",
+
         "systems/witcher/templates/sheets/actor/character-sheet.html",
         "systems/witcher/templates/sheets/actor/monster-sheet.html",
         "systems/witcher/templates/sheets/actor/loot-sheet.html",
-        "systems/witcher/templates/partials/character-header.html",
+
         "systems/witcher/templates/partials/tab-skills.html",
+
         "systems/witcher/templates/partials/tab-profession.html",
-        "systems/witcher/templates/partials/tab-background.html",
+        "systems/witcher/templates/partials/profession/profession.html",
+        "systems/witcher/templates/partials/profession/race.html",
+
+        /** tab inventory */
         "systems/witcher/templates/partials/tab-inventory.html",
-        "systems/witcher/templates/partials/tab-inventory-diagrams.html",
-        "systems/witcher/templates/partials/tab-inventory-valuables.html",
-        "systems/witcher/templates/partials/tab-inventory-mounts.html",
-        "systems/witcher/templates/partials/tab-inventory-runes-glyphs.html",
+        "systems/witcher/templates/partials/actor/inventory/currency-section.html",
+        "systems/witcher/templates/partials/actor/inventory/weapon-section.html",
+        "systems/witcher/templates/partials/actor/inventory/armor-section.html",
+        "systems/witcher/templates/partials/actor/inventory/valuable-section.html",
+        "systems/witcher/templates/partials/actor/inventory/alchemy-section.html",
+        "systems/witcher/templates/partials/actor/inventory/substances-section.html",
+        "systems/witcher/templates/partials/actor/inventory/crafting-section.html",
+        "systems/witcher/templates/partials/actor/inventory/runes-section.html",
+
+        "systems/witcher/templates/partials/actor/inventory/diagram-block.html",
+        "systems/witcher/templates/partials/actor/inventory/valuable-block.html",
+        "systems/witcher/templates/partials/actor/inventory/mount-block.html",
+        "systems/witcher/templates/partials/actor/inventory/rune-glyph-block.html",
+
         "systems/witcher/templates/partials/tab-magic.html",
-        "systems/witcher/templates/partials/crit-wounds-table.html",
-        "systems/witcher/templates/partials/substances.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-novice.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-journeyman.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-master.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-info.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-rituals.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-hexes.html",
+        "systems/witcher/templates/partials/actor/magic/actor-magic-gift.html",
+
+        "systems/witcher/templates/partials/tab-background.html",
+        "systems/witcher/templates/partials/actor/background/background-info.html",
+        "systems/witcher/templates/partials/actor/background/crit-wounds-table.html",
+        "systems/witcher/templates/partials/actor/background/active-effects-table.html",
+        "systems/witcher/templates/partials/actor/background/life-events.html",
+
         "systems/witcher/templates/partials/monster-skill-tab.html",
+
         "systems/witcher/templates/partials/monster-inventory-tab.html",
         "systems/witcher/templates/partials/monster-details-tab.html",
         "systems/witcher/templates/partials/monster-spell-tab.html",
-        "systems/witcher/templates/partials/skill-display.html",
+        "systems/witcher/templates/partials/actor/inventory/skill-block.html",
         "systems/witcher/templates/partials/monster-skill-display.html",
-        "systems/witcher/templates/partials/loot-item-display.html",
-        "systems/witcher/templates/partials/item-header.html",
-        "systems/witcher/templates/partials/item-image.html",
-        "systems/witcher/templates/partials/associated-item.html",
+        "systems/witcher/templates/partials/item/loot-item-display.html",
+
+        "systems/witcher/templates/partials/item/item-header.html",
+        "systems/witcher/templates/partials/item/spell-header.html",
+        "systems/witcher/templates/partials/item/non-spell-header.html",
+        "systems/witcher/templates/partials/item/item-image.html",
+
+        "systems/witcher/templates/partials/item/associated-item.html",
         "systems/witcher/templates/sheets/verbal-combat.html",
         "systems/witcher/templates/sheets/weapon-attack.html"
     ];
@@ -66,3 +99,14 @@ export function addModifiersToFormula(modifiers, formula) {
     return formula;
 }
 
+/**
+ * Prepare systemRef in format system.<value>.<postfix>
+ * @param {string} value
+ * @param {string=} postfix
+ * @return {string}
+ */
+export function prepareSystemRef(value, postfix) {
+    return postfix
+        ? "system." + value + "." + postfix
+        : "system." + value
+}

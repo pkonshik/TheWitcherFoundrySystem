@@ -1,5 +1,5 @@
 {{#if skill.isVisible}}
-    <tbody class="skill" data-skill="{{name}}" data-stat={{stat}}>
+    <tbody class="skill" data-skill="{{name}}" data-type="stats" data-stat={{stat}}>
     <tr>
         <td class="{{name}} char-skill" id="{{name}}-rollable">
             <a>{{localize skill.label}}</a>
@@ -9,9 +9,9 @@
         </td>
         <td class="char-input-skill-icon">
             {{#if skill.isOpened}}
-                <a class="skill-modifier-display"><i class="fas fa-chevron-down"></i></a>
+                <a class="display-skill-modifier"><i class="fas fa-chevron-down"></i></a>
             {{else}}
-                <a class="skill-modifier-display"><i class="fas fa-chevron-right"></i></a>
+                <a class="display-skill-modifier"><i class="fas fa-chevron-right"></i></a>
             {{/if}}
         </td>
     </tr>
@@ -21,8 +21,8 @@
                 <a class="add-skill-modifier"><i class="fas fa-plus"></i></a>
                 {{#each skill.modifiers as |modifier value|}}
                     <div class="list-modifiers" data-id="{{modifier.id}}">
-                        <input class="medium skill-mod-edit" data-field="name" type="text" value="{{modifier.name}}"/>
-                        <input class="small skill-mod-edit" data-field="value" type="number"
+                        <input class="medium edit-skill-modifier" data-field="name" type="text" value="{{modifier.name}}"/>
+                        <input class="small edit-skill-modifier" data-field="value" type="number"
                                value="{{modifier.value}}"/>
                         <a class="delete-skill-modifier"><i class="fas fa-trash-alt" data-id="{{modifier.id}}"></i></a>
                     </div>

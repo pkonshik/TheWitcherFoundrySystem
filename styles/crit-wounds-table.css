@@ -1,9 +1,21 @@
-.critwound-left {
+.non-treated {
+    background-color: lightcoral;
+}
+
+.stabilized {
+    background-color: lightpink;
+}
+
+.treated {
+    background-color: lightgreen;
+}
+
+.crit-wound-left-left {
     width: 50%;
     margin-right: 5px;
 }
 
-.critwounds-right {
+.crit-wounds-left-right {
     width: 50%;
     margin-left: 5px;
 }
@@ -18,7 +30,7 @@
     width: 15px;
 }
 
-.critwounds-second-line {
+.crit-wounds-left-second-line {
     display: flex;
     text-align: center;
     height: 26px;
@@ -27,7 +39,7 @@
     margin: 1px;
 }
 
-.healing-time-lable {
+.healing-time-label {
     width: 150px;
 }
 

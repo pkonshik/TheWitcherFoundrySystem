@@ -7,26 +7,26 @@
         <th><b>{{localize "WITCHER.Item.Weight"}}</b></th>
     </tr>
     {{#each valuables as |valuable id|}}
-    <tbody class="item" data-item-id="{{valuable._id}}">
+        <tbody class="item" data-item-id="{{valuable._id}}">
         <tr>
             <td>
-                <a class="item-armor-display"><i class="fas fa-info"></i></a>
+                <a class="display-armor"><i class="fas fa-info"></i></a>
             </td>
             <td>
-                <img src="{{valuable.img}}" class="item-img dragable" draggable="true"
-                        data-id="{{valuable._id}}"/>
+                <img src="{{valuable.img}}" class="item-img draggable" draggable="true"
+                     data-id="{{valuable._id}}" alt="{{valuable.name}}"/>
             </td>
             <td>
                 <input class="inline-edit item-quantity" data-field="system.quantity" type="text"
-                        value="{{valuable.system.quantity}}" data-dtype="Number"/>
+                       value="{{valuable.system.quantity}}" data-dtype="Number"/>
             </td>
             <td>
                 <input class="inline-edit" data-field="name" type="text" value="{{valuable.name}}"
-                        placeholder="name"/>
+                       placeholder="name"/>
             </td>
             <td>
                 <input class="inline-edit weight-data" data-field="system.weight" type="text"
-                        value="{{valuable.system.weight}}" data-dtype="Number"/>
+                       value="{{valuable.system.weight}}" data-dtype="Number"/>
             </td>
         </tr>
         <tr class="item-info invisible">
@@ -40,11 +40,11 @@
             </td>
             <td>
                 <div>
-                    <a class="item-edit"><i class="fas fa-edit"></i></a>
-                    <a class="item-delete"><i class="fas fa-trash-alt"></i></a>
+                    <a class="edit-item"><i class="fas fa-edit"></i></a>
+                    <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </td>
         </tr>
-    </tbody>
+        </tbody>
     {{/each}}
 </table>

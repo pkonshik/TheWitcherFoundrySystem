@@ -1,0 +1,31 @@
+<div class="flexrow BackgroundDescription">
+    <div class="flexcol background scrollable">
+        {{localize "WITCHER.Homeland"}}
+
+        <select name="system.general.homeland.value" id="homeland-select">
+            {{#select system.general.homeland.value}}
+                <option value="Other">{{localize "WITCHER.background.other"}}</option>
+                {{#each system.config.homelands as |name value|}}
+                    <option value="{{name}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+
+        {{#if (eq system.general.homeland.value "Other")}}
+            <input class="details homelandOther" name="system.general.homeland.otherValue" type="text"
+                   value="{{system.general.homeland.otherValue}}"/>
+        {{/if}}
+
+        {{#each system.general.details as |details dt|}}
+            {{localize details.label}}
+            <input class="details {{dt}}" name="system.general.details.{{dt}}.value" type="text"
+                   value="{{details.value}}"/>
+        {{/each}}
+    </div>
+
+    <div class="flexcol background scrollable">
+        {{localize "WITCHER.Actor.BackgroundTab"}}
+        {{editor system.general.background.value target="system.general.background.value" button=true
+                 editable=editable}}
+    </div>
+</div>

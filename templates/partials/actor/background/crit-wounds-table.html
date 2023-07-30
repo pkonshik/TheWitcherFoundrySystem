@@ -1,0 +1,58 @@
+<table class="crit-wounds-table">
+    <tbody>
+    {{#each system.critWounds as |critWound i| }}
+        <tr>
+            <td
+                {{#if (eq critWound.mod "Treated")}}
+                class="flex treated"
+                {{else if (eq critWound.mod "Stabilized")}}
+                class="flex stabilized"
+                {{else}}
+                class="flex non-treated"
+                {{/if}}
+            >
+                <div class="crit-wound-left-left">
+                    <input class="hidden-from-view" name="system.critWounds.{{i}}.id" type="text"
+                           value="{{critWound.id}}"/>
+                    <select name="system.critWounds.{{i}}.effect">
+                        {{selectOptions ../config.CritModDescription selected=effect nameAttr="name"
+                                        labelAttr="alias" localize=true}}
+                    </select>
+
+                    <select name="system.critWounds.{{i}}.mod">
+                        {{selectOptions ../config.CritMod selected=mod localize=true}}
+                    </select>
+
+                    <a class="delete-crit"><i class="fas fa-trash-alt" data-id="{{critWound.id}}"></i></a>
+
+                    <div class="crit-wounds-left-second-line">
+                        <label class="healing-time-label">{{localize "WITCHER.CritWound.HealingTime.Label"}}:</label>
+                        <input class="days-healed" name="system.critWounds.{{i}}.daysHealed" type="number"
+                               data-dtype="Number" value="{{critWound.daysHealed}}"/>
+                        /
+                        <input class="healing-time" name="system.critWounds.{{i}}.healingTime" type="number"
+                               data-dtype="Number" value="{{critWound.healingTime}}"/>
+                    </div>
+
+                    <textarea rows=3 name="system.critWounds.{{i}}.notes">{{critWound.notes}}</textarea>
+                </div>
+
+                {{#with (lookup ../config.CritModDescription critWound.effect)}}
+                    <div class="crit-wounds-right">
+                        {{critWound.mod}}
+                        <div class="crit-wound-description" name="system.critWounds.{{i}}.description"
+                             data-id="CritModDescription.{{critWound.effect}}">
+                            {{localize description}}
+                        </div>
+                        <br/>
+                        <div class="crit-wound-mod-description" name="system.critWounds.{{i}}.modDescription"
+                             data-id="CritModDescription.{{critWound.effect}}.mod.{{critWound.mod}}">
+                            {{localize (lookup mod critWound.mod)}}
+                        </div>
+                    </div>
+                {{/with}}
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

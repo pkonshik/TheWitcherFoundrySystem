@@ -734,13 +734,7 @@
       "critWounds": [],
       "config": {
         "CritModDescription": {},
-        "CritGravity": {},
-        "CritGravityDefaultEffect": {},
         "CritMod": {},
-        "CritSimple": {},
-        "CritComplex": {},
-        "CritDifficult": {},
-        "CritDeadly": {},
         "homelands": {
           "aedirn": "WITCHER.Homelands.aedirn",
           "angren": "WITCHER.Homelands.angren",
@@ -1018,13 +1012,7 @@
       "critWounds": [],
       "config": {
         "CritModDescription": {},
-        "CritGravity": {},
-        "CritGravityDefaultEffect": {},
-        "CritMod": {},
-        "CritSimple": {},
-        "CritComplex": {},
-        "CritDifficult": {},
-        "CritDeadly": {}
+        "CritMod": {}
       },
       "category": "Humanoid",
       "threat": "",

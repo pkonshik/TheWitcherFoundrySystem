@@ -1,7 +1,8 @@
 import {witcher} from "../config.js";
-import {currencyWeight, sum, weight} from "../helpers/actor.js";
+import {currencyWeight, getValueByStringPath, sum, weight} from "../helpers/actor.js";
 import {extendedRoll} from "../utils/chat.js";
-import {addModifiersToFormula, getRandomInt} from "../helpers/utils.js";
+import {addModifiersToFormula, getRandomInt, prepareSystemRef} from "../helpers/utils.js";
+import {RollConfig} from "../rollConfig.js";
 
 export default class WitcherActor extends Actor {
 
@@ -72,63 +73,63 @@ export default class WitcherActor extends Actor {
             item.system.stats.forEach(stat => {
                 switch (stat.stat) {
                     case "WITCHER.Actor.Stat.Int":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             intDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             intTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Ref":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             refDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             refTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Dex":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             dexDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             dexTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Body":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             bodyDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             bodyTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Spd":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             spdDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             spdTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Emp":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             empDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             empTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Cra":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             craDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             craTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Will":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             willDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             willTotalModifiers += Number(stat.modifier)
                         }
                         break;
                     case "WITCHER.Actor.Stat.Luck":
-                        if (stat.modifier.includes("/")) {
+                        if (stat.modifier.includes?.("/")) {
                             luckDivider = Number(stat.modifier.replace("/", ''));
                         } else {
                             luckTotalModifiers += Number(stat.modifier)
@@ -172,42 +173,42 @@ export default class WitcherActor extends Actor {
             item.system.derived.forEach(derived => {
                 switch (derived.derivedStat) {
                     case "WITCHER.Actor.CoreStat.Stun":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             stunDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             stunTotalModifiers += Number(derived.modifier)
                         }
                         break;
                     case "WITCHER.Actor.CoreStat.Run":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             runDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             runTotalModifiers += Number(derived.modifier)
                         }
                         break;
                     case "WITCHER.Actor.CoreStat.Leap":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             leapDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             leapTotalModifiers += Number(derived.modifier)
                         }
                         break;
                     case "WITCHER.Actor.CoreStat.Enc":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             encDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             encTotalModifiers += Number(derived.modifier)
                         }
                         break;
                     case "WITCHER.Actor.CoreStat.Rec":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             recDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             recTotalModifiers += Number(derived.modifier)
                         }
                         break;
                     case "WITCHER.Actor.CoreStat.woundThreshold":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             wtDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             wtTotalModifiers += Number(derived.modifier)
@@ -269,14 +270,14 @@ export default class WitcherActor extends Actor {
             item.system.derived.forEach(derived => {
                 switch (derived.derivedStat) {
                     case "WITCHER.Actor.DerStat.HP":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             hpDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             hpTotalModifiers += Number(derived.modifier)
                         }
                         break;
                     case "WITCHER.Actor.DerStat.Sta":
-                        if (derived.modifier.includes("/")) {
+                        if (derived.modifier.includes?.("/")) {
                             staDivider = Number(derived.modifier.replace("/", ''));
                         } else {
                             staTotalModifiers += Number(derived.modifier)
@@ -441,7 +442,7 @@ export default class WitcherActor extends Actor {
 
     /**
      * Get list of substances by substanceType name
-     * @param {witcher.substanceTypes|SubstanceType|alchemyComponent} substance
+     * @param {witcher.substanceTypes|SubstanceType|AlchemyComponentHolder} substance
      * @return {WitcherItem[]}
      */
     getSubstance(substance) {
@@ -629,10 +630,12 @@ export default class WitcherActor extends Actor {
      * @param {INT_SKILLS|REF_SKILLS|DEX_SKILLS|BODY_SKILLS|EMP_SKILLS|CRA_SKILLS|WILL_SKILLS} skillType
      */
     rollSkillCheck(statType, skillType) {
-        let stat = this.system[statType.statRef];
-        let parentStat = game.i18n.localize(stat.alias);
+        let systemRef = prepareSystemRef(statType.ref, "current")
+        let stat =  getValueByStringPath(this, systemRef)
+        let parentStat = game.i18n.localize(statType.alias);
 
-        let skill = this.system.skills[skillType.valueRef];
+        let skillSystemRef = prepareSystemRef(skillType.ref)
+        let skill = getValueByStringPath(this, skillSystemRef)
         let skillName = game.i18n.localize(skillType.alias).replace(" (2)", "");
 
         let displayRollDetails = game.settings.get("witcher", "displayRollsDetails")
@@ -646,9 +649,10 @@ export default class WitcherActor extends Actor {
             return
         }
 
-        let rollFormula = !displayRollDetails
-            ? `1d10+${stat}+${skill}`
-            : `1d10+${stat}[${parentStat}]+${skill}[${skillName}]`;
+        let rollFormula = witcher.rollFormulas.default
+        rollFormula += !displayRollDetails
+            ? `+${stat}+${skill.value}`
+            : `+${stat}[${parentStat}]+${skill.value}[${skillName}]`;
 
         //todo check
         if (this.type === "character") {
@@ -689,15 +693,17 @@ export default class WitcherActor extends Actor {
             }
         }
 
-        if (skillType.modifierRef) {
-            rollFormula = addModifiersToFormula(skillType.modifierRef, rollFormula)
+        if (skillType.ref) {
+            let modifierRef = prepareSystemRef(skillType.ref, "modifiers")
+            let skillModifiers = getValueByStringPath(this, modifierRef)
+            rollFormula = addModifiersToFormula(skillModifiers, rollFormula)
         }
 
         let activeEffects = this.getListByType(witcher.itemTypes.effect).filter(e => e.system.isActive);
         activeEffects.forEach(item => {
             item.system.skills.forEach(skill => {
                 if (skillName === game.i18n.localize(skill.skill)) {
-                    if (skill.modifier.includes("/")) {
+                    if (skill.modifier.includes?.("/")) {
                         rollFormula += !displayRollDetails
                             ? `/${Number(skill.modifier.replace("/", ''))}`
                             : `/${Number(skill.modifier.replace("/", ''))}[${item.name}]`

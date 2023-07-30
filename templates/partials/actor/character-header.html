@@ -3,8 +3,9 @@
         <label>{{localize "WITCHER.Actor.StatTitle.LableLeft"}}</label>
         <label>{{localize "WITCHER.Actor.StatTitle.ModMax"}}</label>
     </div>
+
     {{#each system.stats as |details stat|}}
-        <div class="stat-display char-stat-display" data-stat="{{stat}}">
+        <div class="stat-display char-stat-display" data-type="stats" data-stat="{{stat}}">
             <div>
                 <div class="flex">
                     <a class="char-stat-button stat-roll">{{localize details.label}}</a>
@@ -16,9 +17,9 @@
                     </label>
 
                     {{#if details.isOpened}}
-                        <a class="stat-modifier-display"><i class="fas fa-chevron-down"></i></a>
+                        <a class="display-modifier"><i class="fas fa-chevron-down"></i></a>
                     {{else}}
-                        <a class="stat-modifier-display"><i class="fas fa-chevron-right"></i></a>
+                        <a class="display-modifier"><i class="fas fa-chevron-right"></i></a>
                     {{/if}}
                 </div>
                 {{#if details.isOpened}}
@@ -26,12 +27,12 @@
                     {{#each details.modifiers as |modifier value|}}
                         <div class="list-modifiers" data-id="{{modifier.id}}">
                             <label>
-                                <input class="medium list-mod-edit" data-field="name" type="text"
+                                <input class="medium edit-modifier" data-field="name" type="text"
                                        value="{{modifier.name}}"/>
-                                <input class="small list-mod-edit" data-field="value" type="number"
+                                <input class="small edit-modifier" data-field="value" type="number"
                                        value="{{modifier.value}}"/>
                             </label>
-                            <a class="delete-stat">
+                            <a class="delete-modifier">
                                 <i class="fas fa-trash-alt" data-id="{{modifier.id}}"></i>
                             </a>
                         </div>
@@ -60,9 +61,9 @@
                     </label>
 
                     {{#if system.reputation.isOpened}}
-                        <a class="stat-modifier-display"><i class="fas fa-chevron-down"></i></a>
+                        <a class="display-modifier"><i class="fas fa-chevron-down"></i></a>
                     {{else}}
-                        <a class="stat-modifier-display"><i class="fas fa-chevron-right"></i></a>
+                        <a class="display-modifier"><i class="fas fa-chevron-right"></i></a>
                     {{/if}}
                 </div>
                 {{#if system.reputation.isOpened}}
@@ -70,12 +71,12 @@
                     {{#each system.reputation.modifiers as |modifier value|}}
                         <div class="list-modifiers" data-id="{{modifier.id}}">
                             <label>
-                                <input class="medium list-mod-edit" data-field="name" type="text"
+                                <input class="medium edit-modifier" data-field="name" type="text"
                                        value="{{modifier.name}}"/>
-                                <input class="small list-mod-edit" data-field="value" type="number"
+                                <input class="small edit-modifier" data-field="value" type="number"
                                        value="{{modifier.value}}"/>
                             </label>
-                            <a class="delete-stat"><i class="fas fa-trash-alt" data-id="{{modifier.id}}"></i></a>
+                            <a class="delete-modifier"><i class="fas fa-trash-alt" data-id="{{modifier.id}}"></i></a>
                         </div>
                     {{/each}}
                 {{/if}}
@@ -83,6 +84,7 @@
         </div>
     {{/if}}
 </div>
+
 <div class="char-header-center">
     <label>{{localize "WITCHER.Actor.Name"}}:
         <input class="char-name" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
@@ -94,8 +96,9 @@
                 <label class="core-stats-label">{{localize "WITCHER.Actor.StatTitle.Derived"}}</label>
                 <label class="core-stats-minmax">{{localize "WITCHER.Actor.StatTitle.ModMax"}}</label>
             </div>
+
             {{#each system.coreStats as |details coreStat|}}
-                <div class="stat-display char-stat-display" data-type="coreStat" data-stat="{{coreStat}}">
+                <div class="stat-display char-stat-display" data-type="coreStats" data-stat="{{coreStat}}">
                     <div>
                         <div class="flex">
                             <label class="char-stat-label">{{localize details.label}}</label>
@@ -104,27 +107,28 @@
                             <input class="header-stat" type="number" value="{{details.max}}" placeholder="0"
                                    data-dtype="Number" disabled readonly/>
                             {{#if details.isOpened}}
-                                <a class="stat-modifier-display"><i class="fas fa-chevron-down"></i></a>
+                                <a class="display-modifier"><i class="fas fa-chevron-down"></i></a>
                             {{else}}
-                                <a class="stat-modifier-display"><i class="fas fa-chevron-right"></i></a>
+                                <a class="display-modifier"><i class="fas fa-chevron-right"></i></a>
                             {{/if}}
                         </div>
                         {{#if details.isOpened}}
                             <a class="add-modifier"><i class="fas fa-plus"></i></a>
                             {{#each details.modifiers as |modifier value|}}
                                 <div class="list-modifiers" data-id="{{modifier.id}}">
-                                    <input class="medium list-mod-edit" data-field="name" type="text"
+                                    <input class="medium edit-modifier" data-field="name" type="text"
                                            value="{{modifier.name}}"/>
-                                    <input class="small list-mod-edit" data-field="value" type="number"
+                                    <input class="small edit-modifier" data-field="value" type="number"
                                            value="{{modifier.value}}"/>
-                                    <a class="delete-stat"><i class="fas fa-trash-alt"
-                                                              data-id="{{modifier.id}}"></i></a>
+                                    <a class="delete-modifier"><i class="fas fa-trash-alt"
+                                                                  data-id="{{modifier.id}}"></i></a>
                                 </div>
                             {{/each}}
                         {{/if}}
                     </div>
                 </div>
             {{/each}}
+
             <div class="stat-display char-stat-display margin-right">
                 <label class="char-stat-label">{{localize "WITCHER.Actor.DerStat.Vigor"}}</label>
                 <input class="small"
@@ -135,6 +139,7 @@
             </div>
         </div>
     </div>
+
     <table class="char-bottom-section">
         <tbody>
         <tr>
@@ -250,15 +255,18 @@
                 <label>{{localize "WITCHER.Actor.Hp"}} ({{system.derivedStats.hp.max}}
                     )/{{system.derivedStats.hp.unmodifiedMax}}</label>
                 {{#if system.deathStateApplied}}
-                    <img class="right-image" src="systems/witcher/assets/images/health-dead.png" alt="{{localize 'WITCHER.Actor.Hp'}}"/>
+                    <img class="right-image" src="systems/witcher/assets/images/health-dead.png"
+                         alt="{{localize 'WITCHER.Actor.Hp'}}"/>
                 {{/if}}
                 {{#if system.woundThresholdApplied}}
                     {{#unless system.deathStateApplied}}
-                        <img class="right-image" src="systems/witcher/assets/images/health-down.png" alt="{{localize 'WITCHER.Actor.Hp'}}"/>
+                        <img class="right-image" src="systems/witcher/assets/images/health-down.png"
+                             alt="{{localize 'WITCHER.Actor.Hp'}}"/>
                     {{/unless}}
                 {{else}}
                     {{#unless system.deathStateApplied}}
-                        <img class="right-image" src="systems/witcher/assets/images/health.png" alt="{{localize 'WITCHER.Actor.Hp'}}"/>
+                        <img class="right-image" src="systems/witcher/assets/images/health.png"
+                             alt="{{localize 'WITCHER.Actor.Hp'}}"/>
                     {{/unless}}
                 {{/if}}
                 <input class="right-value hp-value" name="system.derivedStats.hp.value" type="number"
@@ -266,7 +274,8 @@
             </div>
             <div class="right-element">
                 <label>{{localize "WITCHER.Actor.Stamina"}} ({{system.derivedStats.sta.max}})</label>
-                <img class="right-image" src="systems/witcher/assets/images/stamina.png" alt="{{localize 'WITCHER.Actor.Stamina'}}"/>
+                <img class="right-image" src="systems/witcher/assets/images/stamina.png"
+                     alt="{{localize 'WITCHER.Actor.Stamina'}}"/>
                 <input class="right-value" style="bottom:48px;" name="system.derivedStats.sta.value" type="number"
                        value="{{system.derivedStats.sta.value}}" max="99" placeholder="0" data-dtype="Number"/>
             </div>
@@ -275,14 +284,16 @@
             {{#if useVerbalCombat}}
                 <div class="right-element">
                     <label>{{localize "WITCHER.Actor.DerStat.Resolve"}} ({{system.derivedStats.resolve.max}})</label>
-                    <img class="right-image" src="systems/witcher/assets/images/resolve.png" alt="{{localize 'WITCHER.Actor.DerStat.Resolve'}}"/>
+                    <img class="right-image" src="systems/witcher/assets/images/resolve.png"
+                         alt="{{localize 'WITCHER.Actor.DerStat.Resolve'}}"/>
                     <input class="right-value" name="system.derivedStats.resolve.value" type="number"
                            value="{{system.derivedStats.resolve.value}}" max="99" placeholder="0" data-dtype="Number"/>
                 </div>
             {{/if}}
             <div class="right-element">
                 <label>{{localize system.derivedStats.focus.label}} ({{system.derivedStats.focus.max}})</label>
-                <img class="right-image" src="systems/witcher/assets/images/focus.png" alt="{{localize system.derivedStats.focus.label}}"/>
+                <img class="right-image" src="systems/witcher/assets/images/focus.png"
+                     alt="{{localize system.derivedStats.focus.label}}"/>
                 <input class="right-value" name="system.derivedStats.focus.current" type="number"
                        value="{{system.derivedStats.focus.current}}" max="99" placeholder="0" data-dtype="Number"/>
             </div>
@@ -290,14 +301,16 @@
         <div class="right-row">
             <div class="right-element">
                 <label>{{localize "WITCHER.StLuck"}} ({{system.stats.luck.current}})</label>
-                <img class="right-image" src="systems/witcher/assets/images/clover.png" alt="{{localize 'WITCHER.StLuck'}}"/>
+                <img class="right-image" src="systems/witcher/assets/images/clover.png"
+                     alt="{{localize 'WITCHER.StLuck'}}"/>
                 <input class="right-value" name="system.stats.luck.total" type="number"
                        value="{{system.stats.luck.total}}" max="99" placeholder="0" data-dtype="Number"/>
             </div>
             <div class="right-element">
                 {{#if useAdrenaline}}
                     <label>{{localize "WITCHER.Actor.Adrenaline"}}</label>
-                    <img class="right-image" src="systems/witcher/assets/images/adrenaline.png" alt="{{localize "WITCHER.Actor.Adrenaline"}}"/>
+                    <img class="right-image" src="systems/witcher/assets/images/adrenaline.png"
+                         alt="{{localize "WITCHER.Actor.Adrenaline"}}"/>
                     <input class="right-value" name="system.adrenaline" type="number" value="{{system.adrenaline}}"
                            min="0" max="99" placeholder="0" data-dtype="Number"/>
                 {{/if}}
@@ -316,15 +329,17 @@
             {{#unless (eq derivedStats "vigor")}}
                 {{#unless (eq derivedStats "modifiersIsOpened")}}
                     <div class="stat-display" data-type="derivedStat" data-stat="{{derivedStats}}">
-                        <div class="flex"><label>{{localize details.label}} </label> <a class="add-modifier"><i
-                                class="fas fa-plus"></i></a></div>
+                        <div class="flex"><label>{{localize details.label}} </label>
+                            <a class="add-modifier"><i class="fas fa-plus"></i></a>
+                        </div>
                         {{#each details.modifiers as |modifier value|}}
                             <div class="list-modifiers" data-id="{{modifier.id}}">
-                                <input class="medium list-mod-edit" data-field="name" type="text"
+                                <input class="medium edit-modifier" data-field="name" type="text"
                                        value="{{modifier.name}}"/>
-                                <input class="small list-mod-edit" data-field="value" type="number"
+                                <input class="small edit-modifier" data-field="value" type="number"
                                        value="{{modifier.value}}"/>
-                                <a class="delete-stat"><i class="fas fa-trash-alt" data-id="{{modifier.id}}"></i></a>
+                                <a class="delete-modifier"><i class="fas fa-trash-alt"
+                                                              data-id="{{modifier.id}}"></i></a>
                             </div>
                         {{/each}}
                     </div>

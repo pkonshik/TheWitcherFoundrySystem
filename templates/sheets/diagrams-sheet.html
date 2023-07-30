@@ -1,5 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
-    {{>"systems/witcher/templates/partials/item-header.html"}}
+    {{>"systems/witcher/templates/partials/item/item-header.html"}}
     <table class="item-table">
         <tr>
             <th>{{localize "WITCHER.Diagram.Formulae"}}</th>
@@ -66,7 +66,7 @@
             {{/unless}}
         </tr>
     </table>
-    {{>"systems/witcher/templates/partials/associated-item.html"}}
+    {{>"systems/witcher/templates/partials/item/associated-item.html"}}
     <div class="description">
         <label class="label-info"><b>{{localize "WITCHER.Item.Description"}}</b></label>
         {{editor item.system.description target="system.description" button=true editable=editable}}

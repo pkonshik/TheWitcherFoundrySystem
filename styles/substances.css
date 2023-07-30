@@ -27,11 +27,11 @@
   border-radius: 50%;
 }
 
-.item-substance-display:hover{
+.display-substance:hover{
   box-shadow: 0 0 10px 5px darkred;
 }
 
-.item-substance-display:active {
+.display-substance:active {
   transform:scale(1.2);
 }
 

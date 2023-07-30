@@ -36,10 +36,11 @@ export function sum(items, prop) {
 
     let total = 0, i = 0, _len = items.length;
     for (; i < _len; i++) {
-        if (this[i]["system"][prop]) {
-            total += Number(this[i]["system"][prop])
-        } else if (this[i]["system"]["system"][prop]) {
-            total += Number(this[i]["system"]["system"][prop])
+        let item = items[i]
+        if (item["system"][prop]) {
+            total += Number(item["system"][prop])
+        } else if (items[i]["system"]["system"][prop]) {
+            total += Number(item["system"]["system"][prop])
         }
     }
     return total
@@ -86,3 +87,23 @@ export function cost(items) {
     }
     return Math.ceil(total)
 }
+
+/**
+ * This functions allows to search object properties by string path
+ *
+ * Without the function: this.actor.system.reputation.current
+ *
+ * Without the function: this.actor[system][reputation][current]
+ *
+ * With the function: getValueByStringPath(this.actor, "system.reputation.current")
+ * @param {Actor} actor
+ * @param {string} selector
+ * @return {*}
+ */
+export function getValueByStringPath(actor, selector) {
+    return selector.replace(/\[([^\[\]]*)\]/g, '.$1.')
+        .split('.')
+        .filter(t => t !== '')
+        .reduce((prev, cur) => prev && prev[cur], actor)
+}
+

@@ -8,19 +8,19 @@
 <input type="text" name="system.senses" value="{{system.senses}}" placeholder=""/>
 
 <div class="monster-crit-wounds-section">
-    <h2>{{localize "WITCHER.CritWound.Header"}}<a class="add-crit" data-itemType="note"><i class="fas fa-plus"></i></a>
+    <h2>{{localize "WITCHER.CritWound.Header"}}<a class="add-crit" data-item-type="note"><i class="fas fa-plus"></i></a>
     </h2>
-    {{> "systems/witcher/templates/partials/crit-wounds-table.html"}}
+    {{> "systems/witcher/templates/partials/actor/background/crit-wounds-table.html"}}
 </div>
 
 <h2>{{localize "WITCHER.background.activeEffect"}}<a class="add-active-effect"><i class="fas fa-plus"></i></a></h2>
 {{#each activeEffects as |effect ev|}}
     <div class="item" data-item-id="{{effect._id}}">
         <div class="flex">
-            <a class="item-edit"><i class="fas fa-edit"></i></a>
+            <a class="edit-item"><i class="fas fa-edit"></i></a>
             <img src="{{effect.img}}" class="item-img"/>
             <label class="modifier-flex"><b>{{effect.name}}</b></label>
-            <a class="item-delete"><i class="fas fa-trash-alt"></i></a>
+            <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
         </div>
         <div class="flex">
             <div class="modifier-flex">
@@ -43,13 +43,13 @@
     </div>
 {{/each}}
 
-<h2>{{localize "WITCHER.Notes"}} <a class="add-item" data-itemType="note"><i class="fas fa-plus"></i></a></h2>
+<h2>{{localize "WITCHER.Notes"}} <a class="add-item" data-item-type="note"><i class="fas fa-plus"></i></a></h2>
 
 {{#each notes as |note id|}}
     <div class="item" data-item-id="{{note._id}}">
         <div class="monster-flex">
             <input class="inline-edit" data-field="name" type="text" value="{{note.name}}" placeholder="name"/>
-            <a class="item-delete"><i class="fas fa-trash-alt"></i></a>
+            <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
         </div>
         <textarea class="inline-edit" rows="5" data-field="system.description">{{system.description}}</textarea>
     </div>

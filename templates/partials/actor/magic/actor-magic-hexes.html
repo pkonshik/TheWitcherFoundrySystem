@@ -1,0 +1,56 @@
+<h2>{{localize "WITCHER.Spell.Hexes"}}
+    <a class="add-item" data-item-type="spell" data-spell-type="hexes">
+        <i class="fas fa-plus"></i>
+    </a>
+</h2>
+<table class="hexes-table item-list">
+    <tr>
+        <td></td>
+        <td></td>
+        <td><b>{{localize "WITCHER.table.Name"}}</b></td>
+        <td><b>{{localize "WITCHER.Spell.StaCost"}}</b></td>
+        <td></td>
+    </tr>
+    {{#each hexes as |hex id|}}
+        <tbody class="item" data-item-id="{{hex._id}}">
+        <tr>
+            <td>
+                <div class="flex">
+                    <a class="display-spell"><i class="fas fa-info"></i></a>
+                    <a class="edit-item"><i class="fas fa-edit"></i></a>
+                </div>
+            </td>
+            <td>
+                <img src="{{hex.img}}" class="item-img draggable" draggable="true" data-id="{{hex._id}}"
+                     alt="{{hex.name}}"/>
+            </td>
+            <td>
+                <a class="spell-roll">{{hex.name}}</a>
+            </td>
+            <td>
+                <input class="inline-edit spell-sta" data-field="system.stamina" type="text"
+                       value="{{hex.system.stamina}}" placeholder="1" data-dtype="Number"/>
+            </td>
+            <td>
+                <a class="delete-item"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+        <tr class="item-info invisible">
+            <td colspan="4">
+                <div>
+                    <div class="flex">
+                        <label>
+                            <b>{{localize "WITCHER.Spell.Effect"}}: </b>
+                        </label>{{hex.system.effect}}
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <b>{{localize "WITCHER.Spell.Requirements"}}: </b>
+                        </label>{{hex.system.liftRequirement}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    {{/each}}
+</table>
